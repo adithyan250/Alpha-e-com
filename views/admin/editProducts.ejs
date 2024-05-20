@@ -1,0 +1,586 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>Home</title>
+</head>
+
+<body style="margin: 0rem;
+    font-family: 'Montserrat', sans-serif;">
+    <nav>
+        <div class="header" style=" width: auto;
+        height: 4rem;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        background-color: #15161D;">
+            <div class="logo"><img src="/userImages/alpha.png" class="headerLogo" style="margin-left: 1rem;
+                height: 3rem;
+                width: 8rem;
+                margin: 0.5rem;">
+            </div>
+            <div class="headerCenter" style="background-color: white;
+            width: 37rem;
+            height: 2rem;
+            display: flex;
+            flex-direction: row;
+            margin: 1rem;
+            border-radius: 1rem;">
+                <div class="dropDown" style="margin-left: 1rem;">
+                    <form>
+                        <select name="categories" id="categories" class="navSelect" style="height: 2rem;
+                        border: 0;">
+                            <option value="All Categories">All Categories</option>
+                            <option value="SmartPhones">SmartPhones</option>
+                            <option value="Laptops">Laptops</option>
+                            <option value="Watches">Watches</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="navSearch" style="width: -1rem;">
+                    <form class="formSearch" style="background-color: #D10024;
+                        width: 29.5rem;
+                        border-radius: 2rem;">
+                        <input type="text" name="" class="input" style="height: 1.89rem;
+                            width: 24rem;
+                            border: 0px;">
+                        <input type="submit" class="navSubmit" style="height: 2rem;
+                            margin-left: 0.5rem;
+                            background-color: transparent;
+                            border: 0;">
+                    </form>
+                </div>
+            </div>
+            <div class="navComponents" style="display: flex;
+                flex-direction: row;
+                justify-content: space-around;">
+                <div class="wishList">
+                    <div class="wishListLogo" style="padding: 1.4rem;
+                        display: flex;
+                        flex-direction: column;"><i class="fa-solid fa-heart fa-xl"></i>
+                        <img class="wishlisttext" src="/userImages/WishList.png" alt="" style="margin-left: -1.5rem;
+                            margin-top: 1rem;">
+                    </div>
+                </div>
+                <div class="cart" style="padding: 1.4rem;">
+                    <div class="cartLogo" style="padding: 0.1rem;
+                        display: flex;
+                        flex-direction: column;"><i class="fa-solid fa-cart-shopping fa-xl"></i>
+                        <img class="carttext" src="/userImages/cart.png" alt="" style="margin-left: -0.75rem;
+                            margin-top: 1rem;">
+                    </div>
+                </div>
+                <div class="logout" style="margin-top: 0.9rem;">
+                    <button style="background-color: #d10024;background-color: #d10024;
+                        height: 2rem;
+                        width: 5rem;
+                        border-radius: 0.5rem;"><a href="/user_logout" style="text-decoration: none;
+                        color: white;">Logout</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main style="display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;">
+        <div class="sidepanel" style="border: 1px solid black;
+            margin: 2rem;
+            width: 14vw;
+            margin-top: 7rem;
+            border-radius: 0.5rem;
+            height: fit-content;">
+            <div class="heading" style="background-color: #15161d;
+                width: auto;
+                color: white;
+                border-top-left-radius: 0.5rem;
+                border-top-right-radius: 0.5rem;
+                display: flex;
+                justify-content: center;">
+                ADMIN PANEL
+            </div>
+            <a href="">
+                <div class="options">
+                    <div class="logo"><i class="fa-solid fa-house fa-xl"></i></div>
+                    <div class="text">Dashboard</div>
+                </div>
+            </a>
+            <a href="/admin/admin_panel/Products">
+                <div class="options">
+                    <div class="logo"><i class="material-symbols-outlined">apps</i></div>
+                    <div class="text">Products</div>
+                </div>
+            </a>
+            <a href="/admin/admin_panel/customers">
+                <div class="options">
+                    <div class="logo"><i class="material-symbols-outlined">supervisor_account</i></div>
+                    <div class="text">Customers</div>
+                </div>
+            </a>
+            <a href="">
+                <div class="options">
+                    <div class="logo"><i class="material-symbols-outlined">shopping_cart</i></div>
+                    <div class="text">Orders</div>
+                </div>
+            </a>
+            <a href="/admin/admin_panel/category">
+                <div class="options">
+                    <div class="logo"><i class="material-symbols-outlined">category</i></div>
+                    <div class="text">Category</div>
+                </div>
+            </a>
+            <a href="/admin/admin_panel/banner_manage">
+                <div class="options">
+                    <div class="logo"><i class="material-symbols-outlined">ad</i></div>
+                    <div class="text">Banner Manage</div>
+                </div>
+            </a>
+            <a href="">
+                <div class="options">
+                    <div class="logo"><i class="fa-solid fa-ticket fa-xl"></i></div>
+                    <div class="text">Manage Coupons</div>
+                </div>
+            </a>
+        </div>
+        <div class="main" style="margin: 2rem;">
+            <div>
+                <h1 style="color: #15161D;
+                    margin: 0;">
+                    Product
+                </h1>
+            </div>
+            <form action="/admin/admin_panel/products/edit_product" id="add_product" method="post">
+                <div style="border: 0.1px solid;
+                    display: flex;
+                    width: 72vw;
+                    flex-direction: column;
+                    border-radius: 1rem;
+                    align-items: flex-start;
+                    padding: 1.8rem;
+                    margin: 1rem 0rem 5rem;">
+                    <div class="heading">
+                        <div>
+                            <h2 style="margin-top: 0;
+                            color: #15161D;">
+                                Edit Product
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="addproduct" style="display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;">
+
+
+                        <div>
+                            <div class="inBox">
+                                <label for="title">Title</label>
+                            </div>
+                            <div class="inBox">
+                                <input type="text" class="inp input-style" name="title" <%if(typeof product.title
+                                    !=='undefined' ){%>
+                                value="<%= product.title %>"
+                                    <%}%> require>
+
+                                        <input type="hidden" name="id" value="<%=product._id%>" id="id">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="inBox">
+                                <label for="brand">Brand</label>
+                            </div>
+                            <div class="inBox">
+                                <input type="text" class="inp input-style" name="brand" <%if(typeof product.brand
+                                    !=='undefined' ){%>
+                                value="<%= product.brand %>"
+                                    <%}%> required>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="inBox">
+                                <label for="model">Model</label>
+                            </div>
+                            <div class="inBox">
+                                <input type="text" class="inp input-style" name="model" <%if(typeof product.model
+                                    !=='undefined' ){%>
+                                value="<%= product.model %>"
+                                    <%}%> required>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="inBox">
+                                <label for="category">Category</label>
+                            </div>
+                            <div class="inBox">
+                                <select name="category" class="inp form-select" id="category" style="height: 5vh;
+                                    width: 33vw">
+                                    <% for(let i=0; i<category.length;i++){%>
+                                        <%if(category[i].category_name === product.category){%>
+                                            <option value="<%= category[i].category_name%>" selected> <%=category[i].category_name%></option>
+                                        <%}else{%>
+                                        <option value="<%= category.category_name %>">
+                                            <%= category[i].category_name %>
+                                        </option>
+                                        <%}}%>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="inBox">
+                                <label for="stock">Stock</label>
+                            </div>
+                            <div class="inBox">
+                                <input type="text" class="inp input-style" name="stock" <%if(typeof product.stocks
+                                    !=='undefined' ){%>
+                                value="<%= product.stocks %>"
+                                    <%}%> required>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="inBox">
+                                <label for="price">Price ₹</label>
+                            </div>
+                            <div class="inBox">
+                                <input type="text" class="inp input-style" name="price" <%if(typeof product.price
+                                    !=='undefined' ){%>
+                                value="<%= product.price %>"
+                                    <%}%> required>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="inBox">
+                                <label for="discount">Discount (%)</label>
+                            </div>
+                            <div class="inBox">
+                                <input type="text" class="inp input-style" name="discount" id="discount" <%if(typeof
+                                    product.discount !=='undefined' ){%>
+                                value="<%= product.discount %>"
+                                    <%}%> required>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="inBox">
+                                <label for="status">Status</label>
+                            </div>
+                            <div class="inBox">
+                                <select name="status" class="inp form-select" id="status" style="height: 5vh;
+                                width: 33vw;">
+                                    <option value="true" <%if( product.status==="true" ){%> selected <%}%>>List
+                                    </option>
+                                    <option value="false" <%if( product.status==="false" ){%> selected <%}%>>Don't List
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <div class="description" style="display: flex;
+                                flex-direction: column;">
+                                <div>
+                                    <label for="description" style="margin: 0.5rem;">description</label>
+                                </div>
+                                <div>
+                                    <textarea name="description" class="form-control" id="description" cols="45"
+                                        rows="10" style="width: 25vw; 
+                                        margin: 0.5rem;"><%= product.description%>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div style="display: flex;
+                                flex-direction: row;
+                                justify-content: flex-end;">
+                        <button class="button" type="submit" form="add_product" style="position: relative;
+                                    overflow: hidden;
+                                    width: 13rem;
+                                    height: 3rem;
+                                    padding: 0 2rem;
+                                    border-radius: 1.5rem;
+                                    background: #15161d;
+                                    background-size: 400%;
+                                    color: #fff;
+                                    border: none;
+                                    cursor: pointer;">
+                            <span class="button-content">Update Product</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- <input type="file" name="images"> -->
+            </form>
+        </div>
+        <style>
+            ::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* input style */
+
+            .input-style {
+                padding: 10px;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                color: #555;
+                outline: none;
+            }
+
+            .input-style:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+
+            /* --------------------------- */
+
+            /* Button style */
+            .button:hover::before {
+                transform: scaleX(1);
+            }
+
+            .button-content {
+                position: relative;
+                z-index: 1;
+            }
+
+            .button::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: scaleX(0);
+                transform-origin: 0 50%;
+                width: 100%;
+                height: inherit;
+                border-radius: inherit;
+                background: linear-gradient(82.3deg,
+                        rgb(210, 71, 71) 10.8%,
+                        rgb(221, 19, 19) 94.3%);
+                transition: all 0.475s;
+            }
+
+            /* --------------------------- */
+            /* Input File style */
+            .custum-file-upload {
+                height: 11vh;
+                width: 7.1vw;
+                display: flex;
+                flex-direction: row;
+                align-items: space-between;
+                gap: 0px;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                border: 2px dashed #cacaca;
+                background-color: rgba(255, 255, 255, 1);
+                padding: -0.5rem;
+                border-radius: 10px;
+                box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+            }
+
+            .custum-file-upload .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .custum-file-upload .icon svg {
+                height: 5vh;
+                fill: rgba(75, 85, 99, 1);
+            }
+
+            .custum-file-upload .text {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .custum-file-upload .text span {
+                font-size: 0.7rem;
+                font-weight: lighter;
+                color: rgba(75, 85, 99, 1);
+            }
+
+            .custum-file-upload input {
+                display: none;
+            }
+
+            /* ------------------------------- */
+            label {
+                font-weight: bold;
+            }
+
+            .inp {
+                height: 5vh;
+                width: 33vw;
+            }
+
+            input {
+                height: 3vh;
+            }
+
+            .inBox {
+                margin: 0.5rem;
+            }
+
+            .sidepanel a:hover {
+                color: black;
+                text-decoration: none;
+            }
+
+            a {
+                text-decoration: none;
+                color: #15161D;
+            }
+
+            .options {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .logo {
+                margin: 0.5rem;
+            }
+
+            .text {
+                margin: 0.6rem;
+            }
+
+            p,
+            h2 {
+                color: white;
+            }
+
+            .fa-heart:before {
+                content: "\f004";
+                color: white;
+            }
+
+            .fa-cart-shopping:before {
+                content: "\f004";
+                color: white;
+            }
+        </style>
+
+    </main>
+    <footer style="background-color: #15161D;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;">
+        <style>
+            p,
+            h2 {
+                color: white;
+            }
+
+            .fa-heart:before {
+                content: "\f004";
+                color: white;
+            }
+
+            .fa-cart-shopping:before {
+                content: "\f004";
+                color: white;
+            }
+        </style>
+        <div class="aboutUS" style="display: flex;
+            flex-direction: column;
+            align-items: center;">
+            <div class="heading">
+
+                <h2>ABOUT US</h2>
+            </div>
+            <p>Welcome to Alpha E-Com, where your <br>
+                shopping experience matters. We're <br>
+                passionate about offering quality <br>
+                products, exceptional service, and <br>
+                convenience.Our commitment is to <br>
+                redefine your online shopping journey. <br>
+                Join us in creating a community centered <br>
+                on excellence and innovation. Thank you <br>
+                for being part of the Alpha E-Com family! <br>
+            </p>
+            <p>Manathavady, Wayanad, Kerala</p>
+            <p>+91 7012888610</p>
+            <p>alphae-com@gmail.com</p>
+        </div>
+        <div class="categories">
+            <div class="heading">
+                <h2>CATERGORIES</h2>
+            </div>
+            <P>SmartPhones</P>
+            <p>Laptops</p>
+            <p>Accessories</p>
+            <p>Camera</p>
+        </div>
+        <div class="information">
+            <h2>INFORMATION</h2>
+            <P>About us</P>
+            <p>Contact us</p>
+            <p>Privacy Policy</p>
+            <p>Orders and Returns</p>
+            <p>Terms & Conditions</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('file-1').addEventListener('change', function () {
+            var fileInput = this;
+            var fileLabel = document.getElementById('file-1-preview');
+
+            if (fileInput.files.length > 0) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    fileLabel.innerHTML = '<img src="' + e.target.result + '" style="width: 9vw; height: 17vh;">';
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        });
+    </script>
+    <script>
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function (e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                document.querySelector("#" + id + "-preview img").src = url;
+            })
+        }
+
+        previewBeforeUpload("file-1");
+        previewBeforeUpload("file-2");
+        previewBeforeUpload("file-3");
+        previewBeforeUpload("file-4");
+        previewBeforeUpload("file-5");
+    </script>
+    <script src="https://kit.fontawesome.com/4b392a7356.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
