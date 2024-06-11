@@ -162,7 +162,7 @@
 // };
 
 // console.log(isHappy(n))   
-
-let area = 122122;
-
-console.log(Math.sqrt(area))
+let price  = 50000
+let discount = 1
+let last = Math.floor(price*100)/(100-discount)
+console.log((last))

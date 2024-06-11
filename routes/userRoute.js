@@ -55,9 +55,9 @@ user_route.post('/forgot_password_otp', userController.forgetPasswordOtpVerify)
 
 user_route.post('/new_password', userController.newPassword)
 
-user_route.get('/product_browse', auth.isLogin, product.browseProducts);
+user_route.get('/search', auth.isLogin, product.browseProducts);
 
-user_route.post('/product_browse', auth.isLogin, product.browseProducts);
+user_route.post('/search', auth.isLogin, product.browseProducts);
 
 user_route.get('/view_products', auth.isLogin, product.productView);
 

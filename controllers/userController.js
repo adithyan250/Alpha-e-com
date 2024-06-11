@@ -11,6 +11,7 @@ const config = require('../config/config');
 
 const User = require('../models/userModel');
 const Product = require('../models/productModel');
+const Category = require('../models/categoryModel');
 
 app.use((req, res, next)=>{
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
@@ -94,12 +95,16 @@ const insertUser = async(req,res)=>{
             
                 res.render('registration',{message:"Mobile number or Email are already used...",name:name, email:email, phone:phone, password:password, confirmPassword:confirmPassword})
             }else {
+                let users = await User.find()
+                let id = users.length+1
+                id = id.toString()
                 user = new User({
                     name:name,
                     email:email,
                     mobile:phone,
                     password:spassword,
-                    is_admin:0
+                    is_admin:0,
+                    id: id
                 });
                 const userData = await user.save()
                 if(userData){
@@ -180,7 +185,12 @@ const verifyLogin = async(req, res)=>{
 const loadHome = async(req, res) => {    
     try {   
         const userData = await User.findById({_id:req.session.user_id});
-        res.render('home'); 
+
+        const productData  = await Product.find().sort({created_on:1}).limit(8)
+        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+        console.log(JSON.stringify(footer, null, 2));
+        console.log(req.session.user_id)
+        res.render('home',{products:productData,category:footer}); 
     } catch (error) {
         console.log(error.message);
     }
@@ -476,7 +486,7 @@ const newPassword = async (req, res) => {
 const sample = async (req, res) => {
     try {
         const productData  = await Product.find().sort({created_on:1}).limit(8)
-        console.log(productData);
+        // console.log(productData);
         res.render("smaple",{products:productData});
     } catch (error) {
         console,log(error.message)

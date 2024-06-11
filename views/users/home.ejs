@@ -1,343 +1,455 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light scroll-smooth" dir="ltr">
+    
+<!-- Mirrored from shreethemes.in/cartzio/layouts/index-fashion-three.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Jan 2024 16:18:03 GMT -->
 <head>
-    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="-1">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <title>Home</title>
-</head>
+        <meta charset="UTF-8">
+        <title>Alpha E-com: Test</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Fashion Store eCommerce Tailwind CSS Landing Template" name="description">
+        <meta content="Shop, Fashion, eCommerce, Cart, Shop Cart, tailwind css, Admin, Landing" name="keywords">
+        <meta name="author" content="Shreethemes">
+        <meta name="website" content="https://shreethemes.in/">
+        <meta name="email" content="support@shreethemes.in">
+        <meta name="version" content="1.0.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<body style="margin: 0rem;
-    font-family: 'Montserrat', sans-serif;">
-    <nav style="display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        background-color: #15161D;">
-        <div class="header" style="width: auto;
-            height: 4rem;
-            display: flex;
-            justify-content: space-around;
-            flex-direction: row;
-            background-color: #15161D;">
-            <div class="logo"><img src="/userImages/alpha.png" class="headerLogo" style="margin-left: 1rem;
-                height: 3rem;
-                width: 8rem;
-                margin: 0.5rem;">
+        <!-- favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Css -->
+        <link href="assets/libs/tiny-slider/tiny-slider.css" rel="stylesheet">
+        <!-- Main Css -->
+        <link href="assets/libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/tailwind.min.css" rel="stylesheet" type="text/css">
+    </head>
+    
+    <body class="dark:bg-slate-900">
+        <!-- Start Navbar -->
+        <nav id="topnav" class="defaultscroll is-sticky tagline-height">
+            <div class="container relative">
+                <!-- Logo container-->
+                <a class="logo" href="index.html">
+                    <div>
+                        <img src="assets/images/logo-dark.png" class="h-[40px] inline-block dark:hidden" alt="">
+                        <img src="assets/images/logo-white.png" class="h-[40px] hidden dark:inline-block" alt="">
+                    </div>
+                </a>
+                <!-- End Logo container-->
+
+                <!-- Start Mobile Toggle -->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- End Mobile Toggle -->
+
+                <!--Login button Start-->
+                <ul class="buy-button list-none mb-0">
+                    <li class="dropdown inline-block relative pe-1">
+                        <button data-dropdown-toggle="dropdown" class="dropdown-toggle align-middle inline-flex" type="button">
+                            <i data-feather="search" class="size-5"></i>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu absolute overflow-hidden end-0 m-0 mt-5 z-10 md:w-52 w-48 rounded-md bg-white dark:bg-slate-900 shadow dark:shadow-gray-800 hidden" onclick="event.stopPropagation();">
+                            <form action="search" method="post">
+                                <div class="relative">
+                                    <i data-feather="search" class="absolute size-4 top-[9px] end-3"></i>
+                                    <input type="text" class="h-9 px-3 pe-10 w-full border-0 focus:ring-0 outline-none" name="search" id="searchItem" placeholder="Search...">
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+                    <li class="dropdown inline-block relative ps-0.5">
+                        <button data-dropdown-toggle="dropdown" class="dropdown-toggle size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full bg-orange-500 border border-orange-500 text-white" type="button">
+                            <i data-feather="shopping-cart" class="h-4 w-4"></i>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-64 rounded-md bg-white dark:bg-slate-900 shadow dark:shadow-gray-800 hidden" onclick="event.stopPropagation();">
+                            <ul class="py-3 text-start" aria-labelledby="dropdownDefault">
+                                <li>
+                                    <a href="#" class="flex items-center justify-between py-1.5 px-4">
+                                        <span class="flex items-center">
+                                            <img src="assets/images/shop/trendy-shirt.jpg" class="rounded shadow dark:shadow-gray-800 w-9" alt="">
+                                            <span class="ms-3">
+                                                <span class="block font-semibold">T-shirt (M)</span>
+                                                <span class="block text-sm text-slate-400">$320 X 2</span>
+                                            </span>
+                                        </span>
+
+                                        <span class="font-semibold">$640</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="flex items-center justify-between py-1.5 px-4">
+                                        <span class="flex items-center">
+                                            <img src="assets/images/shop/luxurious-bag2.jpg" class="rounded shadow dark:shadow-gray-800 w-9" alt="">
+                                            <span class="ms-3">
+                                                <span class="block font-semibold">Bag</span>
+                                                <span class="block text-sm text-slate-400">$50 X 5</span>
+                                            </span>
+                                        </span>
+                                        <span class="font-semibold">$250</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="flex items-center justify-between py-1.5 px-4">
+                                        <span class="flex items-center">
+                                            <img src="assets/images/shop/apple-smart-watch.jpg" class="rounded shadow dark:shadow-gray-800 w-9" alt="">
+                                            <span class="ms-3">
+                                                <span class="block font-semibold">Watch (Men)</span>
+                                                <span class="block text-sm text-slate-400">$800 X 1</span>
+                                            </span>
+                                        </span>
+
+                                        <span class="font-semibold">$800</span>
+                                    </a>
+                                </li>
+
+                                <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+
+                                <li class="flex items-center justify-between py-1.5 px-4">
+                                    <h6 class="font-semibold mb-0">Total($):</h6>
+                                    <h6 class="font-semibold mb-0">$1690</h6>
+                                </li>
+
+                                <li class="py-1.5 px-4">
+                                    <span class="text-center block">
+                                        <a href="javascript:void(0)" class="py-[5px] px-4 inline-block font-semibold tracking-wide align-middle duration-500 text-sm text-center rounded-md bg-orange-500 border border-orange-500 text-white">View Cart</a>
+                                        <a href="javascript:void(0)" class="py-[5px] px-4 inline-block font-semibold tracking-wide align-middle duration-500 text-sm text-center rounded-md bg-orange-500 border border-orange-500 text-white">Checkout</a>
+                                    </span>
+                                    <p class="text-sm text-slate-400 mt-1">*T&C Apply</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="inline-block ps-0.5">
+                        <a href="javascript:void(0)" class="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full bg-orange-500 text-white">
+                            <i data-feather="heart" class="h-4 w-4"></i>
+                        </a>
+                    </li>
+
+                    <li class="dropdown inline-block relative ps-0.5">
+                        <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                            <span class="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-orange-500 bg-orange-500 text-white"><img src="assets/images/client/16.jpg" class="rounded-full" alt=""></span>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-48 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                            <ul class="py-2 text-start">
+                                <li>
+                                    <p class="text-slate-400 pt-2 px-4">Welcome Jesus!</p>
+                                </li>
+                                <li>
+                                    <p class="flex items-center font-medium py-2 px-4"><i data-feather="dollar-sign" class="h-4 w-4 me-2"></i> Balance: <span class="text-orange-500 ms-2">$ 245.10</span></p>
+                                </li>
+                                <li>
+                                    <a href="user-account.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="user" class="h-4 w-4 me-2"></i>Account</a>
+                                </li>
+                                <li>
+                                    <a href="user-setting.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
+                                </li>
+                                <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                                <li>
+                                    <a href="login.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="log-out" class="h-4 w-4 me-2"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li><!--end dropdown-->
+                </ul>
+                <!--Login button End-->
+
+                <div id="navigation">
+                    <!-- end navigation menu -->
+                </div><!--end navigation-->
+            </div><!--end container-->
+        </nav><!--end header-->
+        <!-- End Navbar -->
+        
+        <!-- Start Hero -->
+        <section class="relative md:pt-32">
+            <div class="container-fluid relative">
+                <div class="grid md:grid-cols-3">
+                    <div class="relative overflow-hidden group">
+                        <a href="#" class="text-center">
+                            <img src="assets/images/categories/smart-phone.jpg" class="group-hover:scale-110 duration-500" alt="">
+                            <span class="bg-white dark:bg-slate-900 group-hover:text-orange-500 py-2 px-6 rounded-full shadow dark:shadow-gray-800 absolute bottom-4 mx-4 text-lg font-medium">Smart Phones</span>
+                        </a>
+                    </div>
+                    <!--end content-->
+                    
+                    <div class="relative overflow-hidden group">
+                        <a href="#" class="text-center">
+                            <img src="assets/images/categories/laptops.jpg" class="group-hover:scale-110 duration-500" alt="">
+                            <span class="bg-white dark:bg-slate-900 group-hover:text-orange-500 py-2 px-6 rounded-full shadow dark:shadow-gray-800 absolute bottom-4 mx-4 text-lg font-medium">Laptops</span>
+                        </a>
+                    </div>
+                    <!--end content-->
+                    
+                    <div class="relative overflow-hidden group">
+                        <a href="#" class="text-center">
+                            <img src="assets/images/categories/cameras.jpg" class="group-hover:scale-110 duration-500" alt="">
+                            <span class="bg-white dark:bg-slate-900 group-hover:text-orange-500 py-2 px-6 rounded-full shadow dark:shadow-gray-800 absolute bottom-4 mx-4 text-lg font-medium">Cameras</span>
+                        </a>
+                    </div>
+                    <!--end content-->
+                </div>
+                <!--end grid-->
             </div>
-            <div class="headerCenter" style="background-color: white;
-            width: 37rem;
-            height: 2rem;
-            display: flex;
-            flex-direction: row;
-            margin: 1rem;
-            border-radius: 1rem;">
-                <div class="dropDown" style="margin-left: 1rem;">
-                    <form style="display: flex;" method="post" action="/product_browse">
-                        <select name="categories" id="categories" class="navSelect" style="height: 2rem;
-                        border: 0;">
-                            <option value="All Categories">All Categories</option>
-                            <option value="SmartPhones">SmartPhones</option>
-                            <option value="Laptops">Laptops</option>
-                            <option value="Watches">Watches</option>
-                            <option value="Accessories">Accessories</option>
-                        </select>
+            <!--end container-->
+        </section>
+        <!--end section-->
+        <!-- End Hero -->
 
-                        <div class="navSearch" style="width: -1rem;">
-                            <div class="formSearch" style="background-color: #D10024;
-                        width: 29.5rem;
-                        border-radius: 2rem;">
-                                <input type="text" name="search" class="input" style="height: 1.89rem;
-                                width: 24rem;
-                                border: 0px;">
-                                <input type="submit" class="navSubmit" style="height: 2rem;
-                            margin-left: 0.5rem;
-                            background-color: transparent;
-                            border: 0;">
+        <!-- Start -->
+        <section class="relative md:py-24 py-16">
+            <div class="container relative">
+                <div class="grid items-end md:grid-cols-2 mb-6">
+                    <div class="md:text-start text-center">
+                        <h5 class="font-semibold text-3xl leading-normal mb-4">Latest Items</h5>
+                        <p class="text-slate-400 max-w-xl">Shop the latest products from the most popular items</p>
+                    </div>
+
+                    <div class="md:text-end">
+                        <a href="shop-grid.html" class="text-slate-400 hover:text-orange-500">See More Items <i class="mdi mdi-arrow-right"></i></a>
+                    </div>
+                </div><!--end grid-->
+
+                <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 pt-6 gap-6">
+                    <%for(let i = 0;i<products.length&&8;i++){%>
+                    <div class="group">
+                        <div class="relative overflow-hidden shadow dark:shadow-gray-800 group-hover:shadow-lg group-hover:dark:shadow-gray-800 rounded-md duration-500">
+                            <img src="userImages/<%=products[i].images[0]%>" class="group-hover:scale-110 duration-500" alt="">
+    
+                            <div class="absolute -bottom-20 group-hover:bottom-3 start-3 end-3 duration-500">
+                                <a href="shop-cart.html" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-slate-900 text-white w-full rounded-md">Add to Cart</a>
+                            </div>
+    
+                            <ul class="list-none absolute top-[10px] end-4 opacity-0 group-hover:opacity-100 duration-500 space-y-1">
+                                <li><a href="javascript:void(0)" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="heart" class="size-4"></i></a></li>
+                                <li class="mt-1"><a href="shop-item-detail.html" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="eye" class="size-4"></i></a></li>
+                                <!-- <li class="mt-1"><a href="javascript:void(0)" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="bookmark" class="size-4"></i></a></li> -->
+                            </ul>
+
+                            <ul class="list-none absolute top-[10px] start-4">
+                                <%if(typeof products[i].discount !== 'undefined'){%>
+                                <li><a href="javascript:void(0)" class="bg-orange-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded h-5">-<%=products[i].discount%>% Off</a></li>
+                                <%}%>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <a href="product-detail-one.html" class="hover:text-orange-500 text-lg font-medium"><%=products[i].title %></a>
+                            <div class="flex justify-between items-center mt-1">
+                                <p>₹<%if(typeof products[i].discount !== 'undefined'){%>
+                                    <%let lastPrice = (products[i].price*100)/(100-products[i].discount)%>
+                                    <%=Math.floor(lastPrice)%>
+                                    <%}else{%>
+                                    <%=products[i].price%>
+                                    <%}%>
+                                    <del class="text-slate-400">₹<%=products[i].price%></del></p>
+                                <ul class="font-medium text-amber-400 list-none">
+                                    <li class="inline"><i class="mdi mdi-star"></i></li>
+                                    <li class="inline"><i class="mdi mdi-star"></i></li>
+                                    <li class="inline"><i class="mdi mdi-star"></i></li>
+                                    <li class="inline"><i class="mdi mdi-star"></i></li>
+                                    <li class="inline"><i class="mdi mdi-star"></i></li>
+                                </ul>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <%}%>
+                    <!--end content-->
+                </div><!--end grid-->
+            </div><!--end container-->
+        </section><!--end section-->
+        <!-- End -->
+        </section>
+        <!--end section-->
+        <!-- End --> 
+        <!-- Footer Start -->
+        <footer class="footer bg-dark-footer relative text-gray-200 dark:text-gray-200">    
+            <div class="container relative">
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12">
+                        <div class="py-[60px] px-0">
+                            <div class="grid md:grid-cols-12 grid-cols-1 gap-6">
+                                <div class="lg:col-span-3 md:col-span-12">
+                                    <a href="#" class="text-[22px] focus:outline-none">
+                                        <img src="assets/images/logo-light.png" alt="">
+                                    </a>
+                                    <p class="mt-6 text-gray-300">Upgrade your Gadgets with our curated sets.</p>
+                                    <ul class="list-none mt-6">
+                                        <li class="inline"><a href="https://1.envato.market/cartzio" target="_blank" class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:text-orange-500 dark:hover:text-orange-500 text-slate-300"><i data-feather="shopping-cart" class="h-4 w-4 align-middle" title="Buy Now"></i></a></li>
+                                        <li class="inline"><a href="https://dribbble.com/shreethemes" target="_blank" class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:text-orange-500 dark:hover:text-orange-500 text-slate-300"><i data-feather="dribbble" class="h-4 w-4 align-middle" title="dribbble"></i></a></li>
+                                        <li class="inline"><a href="http://linkedin.com/company/shreethemes" target="_blank" class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:text-orange-500 dark:hover:text-orange-500 text-slate-300"><i data-feather="linkedin" class="h-4 w-4 align-middle" title="Linkedin"></i></a></li>
+                                        <li class="inline"><a href="https://www.facebook.com/shreethemes" target="_blank" class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:text-orange-500 dark:hover:text-orange-500 text-slate-300"><i data-feather="facebook" class="h-4 w-4 align-middle" title="facebook"></i></a></li>
+                                        <li class="inline"><a href="https://www.instagram.com/shreethemes/" target="_blank" class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:text-orange-500 dark:hover:text-orange-500 text-slate-300"><i data-feather="instagram" class="h-4 w-4 align-middle" title="instagram"></i></a></li>
+                                        <li class="inline"><a href="https://twitter.com/shreethemes" target="_blank" class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:text-orange-500 dark:hover:text-orange-500 text-slate-300"><i data-feather="twitter" class="h-4 w-4 align-middle" title="twitter"></i></a></li>
+                                        <li class="inline"><a href="mailto:support@shreethemes.in" class="size-8 inline-flex items-center justify-center tracking-wide align-middle text-base border border-gray-800 dark:border-slate-800 rounded-md hover:text-orange-500 dark:hover:text-orange-500 text-slate-300"><i data-feather="mail" class="h-4 w-4 align-middle" title="email"></i></a></li>
+                                    </ul><!--end icon-->
+                                </div><!--end col-->
+                        
+                                <div class="lg:col-span-6 md:col-span-12">
+                                    <h5 class="tracking-[1px] text-gray-100 font-semibold">Shopping</h5>
+
+                                    <div class="grid md:grid-cols-12 grid-cols-1">
+                                        <%for(let i =0 ;i<category.length&&2;i++){%>
+                                        <div class="md:col-span-4">
+                                            <ul class="list-none footer-list mt-6">
+                                                <li><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> <%=category[i].category_name%></a></li>
+                                                <% category[i].sub_cat.forEach(subcategory => { %>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> <%= subcategory.subCategory_name%> </a></li>
+                                                <!-- <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Jeans </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i>  Loungewear </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Polo shirts </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Shirts</a></li> -->
+                                                <%});%>
+                                            </ul>
+                                        </div>
+                                        <%}%>
+                                        <!--end col-->
+                                
+                                        <!-- <div class="md:col-span-4">
+                                            <ul class="list-none footer-list mt-6">
+                                                <li><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Shorts </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Suits Swimwear </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> T-shirts </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Tracksuits </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Trousers</a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Shirts</a></li>
+                                            </ul>
+                                        </div> -->
+                                        <!-- end col -->
+                                
+                                        <div class="md:col-span-4">
+                                            <ul class="list-none footer-list mt-6">
+                                                <li><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> My account </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Order History </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Wish List </a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Newsletter</a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Affiliate</a></li>
+                                                <li class="mt-[10px]"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="mdi mdi-chevron-right"></i> Returns</a></li>
+                                            </ul>
+                                        </div><!--end col-->
+                                    </div>
+                                </div>
+    
+                                <div class="lg:col-span-3 md:col-span-4">
+                                    <h5 class="tracking-[1px] text-gray-100 font-semibold">Newsletter</h5>
+                                    <p class="mt-6">Sign up and receive the latest tips via email.</p>
+                                    <form>
+                                        <div class="grid grid-cols-1">
+                                            <div class="my-3">
+                                                <label class="form-label">Write your email <span class="text-red-600">*</span></label>
+                                                <div class="form-icon relative mt-2">
+                                                    <i data-feather="mail" class="size-4 absolute top-3 start-4"></i>
+                                                    <input type="email" class="ps-12 rounded w-full py-2 px-3 h-10 bg-gray-800 border-0 text-gray-100 focus:shadow-none focus:ring-0 placeholder:text-gray-200 outline-none" placeholder="Email" name="email" required="">
+                                                </div>
+                                            </div>
+                                        
+                                            <button type="submit" id="submitsubscribe" name="send" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md">Subscribe</button>
+                                        </div>
+                                    </form>
+                                </div><!--end col-->
+                            </div><!--end grid-->
+                        </div><!--end col-->
+                    </div>
+                </div><!--end grid-->
+
+                <div class="grid grid-cols-1">
+                    <div class="py-[30px] px-0 border-t border-slate-800">
+                        <div class="grid lg:grid-cols-4 md:grid-cols-2">
+                            <div class="flex items-center lg:justify-center">
+                                <i class="mdi mdi-truck-check-outline align-middle text-lg mb-0 me-2"></i>
+                                <h6 class="mb-0 font-medium">Free delivery</h6>
+                            </div><!--end content-->
+
+                            <div class="flex items-center lg:justify-center">
+                                <i class="mdi mdi-archive align-middle text-lg mb-0 me-2"></i>
+                                <h6 class="mb-0 font-medium">Non-contact shipping</h6>
+                            </div><!--end content-->
+
+                            <div class="flex items-center lg:justify-center">
+                                <i class="mdi mdi-cash-multiple align-middle text-lg mb-0 me-2"></i>
+                                <h6 class="mb-0 font-medium">Money-back quarantee</h6>
+                            </div><!--end content-->
+
+                            <div class="flex items-center lg:justify-center">
+                                <i class="mdi mdi-shield-check align-middle text-lg mb-0 me-2"></i>
+                                <h6 class="mb-0 font-medium">Secure payments</h6>
+                            </div><!--end content-->
+                        </div><!--end grid-->
+                    </div><!--end-->
+                </div><!--end grid-->
+            </div><!--end container-->
+
+            <div class="py-[30px] px-0 border-t border-slate-800">
+                <div class="container relative text-center">
+                    <div class="grid md:grid-cols-2 items-center">
+                        <div class="md:text-start text-center">
+                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Alpha E-com.</p>
+                        </div>
+
+                        <ul class="list-none md:text-end text-center mt-6 md:mt-0">
+                            <li class="inline"><a href="#"><img src="assets/images/payments/american-express.jpg" class="max-h-6 rounded inline" title="American Express" alt=""></a></li>
+                            <li class="inline"><a href="#"><img src="assets/images/payments/discover.jpg" class="max-h-6 rounded inline" title="Discover" alt=""></a></li>
+                            <li class="inline"><a href="#"><img src="assets/images/payments/mastercard.jpg" class="max-h-6 rounded inline" title="Master Card" alt=""></a></li>
+                            <li class="inline"><a href="#"><img src="assets/images/payments/paypal.jpg" class="max-h-6 rounded inline" title="Paypal" alt=""></a></li>
+                            <li class="inline"><a href="#"><img src="assets/images/payments/visa.jpg" class="max-h-6 rounded inline" title="Visa" alt=""></a></li>
+                        </ul>
+                    </div><!--end grid-->
+                </div><!--end container-->
             </div>
-            
-        </div>
-        <div class="navComponents" style="display: flex;
-            flex-direction: row;
-            justify-content: space-around;">
-            <div class="wishList">
-                <div class="wishListLogo" style="padding: 1.4rem;
-                    display: flex;
-                    flex-direction: column;"><i class="fa-solid fa-heart fa-xl"></i>
-                    <img class="wishlisttext" src="/userImages/WishList.png" alt="" style="margin-left: -1.5rem;
-                        margin-top: 1rem;">
-                </div>
-            </div>
-            <div style="padding: 1.4rem;">
-                <div class="cartLogo" style="padding: 0.1rem;
-                    display: flex;
-                    flex-direction: column;"><i class="fa-solid fa-cart-shopping fa-xl"></i>
-                    <img class="carttext" src="/userImages/cart.png" alt="" style="margin-left: -0.75rem;
-                        margin-top: 1rem;">
-                </div>
-            </div>
-            <div class="logout" style="margin-top: 0.9rem;">
-                <button style="background-color: #d10024;background-color: #d10024;
-                    height: 2rem;
-                    width: 5rem;
-                    border-radius: 0.5rem;"><a href="/user_logout" style="text-decoration: none;
-                        color: white;">Logout</a></button>
-            </div>
-        </div>
-        </div>
-    </nav>
+        </footer><!--end footer-->
+        <!-- Footer End -->
+        <!-- Switcher -->
+        <!-- <div class="fixed top-1/4 -left-2 z-50">
+            <span class="relative inline-block rotate-90">
+                <input type="checkbox" class="checkbox opacity-0 absolute" id="chk">
+                <label class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8" for="chk">
+                    <i data-feather="moon" class="w-[18px] h-[18px] text-yellow-500"></i>
+                    <i data-feather="sun" class="w-[18px] h-[18px] text-yellow-500"></i>
+                    <span class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] w-7 h-7"></span>
+                </label>
+            </span>
+        </div> -->
 
-    <main style=" display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 15vh;">
-        <div style="display: flex;
-            flex-direction: column;">
-            <!-- Slideshow container -->
-            <div class="slideshow-container">
+        <!-- <div class="fixed top-1/2 -right-11 z-50 hidden sm:block">
+            <a href="https://1.envato.market/cartzio" target="_blank" class="py-1 px-3 relative inline-block rounded-t-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-semibold"><i class="mdi mdi-cart-outline me-1"></i> Download</a>
+        </div> -->
+        <!-- Switcher -->
 
-                <!-- Full-width images with number and caption text -->
-                <div class="mySlides fade">
-                    <div class="numbertext">1 / 3</div>
-                    <img src="/userImages/1705501873810-sample1.webp" style="width:100%">
-                    <!-- <div class="text">Caption Text</div> -->
-                </div>
+        <!-- LTR & RTL Mode Code -->
+        <!-- <div class="fixed top-[40%] -left-3 z-50">
+            <a href="#" id="switchRtl">
+                <span class="py-1 px-3 relative inline-block rounded-b-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-semibold rtl:block ltr:hidden" >LTR</span>
+                <span class="py-1 px-3 relative inline-block rounded-b-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-semibold ltr:block rtl:hidden">RTL</span>
+            </a>
+        </div> -->
+        <!-- LTR & RTL Mode Code --> 
 
-                <div class="mySlides fade">
-                    <div class="numbertext">2 / 3</div>
-                    <img src="/userImages/1705502029984-sample2.webp" style="width:100%">
+        <!-- Back to top -->
+        <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-orange-500 text-white justify-center items-center"><i class="mdi mdi-arrow-up"></i></a>
+        <!-- Back to top -->
 
-                </div>
+        <!-- JAVASCRIPTS -->
+        <script src="assets/libs/tiny-slider/min/tiny-slider.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script>
+        <script src="assets/js/plugins.init.js"></script>
+        <script src="assets/js/app.js"></script>
+        <!-- JAVASCRIPTS -->
+    </body>
 
-                <div class="mySlides fade">
-                    <div class="numbertext">3 / 3</div>
-                    <img src="/userImages/1705501873810-sample1.webp" style="width:100%">
-
-                </div>
-
-                <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-
-            <!-- The dots/circles -->
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-            </div>
-        </div>
-    </main>
-    <STYle>
-        * {
-            box-sizing: border-box
-
-        }
-
-        ::-webkit-scrollbar{
-            display: none;
-        }
-
-        /* Slideshow container */
-        .slideshow-container {
-            position: relative;
-            margin: 0;
-            width: 100vw;
-        }
-
-        /* Hide the images by default */
-        .mySlides {
-            display: none;
-        }
-
-        /* Next & previous buttons */
-        .prev,
-        .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            margin-top: -22px;
-            padding: 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-        }
-
-        /* Position the "next button" to the right */
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        /* On hover, add a black background color with a little bit see-through */
-        .prev:hover,
-        .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Caption text */
-        .text {
-            color: #f2f2f2;
-            font-size: 15px;
-            padding: 8px 12px;
-            position: absolute;
-            bottom: 8px;
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Number text (1/3 etc) */
-        .numbertext {
-            color: #f2f2f2;
-            font-size: 12px;
-            padding: 8px 12px;
-            position: absolute;
-            top: 0;
-        }
-
-        /* The dots/bullets/indicators */
-        .dot {
-            cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-        }
-
-        .active,
-        .dot:hover {
-            background-color: #717171;
-        }
-
-        /* Fading animation */
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {
-                opacity: .4
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-    </STYle>
-    <footer style="background-color: #15161D;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;">
-        <style>
-            p,
-            h2 {
-                color: white;
-            }
-
-            .fa-heart:before {
-                content: "\f004";
-                color: white;
-            }
-
-            .fa-cart-shopping:before {
-                content: "\f004";
-                color: white;
-            }
-        </style>
-        <div class="aboutUS" style="display: flex;
-        flex-direction: column;
-        align-items: center;">
-            <div class="heading">
-
-                <h2>ABOUT US</h2>
-            </div>
-            <p>Welcome to Alpha E-Com, where your <br>
-                shopping experience matters. We're <br>
-                passionate about offering quality <br>
-                products, exceptional service, and <br>
-                convenience.Our commitment is to <br>
-                redefine your online shopping journey. <br>
-                Join us in creating a community centered <br>
-                on excellence and innovation. Thank you <br>
-                for being part of the Alpha E-Com family! <br>
-            </p>
-            <p>Manathavady, Wayanad, Kerala</p>
-            <p>+91 7012888610</p>
-            <p>alphae-com@gmail.com</p>
-        </div>
-        <div class="categories">
-            <div class="heading">
-                <h2>CATERGORIES</h2>
-            </div>
-            <P>SmartPhones</P>
-            <p>Laptops</p>
-            <p>Accessories</p>
-            <p>Camera</p>
-        </div>
-        <div class="information">
-            <h2>INFORMATION</h2>
-            <P>About us</P>
-            <p>Contact us</p>
-            <p>Privacy Policy</p>
-            <p>Orders and Returns</p>
-            <p>Terms & Conditions</p>
-        </div>
-    </footer>
-    <script src="https://kit.fontawesome.com/4b392a7356.js" crossorigin="anonymous"></script>
-</body>
-<script>
-    let slideIndex = 1;
-    showSlides(slideIndex);
-
-    // Next/previous controls
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    // Thumbnail image controls
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-
-        // Set the interval for automatic slideshow (change 3000 to desired milliseconds)
-        setTimeout(function() {
-            plusSlides(1);
-        }, 3000); // Change the interval (in milliseconds) as needed
-    }
-</script>
-
+<!-- Mirrored from shreethemes.in/cartzio/layouts/index-fashion-three.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Jan 2024 16:18:04 GMT -->
 </html>

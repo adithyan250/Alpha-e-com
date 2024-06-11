@@ -67,7 +67,7 @@ const subcategoryDataLoad = async (req, res) => {
 const browseProducts = async (req, res) => {
     try {
         var search = '';
-        var category = req.body.category
+        // var category = req.body.category
         console.log(req.body.search)
         if (req.body.search) {
             search = req.body.search
