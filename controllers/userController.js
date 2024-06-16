@@ -104,7 +104,8 @@ const insertUser = async(req,res)=>{
                     mobile:phone,
                     password:spassword,
                     is_admin:0,
-                    id: id
+                    id: id,
+                    status: 'true'
                 });
                 const userData = await user.save()
                 if(userData){
@@ -188,8 +189,8 @@ const loadHome = async(req, res) => {
 
         const productData  = await Product.find().sort({created_on:1}).limit(8)
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        console.log(JSON.stringify(footer, null, 2));
-        console.log(req.session.user_id)
+        // console.log(JSON.stringify(footer, null, 2));
+        // console.log(req.session.user_id)
         res.render('home',{products:productData,category:footer}); 
     } catch (error) {
         console.log(error.message);
@@ -485,11 +486,16 @@ const newPassword = async (req, res) => {
 
 const sample = async (req, res) => {
     try {
+        if(req.body!=="undefined"){
+            const {maxPrice, minPrice} = req.body;
+            const products = await Product.find({price: {$gte: minPrice, $lte: maxPrice}})
+        }
         const productData  = await Product.find().sort({created_on:1}).limit(8)
-        // console.log(productData);
-        res.render("smaple",{products:productData});
+        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+        
+        res.render("smaple",{products:productData, category: footer, brand});
     } catch (error) {
-        console,log(error.message)
+        console.log(error.message)
     }
 }
 

@@ -4,10 +4,15 @@ if(process.env.NODE_ENV !== 'production'){
 const express = require('express');
 const user_route = express();
 const session = require('express-session');
+
 const product = require('../controllers/productController')
+const cartController = require("../controllers/cartController");
+
 const config = require("../config/config");
-user_route.use(session({secret: process.env.sessionSecret}));
 const auth = require('../middlewares/auth');
+
+user_route.use(session({secret: process.env.sessionSecret}));
+
 const bodyParser = require('body-parser');
 
 user_route.set('view engine', 'ejs');
@@ -57,15 +62,25 @@ user_route.post('/new_password', userController.newPassword)
 
 user_route.get('/search', auth.isLogin, product.browseProducts);
 
-user_route.post('/search', auth.isLogin, product.browseProducts);
+user_route.post('/search', product.browseProducts);
+
+user_route.post('/sample', userController.sample)
 
 user_route.get('/view_products', auth.isLogin, product.productView);
 
 user_route.get('/enter_email', auth.isLogout, userController.emailEntry);
 
-user_route.post('/enter_email', userController.verifyEmail)
+user_route.post('/enter_email', userController.verifyEmail);
+
+user_route.post('/addcart', cartController.addCart);
+
+user_route.get('/addcart', auth.isLogin, cartController.addCartsingle);
+
+user_route.get('/cart',auth.isLogin, cartController.cartView)
 
 user_route.get('/sample', auth.isLogout, userController.sample);
+
+user_route.get('/product_details', auth.isLogin, product.productDetails)
 
 // user_route.get("*", auth.isLogout, userController.loginload)
 

@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" class="light scroll-smooth" dir="ltr">
-    
-<!-- Mirrored from shreethemes.in/cartzio/layouts/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Jan 2024 16:18:13 GMT -->
 <head>
         <meta charset="UTF-8">
-        <title>Cartzio - Fashion Store eCommerce Tailwind CSS Landing Template</title>
+        <title>Alpha E-com: Registration</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta content="Fashion Store eCommerce Tailwind CSS Landing Template" name="description">
         <meta content="Shop, Fashion, eCommerce, Cart, Shop Cart, tailwind css, Admin, Landing" name="keywords">
@@ -56,7 +54,7 @@
                                     <%=message%>
                                 <%}%></p>
 
-                                <form class="text-start lg:py-20 py-8" method="post" action="/user_registration" style="padding-top: 1rem !important">
+                                <form class="text-start lg:py-20 py-8" method="post" action="/user_registration" name="Register" onsubmit="return formValidator()" style="padding-top: 1rem !important">
                                     <div class="grid grid-cols-1">
                                         <div class="mb-4">
                                             <label class="font-semibold" for="RegisterName">Your Name:</label>
@@ -77,7 +75,7 @@
                                         </div>
 
                                         <div class="mb-4">
-                                            <label class="font-semibold" for="LoginPassword">Phone Number:</label>
+                                            <label class="font-semibold" for="LoginPassword">Phone Number(+91):</label>
                                             <input id="LoginPassword" name="phone" type="number" 
                                             <%if(typeof phone !== 'undefined'){%>
                                                 value="<%=phone%>" 
@@ -166,9 +164,41 @@
         <script src="assets/js/app.js"></script>
         <!-- JAVASCRIPTS -->
     </body>
-    <style>
-       
-    </style>
+    <script>
+        function formValidator() {
+            let name = document.Register.name.value;
+            let email = document.Register.email.value;
+            let atpos = email.indexOf('@');
+            let dotpos = email.indexOf('.');
+            let phone = document.Register.phone.value;
+            let pass = document.Register.password.value;
+            let conpass = document.Register.confirmPassword.value
+            if(name === null || name === ""){
+                alert("Enter the Name...");
+                return false;
+            }else if (name.length < 3) {
+                alert("Enter a vaild name...");
+                return false;
+            }else if(atpos < 1 || dotpos < atpos+2 || dotpos + 2 > email.length ){
+                alert("Enter a vaild Email Id...");
+                return false;
+            }else if (phone.length !== 10){
+                alert("Enter a vaild Phone number...");
+                return false;
+            }else if (pass === null || pass === ""){
+                alert("Enter a password...");
+                return false;
+            }else if(pass.length < 6){
+                alert("Password must be atleast 6 Characters...");
+                return false;
+            }else if (pass !== conpass){
+                alert("passwords should be same...");
+                return false;
+            }else{
+                return true;
+            }
+        }
+    </script>
 
 <!-- Mirrored from shreethemes.in/cartzio/layouts/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Jan 2024 16:18:13 GMT -->
 </html>

@@ -87,6 +87,8 @@ admin_route.post('/admin_panel/products/edit_product', auth.isLogin, productCont
 
 admin_route.get('/admin_panel/customers', auth.isLogin, adminController.customersLoad);
 
+admin_route.get('/admin_panel/customers/details', auth.isLogin, adminController.customerdetails);
+
 // admin_route.get('/admin_panel/banner_manage', auth.isLogin, bannerController.bannerManage);
 
 // admin_route.get('/admin_panel/bannermanage/add_banner', auth.isLogin, bannerController.addBanner);

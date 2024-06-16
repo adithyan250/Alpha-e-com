@@ -161,8 +161,16 @@
 
 // };
 
-// console.log(isHappy(n))   
-let price  = 50000
-let discount = 1
-let last = Math.floor(price*100)/(100-discount)
-console.log((last))
+// console.log(isHappy(n))  
+const s = "   fly me   to   the moon  "
+let farray = s.split(" ")
+    let arr = []
+    for(let i=0;i<farray.length;i++){
+        let split = farray[i].split("");
+        if(split.length>0){
+            arr.push(farray[i])
+        }
+    }
+    let length = farray[arr.length-1].split('')
+
+    console.log(farray)

@@ -71,17 +71,135 @@ const browseProducts = async (req, res) => {
         console.log(req.body.search)
         if (req.body.search) {
             search = req.body.search
+            console.log(search)
         }
+        let productData;
+        let footer;
+        let sort;
+        if(req.query.maxPrice&&req.query.minPrice){
+            console.log("first")
+            const {maxPrice,minPrice} = req.query;
 
-        const productData = await Product.find({
-            $or: [
-                { brand: { $regex: '.*' + search + '.*', $options: 'i' } },
-                { model: { $regex: '.*' + search + '.*', $options: 'i' } },
-                { description: { $regex: '.*' + search + '.*', $options: 'i' } },
-                { title: { $regex: '.*' + search + '.*', $options: 'i' } }
-            ]
-        });
-        res.render('productBrowse', { Products: productData, search: search });
+            productData = await Product.find({
+                $and: [
+                    {
+                        $or: [
+                            { id: { $regex: '.*' + search + '.*', $options: 'i' } },
+                            { title: { $regex: '.*' + search + '.*', $options: 'i' } },
+                            { brand: { $regex: '.*' + search + '.*', $options: 'i' } },
+                            { model: { $regex: '.*' + search + '.*', $options: 'i' } },
+                            { description: { $regex: '.*' + search + '.*', $options: 'i' } }
+                        ]
+                    },
+                    {
+                        price: { $gte: minPrice, $lte: maxPrice }
+                    }
+                ]
+            });
+            if(req.query.sort){
+                sort= parseInt(req.query.sort, 10);
+                console.log(sort)
+                switch(sort){
+                    case 1: 
+                        console.log("eeojdja");
+                        productData.sort((a, b) => {
+                            let fa = a.title.toLowerCase(),
+                                fb = b.title.toLowerCase();
+                        
+                            if (fa < fb) {
+                                return -1;
+                            }
+                            if (fa > fb) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        break;
+                    case 2: 
+                    productData.sort((a, b) => {
+                        let fa = a.title.toLowerCase(),
+                            fb = b.title.toLowerCase();
+                    
+                        if (fa < fb) {
+                            return 1;
+                        }
+                        if (fa > fb) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                        break;
+                    case 3: 
+                        productData.sort((a, b) => a.price - b.price);
+                        break;
+                    case 4: 
+                        productData.sort((a, b) => b.price - a.price);
+                        break;
+                    default:
+                        productData.sort((a, b) => a.title - b.title);
+                        
+                }
+            }
+            footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+            res.render('productBrowse', { Products: productData, search: search, category: footer, maxPrice: maxPrice, minPrice: minPrice});
+        }else{
+            // console.log("second");
+            productData = await Product.find({
+                $or: [
+                    { brand: { $regex: '.*' + search + '.*', $options: 'i' } },
+                    { model: { $regex: '.*' + search + '.*', $options: 'i' } },
+                    { description: { $regex: '.*' + search + '.*', $options: 'i' } },
+                    { title: { $regex: '.*' + search + '.*', $options: 'i' } }
+                ]
+            });
+            if(req.query.sort){
+                sort= parseInt(req.query.sort, 10);
+                console.log(sort)
+                switch(sort){
+                    case 1: 
+                        console.log("eeojdja");
+                        productData.sort((a, b) => {
+                            let fa = a.title.toLowerCase(),
+                                fb = b.title.toLowerCase();
+                        
+                            if (fa < fb) {
+                                return -1;
+                            }
+                            if (fa > fb) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        break;
+                    case 2: 
+                    productData.sort((a, b) => {
+                        let fa = a.title.toLowerCase(),
+                            fb = b.title.toLowerCase();
+                    
+                        if (fa < fb) {
+                            return 1;
+                        }
+                        if (fa > fb) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                        break;
+                    case 3: 
+                        productData.sort((a, b) => a.price - b.price);
+                        break;
+                    case 4: 
+                        productData.sort((a, b) => b.price - a.price);
+                        break;
+                    default:
+                        productData.sort((a, b) => a.title - b.title);
+                        
+                }
+            }
+            footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+            res.render('productBrowse', { Products: productData, search: search, category: footer});
+        }
+        // console.log(productData);
     } catch (error) {
         console.log(error.message);
         res.status(500).send('Internal Server Error');
@@ -218,7 +336,7 @@ const productLoad = async (req, res) => {
         // console.log(categoryData)
         // res.render('productBrowse',{Products:productData});
         // res.render('categoryPage', { Category: categoryData, Sort: Sort });
-        res.render('productPage', { Product: productsData, Sort: Sort });
+        res.render('productPage', { Product: productsData, Sort: Sort ,search: search});
     } catch (error) {
         console.log(error.message);
     }
@@ -229,10 +347,6 @@ const editProductLoad = async (req, res) => {
         const id = req.query.id
         const productData = await Product.findOne({ _id: id });
         const category = await Category.find();
-        // let category = [];
-        // for(let i = 0; i < categoryData.length; i++){
-        //     category[i] = categoryData[i].category_name;
-        // } 
         console.log(category);
         res.render('editProducts', { product: productData, category: category });
     } catch (error) {
@@ -278,6 +392,30 @@ const updateProduct = async (req, res) => {
     }
 }
 
+const filterItems = async(req, res) =>{
+    try{
+        const {maxPrice, minPrice} = req.body;
+        const products = await Product.find({price: {$gte: minPrice, $lte: maxPrice}})
+        
+        res.redirect('/sample')
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
+const productDetails = async(req, res) => {
+    try {
+        let footer;
+        const id = req.query.id
+        const product = await Product.findOne({_id: id});
+        footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+        console.log(product)
+        res.render('productDetails',{category: footer,product: product});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     productLoad,
     addProduct,
@@ -286,5 +424,7 @@ module.exports = {
     productView,
     editProductLoad,
     updateProduct,
-    subcategoryDataLoad
+    subcategoryDataLoad,
+    filterItems,
+    productDetails
 }
