@@ -46,25 +46,25 @@ user_route.get('/email_verification', auth.isLogout, userController.emailVerific
 
 user_route.post('/email_verification', userController.verifyOTP);
 
-user_route.get('/email_verification_resend_otp', auth.isLogout, userController.emailVerifyResendOtp)
+user_route.get('/email_verification_resend_otp', auth.isLogout, userController.emailVerifyResendOtp);
 
 user_route.get('/forgot_password', auth.isLogout, userController.emailEntryForgotPassword);
 
-user_route.post('/forgot_password', userController.getEmail)
+user_route.post('/forgot_password', userController.getEmail);
 
-user_route.get('/forgot_password_resend_otp', auth.isLogout, userController.resendotp)
+user_route.get('/forgot_password_resend_otp', auth.isLogout, userController.resendotp);
 
-user_route.get("/forgot_password_otp", auth.isLogout, userController.forgetPasswordOtp)
+user_route.get("/forgot_password_otp", auth.isLogout, userController.forgetPasswordOtp);
 
-user_route.post('/forgot_password_otp', userController.forgetPasswordOtpVerify)
+user_route.post('/forgot_password_otp', userController.forgetPasswordOtpVerify);
 
-user_route.post('/new_password', userController.newPassword)
+user_route.post('/new_password', userController.newPassword);
 
 user_route.get('/search', auth.isLogin, product.browseProducts);
 
 user_route.post('/search', product.browseProducts);
 
-user_route.post('/sample', userController.sample)
+user_route.post('/sample', userController.sample);
 
 user_route.get('/view_products', auth.isLogin, product.productView);
 
@@ -76,11 +76,15 @@ user_route.post('/addcart', cartController.addCart);
 
 user_route.get('/addcart', auth.isLogin, cartController.addCartsingle);
 
-user_route.get('/cart',auth.isLogin, cartController.cartView)
+user_route.get('/cart', auth.isLogin, cartController.cartView);
 
 user_route.get('/sample', auth.isLogout, userController.sample);
 
-user_route.get('/product_details', auth.isLogin, product.productDetails)
+user_route.get('/product_details', auth.isLogin, product.productDetails);
+
+// middleware removed
+
+user_route.get('/account', userController.accountView);
 
 // user_route.get("*", auth.isLogout, userController.loginload)
 

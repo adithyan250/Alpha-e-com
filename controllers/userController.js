@@ -186,12 +186,12 @@ const verifyLogin = async(req, res)=>{
 const loadHome = async(req, res) => {    
     try {   
         const userData = await User.findById({_id:req.session.user_id});
-
+        // const user_id = req.session.user_id;
         const productData  = await Product.find().sort({created_on:1}).limit(8)
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         // console.log(JSON.stringify(footer, null, 2));
         // console.log(req.session.user_id)
-        res.render('home',{products:productData,category:footer}); 
+        res.render('home',{products: productData, category: footer, user: userData}); 
     } catch (error) {
         console.log(error.message);
     }
@@ -203,8 +203,8 @@ const userLogout = async(req, res) => {
         
     try {
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-        res.header('Expires','-1');
-        res.header('Pragma', 'no-cache');
+       res.header('Expires','-1');
+            res.header('Pragma', 'no-cache');
         req.session.destroy();
         res.redirect('/user_signin');
     } catch (error) {
@@ -499,6 +499,17 @@ const sample = async (req, res) => {
     }
 }
 
+const accountView = async (req, res) => {
+    try{
+        const id = req.query.id;
+        const userData = await User.find({_id:id});
+        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+        res.render('account',{user: userData, category: footer});
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
 
 // $2b$10$GPFPBdwD61XAhBBjBq/cUu.Uwq7HW0tm9XX1nponDS/1kEjsNgoFK
 //*Chinnu#
@@ -520,5 +531,6 @@ module.exports = {
     newPassword,
     resendotp,
     emailVerifyResendOtp,
+    accountView,
     sample
 }

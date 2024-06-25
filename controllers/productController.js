@@ -71,13 +71,13 @@ const browseProducts = async (req, res) => {
         console.log(req.body.search)
         if (req.body.search) {
             search = req.body.search
-            console.log(search)
+            // console.log(search)
         }
         let productData;
         let footer;
         let sort;
         if(req.query.maxPrice&&req.query.minPrice){
-            console.log("first")
+            // console.log("first")
             const {maxPrice,minPrice} = req.query;
 
             productData = await Product.find({

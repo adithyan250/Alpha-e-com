@@ -74,13 +74,19 @@ const addCartsingle = async (req, res) => {
 const cartView = async(req, res)=>{
     try {
         let footer;
-        let images;
-        const customer_id = req.session.user_id;
-        const cartItems = await Cart.find();
-        images = await Cart.aggregate([{$lookup:{from:"products", localField:"product_id", foreignField:"_id", as:"product_details"}}]);
+        let images = [];
+        // const customer_id = req.session.user_id;
+        const customer_id = "6583e53ad74a9534dbc0e91f"
+        const cartItems = await Cart.find({ customer_id }).populate("product_id");
+        // console.log(cartItems);
+        let products = [];
+        for(let i =0;i<cartItems.length;i++){
+            products.push(cartItems[i].product_id)
+        }
+        const Price = parseInt(products[1].price) * parseInt(cartItems[1].quantity)
         footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        // console.log(images);
-        res.render('cartPage',{category: footer,cartItems:cartItems});
+        // console.log(Price);
+        res.render('cartPage',{category: footer, cartItems: cartItems, products: products});
     } catch (error) {
         console.log(error.message);
     }
@@ -91,3 +97,5 @@ module.exports = {
     addCartsingle,
     cartView
 }
+
+// populate
