@@ -147,36 +147,7 @@
                             class="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-orange-500 bg-orange-500 text-white"><img
                                 src="assets/images/client/16.jpg" class="rounded-full" alt=""></span>
                     </button></a>
-                    <!-- Dropdown menu -->
-                    <!-- <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-48 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden"
-                        onclick="event.stopPropagation();">
-                        <ul class="py-2 text-start">
-                            <li>
-                                <p class="text-slate-400 pt-2 px-4">Welcome Jesus!</p>
-                            </li>
-                            <li>
-                                <p class="flex items-center font-medium py-2 px-4"><i data-feather="dollar-sign"
-                                        class="h-4 w-4 me-2"></i> Balance: <span class="text-orange-500 ms-2">$
-                                        245.10</span></p>
-                            </li>
-                            <li>
-                                <a href="user-account.html"
-                                    class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i
-                                        data-feather="user" class="h-4 w-4 me-2"></i>Account</a>
-                            </li>
-                            <li>
-                                <a href="user-setting.html"
-                                    class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i
-                                        data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
-                            </li>
-                            <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
-                            <li>
-                                <a href="login.html"
-                                    class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i
-                                        data-feather="log-out" class="h-4 w-4 me-2"></i>Logout</a>
-                            </li>
-                        </ul>
-                    </div> -->
+                   
                 </li><!--end dropdown-->
             </ul><!--Login button End-->
         </div><!--end container-->
@@ -213,19 +184,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="mt-4">
-                                <h5 class="font-medium">Availability</h5>
-                                <label class="material-checkbox">
-                                    <input type="checkbox" name="stockout">
-                                    <span class="checkmark"></span>
-                                    out of stock
-                                </label>
-                                <label class="material-checkbox">
-                                    <input type="checkbox" name="available">
-                                    <span class="checkmark"></span>
-                                    Available
-                                </label>
-                            </div> -->
+                            
                             <br>
                             <button form="filter"
                                 style="box-shadow: inset 0 2px 4px 0 rgb(2 6 23 / 0.3), inset 0 -2px 4px 0 rgb(203 213 225);"
@@ -238,7 +197,7 @@
 
                 <div class="lg:col-span-9 md:col-span-8">
                     <div class="md:flex justify-between items-center mb-6">
-                        <span class="font-semibold">Showing 1-16 of 40 items</span>
+                        <span class="font-semibold"></span>
 
                         <div class="md:flex items-center">
                             <div class="paste-button">
@@ -259,15 +218,15 @@
                                 <!-- <label class="font-semibold md:me-2">Sort by:</label> -->
                                 <div class="dropdown-content">
                                     <%if(typeof minPrice !== 'undefined'){%>
-                                    <a href="/search?minPrice=<%=minPrice%>&maxPrice=<%=maxPrice%>&sort=1">title:A-Z</a>
-                                    <a href="/search?minPrice=<%=minPrice%>&maxPrice=<%=maxPrice%>&sort=2">title:Z-A</a>
-                                    <a href="/search?minPrice=<%=minPrice%>&maxPrice=<%=maxPrice%>&sort=3">price: Low-High</a>
-                                    <a href="/search?minPrice=<%=minPrice%>&maxPrice=<%=maxPrice%>&sort=4">price: High-Low</a>
+                                    <a href="/category?category=<%=Products[0].category%>&minPrice=<%=minPrice%>&maxPrice=<%=maxPrice%>&sort=1">title:A-Z</a>
+                                    <a href="/category?category=<%=Products[0].category%>&minPrice=<%=minPrice%>&maxPrice=<%=maxPrice%>&sort=2">title:Z-A</a>
+                                    <a href="/category?category=<%=Products[0].category%>&minPrice=<%=minPrice%>&maxPrice=<%=maxPrice%>&sort=3">price: Low-High</a>
+                                    <a href="/category?category=<%=Products[0].category%>&minPrice=<%=minPrice%>&maxPrice=<%=maxPrice%>&sort=4">price: High-Low</a>
                                     <%}else{%>
-                                        <a href="/search?sort=1">title:A-Z</a>
-                                        <a href="/search?sort=2">title:Z-A</a>
-                                        <a href="/search?sort=3">price: Low-High</a>
-                                        <a href="/search?sort=4">price: High-Low</a>
+                                        <a href="/category?category=<%=Products[0].category%>&sort=1">title:A-Z</a>
+                                        <a href="/category?category=<%=Products[0].category%>&sort=2">title:Z-A</a>
+                                        <a href="/category?category=<%=Products[0].category%>&sort=3">price: Low-High</a>
+                                        <a href="/category?category=<%=Products[0].category%>&sort=4">price: High-Low</a>
                                     <%}%>
                                 </div>
                             </div>
@@ -398,42 +357,7 @@
 
                     <div class="grid md:grid-cols-12 grid-cols-1 mt-6">
                         <div class="md:col-span-12 text-center">
-                            <!-- <nav aria-label="Page navigation example">
-                                <ul class="inline-flex items-center -space-x-px">
-                                    <li>
-                                        <a href="#"
-                                            class="size-[40px] inline-flex justify-center items-center text-slate-400 bg-white dark:bg-slate-900 rounded-s-3xl hover:text-white border border-gray-100 dark:border-gray-800 hover:border-orange-500 dark:hover:border-orange-500 hover:bg-orange-500 dark:hover:bg-orange-500">
-                                            <i data-feather="chevron-left" class="size-5 rtl:rotate-180 rtl:-mt-1"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="size-[40px] inline-flex justify-center items-center text-slate-400 hover:text-white bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 hover:border-orange-500 dark:hover:border-orange-500 hover:bg-orange-500 dark:hover:bg-orange-500">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="size-[40px] inline-flex justify-center items-center text-slate-400 hover:text-white bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 hover:border-orange-500 dark:hover:border-orange-500 hover:bg-orange-500 dark:hover:bg-orange-500">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" aria-current="page"
-                                            class="z-10 size-[40px] inline-flex justify-center items-center text-white bg-orange-500 border border-orange-500">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="size-[40px] inline-flex justify-center items-center text-slate-400 hover:text-white bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 hover:border-orange-500 dark:hover:border-orange-500 hover:bg-orange-500 dark:hover:bg-orange-500">4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="size-[40px] inline-flex justify-center items-center text-slate-400 hover:text-white bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 hover:border-orange-500 dark:hover:border-orange-500 hover:bg-orange-500 dark:hover:bg-orange-500">5</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="size-[40px] inline-flex justify-center items-center text-slate-400 bg-white dark:bg-slate-900 rounded-e-3xl hover:text-white border border-gray-100 dark:border-gray-800 hover:border-orange-500 dark:hover:border-orange-500 hover:bg-orange-500 dark:hover:bg-orange-500">
-                                            <i data-feather="chevron-right" class="size-5 rtl:rotate-180 rtl:-mt-1"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav> -->
+                           
                         </div><!--end col-->
                     </div><!--end grid-->
                 </div><!--end col-->

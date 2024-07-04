@@ -21,6 +21,6 @@ const adminRoute = require('./routes/adminRoute');
 app.use('/admin',adminRoute);
 
 app.listen(3000, function(){
-    console.log('Server is running on http://localhost:3000/account');
+    console.log('Server is running on http://localhost:3000/');
 });
 // account?id=6583e53ad74a9534dbc0e91f

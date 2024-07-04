@@ -7,6 +7,7 @@ const session = require('express-session');
 
 const product = require('../controllers/productController')
 const cartController = require("../controllers/cartController");
+const categoryController = require('../controllers/categoryController')
 
 const config = require("../config/config");
 const auth = require('../middlewares/auth');
@@ -82,14 +83,13 @@ user_route.get('/sample', auth.isLogout, userController.sample);
 
 user_route.get('/product_details', auth.isLogin, product.productDetails);
 
+user_route.get('/account', auth.isLogin, userController.accountView);
+
+user_route.get('/category', auth.isLogin, categoryController.browseCategory)
+
 // middleware removed
 
-user_route.get('/account', userController.accountView);
-
 // user_route.get("*", auth.isLogout, userController.loginload)
-
-
-
 
 // user_route.get('*',(req, res)=>{
 //     res.render('404',{message:'page not found...'});

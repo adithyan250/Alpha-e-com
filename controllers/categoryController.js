@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const Category = require('../models/categoryModel');
+const Product = require('../models/productModel');
 
 // category page view
 
@@ -95,6 +96,8 @@ const insertCategory = async (req, res) => {
     try {
         const { categoryName, categoryStatus, description } = req.body;
         const categoryData = await Category.findOne({ category_name: categoryName });
+        const categories = await Category.find();
+        const count = categories.length + 1;
         if (categoryData) {
             res.render('addCategory', { message: "Catergory already Exists...", categoryName: categoryName, description: description })
         } else {
@@ -102,6 +105,7 @@ const insertCategory = async (req, res) => {
                 category_name: categoryName,
                 status: categoryStatus,
                 description: description,
+                category_id: count,
                 created_on: new Date()
             });
             const categoryData = await category.save()
@@ -147,10 +151,154 @@ const updateCategory = async (req, res) => {
     }
 }
 
+const browseCategory = async (req, res) => {
+    try {
+        var search = '';
+        // var category = req.body.category
+        console.log(req.query.category)
+        if (req.query.category) {
+            search = req.query.category
+            // console.log(search)
+        }
+        let productData;
+        let footer;
+        let sort;
+        if (req.query.maxPrice && req.query.minPrice) {
+            // console.log("first")
+            const { maxPrice, minPrice } = req.query;
+
+            productData = await Product.find({
+                $and: [
+                    {
+                        $or: [
+                            { category: { $regex: '.*' + search + '.*', $options: 'i' } }
+                        ]
+                    },
+                    {
+                        price: { $gte: minPrice, $lte: maxPrice }
+                    }
+                ]
+            });
+            if (req.query.sort) {
+                sort = parseInt(req.query.sort, 10);
+                console.log(sort)
+                switch (sort) {
+                    case 1:
+                        console.log("eeojdja");
+                        productData.sort((a, b) => {
+                            let fa = a.title.toLowerCase(),
+                                fb = b.title.toLowerCase();
+
+                            if (fa < fb) {
+                                return -1;
+                            }
+                            if (fa > fb) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        sort = "Name: A-Z";
+                        break;
+                    case 2:
+                        productData.sort((a, b) => {
+                            let fa = a.title.toLowerCase(),
+                                fb = b.title.toLowerCase();
+
+                            if (fa < fb) {
+                                return 1;
+                            }
+                            if (fa > fb) {
+                                return -1;
+                            }
+                            return 0;
+                        });
+                        sort = "Name: Z-A";
+                        break;
+                    case 3:
+                        productData.sort((a, b) => a.price - b.price);
+                        sort = "Price: Low-High";
+                        break;
+                    case 4:
+                        productData.sort((a, b) => b.price - a.price);
+                        sort = "Price: High-Low";
+                        break;
+                    default:
+                        productData.sort((a, b) => a.title - b.title);
+
+                }
+            }
+            console.log(productData[0].category);
+            footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
+            res.render('productBrowse', { Products: productData, search: search, category: footer, maxPrice: maxPrice, minPrice: minPrice });
+        } else {
+            // console.log("second");
+            productData = await Product.find({
+                $or: [
+                    { category: { $regex: '.*' + search + '.*', $options: 'i' } }
+                ]
+            });
+            if (req.query.sort) {
+                sort = parseInt(req.query.sort, 10);
+                console.log(sort)
+                switch (sort) {
+                    case 1:
+                        // console.log("eeojdja");
+                        productData.sort((a, b) => {
+                            let fa = a.title.toLowerCase(),
+                                fb = b.title.toLowerCase();
+
+                            if (fa < fb) {
+                                return -1;
+                            }
+                            if (fa > fb) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        sort = "Name: A-Z";
+                        break;
+                    case 2:
+                        productData.sort((a, b) => {
+                            let fa = a.title.toLowerCase(),
+                                fb = b.title.toLowerCase();
+
+                            if (fa < fb) {
+                                return 1;
+                            }
+                            if (fa > fb) {
+                                return -1;
+                            }
+                            return 0;
+                        });
+                        sort = "Name: Z-A";
+                        break;
+                    case 3:
+                        productData.sort((a, b) => a.price - b.price);
+                        sort = "Price: Low-High";
+                        break;
+                    case 4:
+                        productData.sort((a, b) => b.price - a.price);
+                        sort = "Price: High-Low";
+                        break;
+                    default:
+                        productData.sort((a, b) => a.title - b.title);
+
+                }
+            }
+            console.log(productData[0].category);
+            footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
+            res.render('productBrowse', { Products: productData, Sort: sort, search: search, category: footer });
+        }
+    } catch (error) {
+        console.log(error.messsage);
+    }
+}
+
 module.exports = {
     categoryLoad,
     addCategory,
     insertCategory,
     editCategory,
-    updateCategory
+    updateCategory,
+    browseCategory
 }
