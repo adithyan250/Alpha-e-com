@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const wishlistSchema = new mongoose.Schema({
+const addressSchema = new mongoose.Schema({
     customer_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
@@ -11,4 +11,4 @@ const wishlistSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('wishlist', wishlistSchema);
+module.exports = mongoose.model('address', addressSchema);

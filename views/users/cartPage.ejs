@@ -172,6 +172,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <%let total = 0%>
                             <%for(let i=0 ;i<cartItems.length;i++){%>
                                 <tr class="bg-white dark:bg-slate-900">
                                     <td class="p-4"><a href="#"><i class="mdi mdi-window-close text-red-600"></i></a>
@@ -200,7 +201,7 @@
                                                 class="h-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white pointer-events-none w-16 ps-4 quantity">
                                             <button
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                class="size-9 inline-flex items-center justify-centertracking-wide align-middle text-base text-center rounded-mdbg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-whiteplus">+</button>
+                                                class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white plus">+</button>
                                         </div>
 
                                     </td>
@@ -209,6 +210,8 @@
                                             <%=price%>
                                     </td>
                                 </tr>
+                                
+                                <%total = total + price;%>
                                 <%}%>
                         </tbody>
                     </table>
@@ -237,7 +240,7 @@
                             <li
                                 class="flex justify-between font-semibold p-4 border-t border-gray-200 dark:border-gray-600">
                                 <span class="font-semibold text-lg">Total :</span>
-                                <span class="font-semibold">$ 1650</span>
+                                <span class="font-semibold"><%=total%></span>
                             </li>
                         </ul>
                     </div>

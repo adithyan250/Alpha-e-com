@@ -85,15 +85,20 @@ user_route.get('/product_details', auth.isLogin, product.productDetails);
 
 user_route.get('/account', auth.isLogin, userController.accountView);
 
-user_route.get('/category', auth.isLogin, categoryController.browseCategory)
+user_route.get('/category', auth.isLogin, categoryController.browseCategory);
 
+// user_route.get
 // middleware removed
+
+user_route.get('/address', userController.addressView);
+
+user_route.get('/add_address', userController.addAddressview)
 
 // user_route.get("*", auth.isLogout, userController.loginload)
 
-// user_route.get('*',(req, res)=>{
-//     res.render('404',{message:'page not found...'});
-// })
+user_route.get('*',(req, res)=>{
+    res.render('404');
+})
 
 
 module.exports = user_route;
