@@ -97,16 +97,13 @@
                         <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-48 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
                             <ul class="py-2 text-start">
                                 <li>
-                                    <p class="text-slate-400 pt-2 px-4">Welcome Jesus!</p>
+                                    <p class="text-slate-400 pt-2 px-4">Welcome <%=user.name%>!</p>
                                 </li>
                                 <li>
                                     <p class="flex items-center font-medium py-2 px-4"><i data-feather="dollar-sign" class="h-4 w-4 me-2"></i> Balance: <span class="text-orange-500 ms-2">$ 245.10</span></p>
                                 </li>
                                 <li>
                                     <a href="user-account.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="user" class="h-4 w-4 me-2"></i>Account</a>
-                                </li>
-                                <li>
-                                    <a href="helpcenter.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="help-circle" class="h-4 w-4 me-2"></i>Helpcenter</a>
                                 </li>
                                 <li>
                                     <a href="user-setting.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
@@ -143,8 +140,12 @@
                                         </div>
 
                                         <div class="mt-4">
-                                            <h5 class="text-lg font-semibold"><%=user.name%></h5>
-                                            <p class="text-slate-400"><%=user.email%></p>
+                                            <h5 class="text-lg font-semibold">
+                                                <%=user.name%>
+                                            </h5>
+                                            <p class="text-slate-400">
+                                                <%=user.email%>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -155,6 +156,13 @@
                                             <a href="#" class="navbar-link text-slate-400 flex items-center py-2 rounded">
                                                 <span class="me-2 mb-0 text-orange-500"><i data-feather="airplay" class="size-4"></i></span>
                                                 <h6 class="mb-0 font-medium text-orange-500">Account</h6>
+                                            </a>
+                                        </li>
+
+                                        <li class="navbar-item account-menu">
+                                            <a href="/personal_details" class="navbar-link text-slate-400 flex items-center py-2 rounded">
+                                                <span class="me-2 mb-0"><i data-feather="user" class="size-4"></i></span>
+                                                <h6 class="mb-0 font-medium">Personal Details</h6>
                                             </a>
                                         </li>
     

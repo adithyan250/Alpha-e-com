@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Alpha E-com: Account</title>
+    <title>Alpha E-com: Add Address</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Fashion Store eCommerce Tailwind CSS Landing Template" name="description">
     <meta content="Shop, Fashion, eCommerce, Cart, Shop Cart, tailwind css, Admin, Landing" name="keywords">
@@ -166,14 +166,14 @@
                     <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
                         <span
                             class="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-orange-500 bg-orange-500 text-white"><img
-                                src="assets/images/client/16.jpg" class="rounded-full" alt=""></span>
+                                src="images/userDP/dp.png" class="rounded-full" alt=""></span>
                     </button>
                     <!-- Dropdown menu -->
                     <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-48 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden"
                         onclick="event.stopPropagation();">
                         <ul class="py-2 text-start">
                             <li>
-                                <p class="text-slate-400 pt-2 px-4">Welcome Jesus!</p>
+                                <p class="text-slate-400 pt-2 px-4">Welcome <%=user.name%>!</p>
                             </li>
                             <!-- <li>
                                     <p class="flex items-center font-medium py-2 px-4"><i data-feather="dollar-sign" class="h-4 w-4 me-2"></i> Balance: <span class="text-orange-500 ms-2">$ 245.10</span></p>
@@ -226,15 +226,15 @@
                                     onchange="loadFile(event)" />
                                 <div>
                                     <div class="relative h-28 w-28 mx-auto">
-                                        <img src="assets/images/client/16.jpg"
+                                        <img src="images/userDP/dp.png"
                                             class="rounded-full shadow dark:shadow-gray-800 ring-4 ring-slate-50 dark:ring-slate-800"
                                             id="profile-image" alt="">
                                         <label class="absolute inset-0 cursor-pointer" for="pro-img"></label>
                                     </div>
 
                                     <div class="mt-4">
-                                        <h5 class="text-lg font-semibold">Jesus Zamora</h5>
-                                        <p class="text-slate-400">jesus@hotmail.com</p>
+                                        <h5 class="text-lg font-semibold"><%=user.name%></h5>
+                                        <p class="text-slate-400"><%=user.email%></p>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +242,8 @@
                             <div class="border-t border-gray-100 dark:border-gray-700">
                                 <ul class="list-none sidebar-nav mb-0 pb-0" id="navmenu-nav">
                                     <li class="navbar-item account-menu">
-                                        <a href="/account" class="navbar-link text-slate-400 flex items-center py-2 rounded">
+                                        <a href="/account"
+                                            class="navbar-link text-slate-400 flex items-center py-2 rounded">
                                             <span class="me-2 mb-0"><i data-feather="airplay" class="size-4"></i></span>
                                             <h6 class="mb-0 font-medium">Account</h6>
                                         </a>
@@ -250,15 +251,16 @@
 
                                     <li class="navbar-item account-menu">
                                         <a href="/personal_details" class="navbar-link text-slate-400 flex items-center py-2 rounded">
-                                            <span class="me-2 mb-0"><i data-feather="user" class="size-4"></i></span>
-                                            <h6 class="mb-0 font-medium">Personal Details</h6>
+                                            <span class="me-2 mb-0 text-orange-500"><i data-feather="user" class="size-4"></i></span>
+                                            <h6 class="mb-0 font-medium text-orange-500">Personal Details</h6>
                                         </a>
                                     </li>
 
                                     <li class="navbar-item account-menu">
-                                        <a href="#" class="navbar-link text-slate-400 flex items-center py-2 rounded">
-                                            <span class="me-2 mb-0 text-orange-500"><i data-feather="edit" class="size-4"></i></span>
-                                            <h6 class="mb-0 font-medium text-orange-500">Address</h6>
+                                        <a href="/address" class="navbar-link text-slate-400 flex items-center py-2 rounded">
+                                            <span class="me-2 mb-0 "><i data-feather="edit"
+                                                    class="size-4"></i></span>
+                                            <h6 class="mb-0 font-medium ">Address</h6>
                                         </a>
                                     </li>
 
@@ -286,112 +288,48 @@
 
                 <div class="lg:w-3/4 md:w-2/3 md:px-3 mt-6 md:mt-0">
                     <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
-                        <h5 class="text-lg font-semibold mb-4">Add a new address</h5>
-                        <form method="post" action="#" name="address" onsubmit="return formValidator()">
+                        <h5 class="text-lg font-semibold mb-4">Personal Detail :</h5>
+                        <form method="post" action="#">
                             <div class="grid lg:grid-cols-2 grid-cols-1 gap-5">
                                 <div>
-                                    <label class="form-label font-medium">Full Name<span
-                                            class="text-red-600">*</span></label>
+                                    <label class="form-label font-medium">Full Name : <span class="text-red-600">*</span></label>
                                     <div class="form-icon relative mt-2">
                                         <i data-feather="user" class="w-4 h-4 absolute top-3 start-4"></i>
-                                        <input type="text"
-                                            class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="First Name:" id="firstname"
-                                            <%if(typeof address.name !== 'undefined'){%>
-                                                value="<%=address.name%>"
-                                            <%}%>
-                                            name="name" required="">
+                                        <input type="text" 
+                                        <%if(typeof user.name !== 'undefined'){%>
+                                            value="<%=user.name%>"
+                                        <%}%>
+                                        class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="First Name:" id="firstname" name="name" required="" >
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="form-label font-medium">Mobile Number<span
-                                            class="text-red-600">*</span></label>
+                                    <label class="form-label font-medium">Phone No. : <span class="text-red-600">*</span></label>
                                     <div class="form-icon relative mt-2">
                                         <i data-feather="phone" class="w-4 h-4 absolute top-3 start-4"></i>
-                                        <input type="number"
-                                            class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="Mobile:" id="lastname"
-                                            <%if(typeof address.phone !== 'undefined'){%>
-                                                value="<%=address.phone%>"
-                                            <%}%>
-                                            name="mobile" required="">
+                                        <input name="phone"
+                                        <%if(typeof user.mobile !== 'undefined'){%>
+                                            value="<%=user.mobile%>"
+                                        <%}%>
+                                        id="number" type="text" class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="Phone : +91 ">
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="form-label font-medium">Flat, House no., Building, Company,
-                                        Apartment<span class="text-red-600">*</span></label>
+                                    <label class="form-label font-medium">Your Email : </label>
                                     <div class="form-icon relative mt-2">
-                                        <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
-                                        <input type="text"
-                                            class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="Flat, House no., Building, Company, Apartment" name="add1"
-                                            <%if(typeof address.add1 !== 'undefined'){%>
-                                                value="<%=address.add1%>"
-                                            <%}%>
-                                            required="">
+                                        <i data-feather="mail" class="w-4 h-4 absolute top-3 start-4"></i>
+                                        <input type="email" 
+                                        <%if(typeof user.email !== 'undefined'){%>
+                                            value="<%=user.email%>"
+                                        <%}%>
+                                        class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="Email" name="email" required="" readonly disabled>
                                     </div>
                                 </div>
-                                <div>
-                                    <label class="form-label font-medium">Area, Street, Sector, Village<span
-                                            class="text-red-600">*</span></label>
-                                    <div class="form-icon relative mt-2">
-                                        <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
-                                        <input type="text"
-                                            class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="Area, Street, Sector, Village :"
-                                            <%if(typeof address.add2 !== 'undefined'){%>
-                                                value="<%=address.add2%>"
-                                            <%}%>
-                                            name="add2" required="">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="form-label font-medium">Landmark<span
-                                            class="text-red-600">*</span></label>
-                                    <div class="form-icon relative mt-2">
-                                        <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
-                                        <input type="text"
-                                            class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="E.g. near apollo hospital"
-                                            <%if(typeof address.landmark !== 'undefined'){%>
-                                                value="<%=address.landmark%>"
-                                            <%}%>
-                                            name="landmark" required="">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="form-label font-medium">Town/City<span
-                                            class="text-red-600">*</span></label>
-                                    <div class="form-icon relative mt-2">
-                                        <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
-                                        <input type="text"
-                                            class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="Town/City :" name="city"
-                                            <%if(typeof address.city !== 'undefined'){%>
-                                                value="<%=address.city%>"
-                                            <%}%>
-                                            required="">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="form-label font-medium">Pincode<span
-                                            class="text-red-600">*</span></label>
-                                    <div class="form-icon relative mt-2">
-                                        <i data-feather="map-piny" class="w-4 h-4 absolute top-3 start-4"></i>
-                                        <input type="number"
-                                            class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="6 digits [0-9] PIN code"
-                                            <%if(typeof address.pincode !== 'undefined'){%>
-                                                value="<%=address.pincode%>"
-                                            <%}%>
-                                            name="pincode" required="">
-                                    </div>
-                                </div>
+                                
                             </div><!--end grid-->
 
-                            <input type="submit" id="submit" name="send"
-                                class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md mt-5"
-                                value="Add Address">
+                           
+
+                            <input type="submit" id="submit" name="send" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md mt-5" value="Save Changes">
                         </form><!--end form-->
                     </div>
                 </div>

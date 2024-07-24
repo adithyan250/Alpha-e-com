@@ -8,7 +8,7 @@ const session = require('express-session');
 const product = require('../controllers/productController')
 const cartController = require("../controllers/cartController");
 const categoryController = require('../controllers/categoryController');
-const addressController = require("../controllers/addressController");
+const accountController = require("../controllers/accountController");
 
 const config = require("../config/config");
 const auth = require('../middlewares/auth');
@@ -84,19 +84,23 @@ user_route.get('/sample', auth.isLogout, userController.sample);
 
 user_route.get('/product_details', auth.isLogin, product.productDetails);
 
-user_route.get('/account', auth.isLogin, userController.accountView);
+user_route.get('/account', auth.isLogin, accountController.accountView);
 
 user_route.get('/category', auth.isLogin, categoryController.browseCategory);
 
-user_route.get('/address', auth.isLogin,addressController.addressView);
+user_route.get('/address', auth.isLogin,accountController.addressView);
 
-user_route.get('/add_address', auth.isLogin, addressController.addAddressview);
+user_route.get('/add_address', auth.isLogin, accountController.addAddressview);
 
-user_route.post('/add_address', addressController.addAddress);
+user_route.post('/add_address', accountController.addAddress);
 
-user_route.get('/edit_address', auth.isLogin, addressController.editAddressView);
+user_route.get('/edit_address', auth.isLogin, accountController.editAddressView);
 
-user_route.post('/edit_address', addressController.updateAddress)
+user_route.post('/edit_address', accountController.updateAddress);
+
+user_route.get('/personal_details', auth.isLogin, accountController.personalDeatilsView);
+
+user_route.post('/personal_details', accountController.updatePersonalDetails)
 
 // user_route.get
 // middleware removed

@@ -481,17 +481,6 @@ const newPassword = async (req, res) => {
     }
 }
 
-const accountView = async (req, res) => {
-    try{
-        const id = req.query.id;
-        const userData = await User.find({_id:id});
-        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        res.render('account',{user: userData, category: footer});
-    }catch(error){
-        console.log(error.message);
-    }
-}
-
 const sample = async (req, res) => {
     try {
         if(req.body!=="undefined"){
@@ -527,6 +516,5 @@ module.exports = {
     newPassword,
     resendotp,
     emailVerifyResendOtp,
-    accountView,
     sample
 }

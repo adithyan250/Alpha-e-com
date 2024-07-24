@@ -6,6 +6,17 @@ const Address = require('../models/addressModel');
 const User = require('../models/userModel');
 
 
+const accountView = async (req, res) => {
+    try{
+        const id = req.query.id;
+        const user = await User.findOne({_id:id});
+        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+        res.render('account',{user: user, category: footer});
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
 const addressView = async (req, res) => {
     try{
         const user = await User.findOne({_id:req.session.user_id},{name:1, email:1});
@@ -90,10 +101,49 @@ const updateAddress = async (req, res) =>{
     }
 }
 
+const personalDeatilsView = async (req, res) => {
+    try{
+        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+        const id = req.session.user_id;
+        const user = await User.findOne({_id:id})
+        console.log(user);
+        res.render('personalDetails', {category:footer, user: user});
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
+const updatePersonalDetails = async (req, res) =>{
+    try{
+        const {name, phone} = req.body;
+        const id = req.session.user_id;
+        console.log(id)
+        const update = await User.findByIdAndUpdate({_id: id},
+            {
+                $set:{
+                    name:name,
+                    mobile:phone
+                }
+            }
+        );
+        if(update){
+            console.log("updated successfully!!!");
+            res.redirect('/personal_details');
+        }else{
+            alert('update failed');
+        }
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
 module.exports = {
+    accountView,
     addressView,
     addAddressview,
     addAddress,
     editAddressView,
-    updateAddress
+    updateAddress,
+    personalDeatilsView,
+    updatePersonalDetails
 }
