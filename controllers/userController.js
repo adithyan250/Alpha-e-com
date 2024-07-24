@@ -492,26 +492,6 @@ const accountView = async (req, res) => {
     }
 }
 
-const addressView = async (req, res) => {
-    try{
-        const user = await User.findOne({id:req.session.user_id},{name:1,email:1})
-        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        
-        res.render("address", {category: footer, user: user});
-    }catch(error){
-        console.log(error.message);
-    }
-}
-
-const addAddressview = async (req, res) => {
-    try{
-        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        res.render('addAddress', {category: footer});   
-    }catch(error){
-        console.log(error.message);
-    }
-}
-
 const sample = async (req, res) => {
     try {
         if(req.body!=="undefined"){
@@ -548,7 +528,5 @@ module.exports = {
     resendotp,
     emailVerifyResendOtp,
     accountView,
-    addressView,
-    addAddressview,
     sample
 }

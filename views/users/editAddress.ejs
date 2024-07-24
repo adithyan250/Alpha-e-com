@@ -282,7 +282,7 @@
                 <div class="lg:w-3/4 md:w-2/3 md:px-3 mt-6 md:mt-0">
                     <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
                         <h5 class="text-lg font-semibold mb-4">Add a new address</h5>
-                        <form method="post" action="/add_address" name="address" onsubmit="return formValidator()">
+                        <form method="post" action="#" name="address" onsubmit="return formValidator()">
                             <div class="grid lg:grid-cols-2 grid-cols-1 gap-5">
                                 <div>
                                     <label class="form-label font-medium">Full Name<span
@@ -291,7 +291,11 @@
                                         <i data-feather="user" class="w-4 h-4 absolute top-3 start-4"></i>
                                         <input type="text"
                                             class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="First Name:" id="firstname" name="name" required="">
+                                            placeholder="First Name:" id="firstname"
+                                            <%if(typeof address.name !== 'undefined'){%>
+                                                value="<%=address.name%>"
+                                            <%}%>
+                                            name="name" required="">
                                     </div>
                                 </div>
                                 <div>
@@ -301,7 +305,11 @@
                                         <i data-feather="phone" class="w-4 h-4 absolute top-3 start-4"></i>
                                         <input type="number"
                                             class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="Mobile:" id="lastname" name="mobile" required="">
+                                            placeholder="Mobile:" id="lastname"
+                                            <%if(typeof address.phone !== 'undefined'){%>
+                                                value="<%=address.phone%>"
+                                            <%}%>
+                                            name="mobile" required="">
                                     </div>
                                 </div>
                                 <div>
@@ -312,6 +320,9 @@
                                         <input type="text"
                                             class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
                                             placeholder="Flat, House no., Building, Company, Apartment" name="add1"
+                                            <%if(typeof address.add1 !== 'undefined'){%>
+                                                value="<%=address.add1%>"
+                                            <%}%>
                                             required="">
                                     </div>
                                 </div>
@@ -322,7 +333,11 @@
                                         <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
                                         <input type="text"
                                             class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="Area, Street, Sector, Village :" name="add2" required="">
+                                            placeholder="Area, Street, Sector, Village :"
+                                            <%if(typeof address.add2 !== 'undefined'){%>
+                                                value="<%=address.add2%>"
+                                            <%}%>
+                                            name="add2" required="">
                                     </div>
                                 </div>
                                 <div>
@@ -332,7 +347,11 @@
                                         <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
                                         <input type="text"
                                             class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="E.g. near apollo hospital" name="landmark" required="">
+                                            placeholder="E.g. near apollo hospital"
+                                            <%if(typeof address.landmark !== 'undefined'){%>
+                                                value="<%=address.landmark%>"
+                                            <%}%>
+                                            name="landmark" required="">
                                     </div>
                                 </div>
                                 <div>
@@ -342,7 +361,11 @@
                                         <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
                                         <input type="text"
                                             class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="Town/City :" name="city" required="">
+                                            placeholder="Town/City :" name="city"
+                                            <%if(typeof address.city !== 'undefined'){%>
+                                                value="<%=address.city%>"
+                                            <%}%>
+                                            required="">
                                     </div>
                                 </div>
                                 <div>
@@ -352,7 +375,11 @@
                                         <i data-feather="map-piny" class="w-4 h-4 absolute top-3 start-4"></i>
                                         <input type="number"
                                             class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
-                                            placeholder="6 digits [0-9] PIN code" name="pincode" required="">
+                                            placeholder="6 digits [0-9] PIN code"
+                                            <%if(typeof address.pincode !== 'undefined'){%>
+                                                value="<%=address.pincode%>"
+                                            <%}%>
+                                            name="pincode" required="">
                                     </div>
                                 </div>
                             </div><!--end grid-->

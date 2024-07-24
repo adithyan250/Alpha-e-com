@@ -5,9 +5,30 @@ const addressSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    product_id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product"
+    name:{
+        type:String,
+        require:true
+    },
+    phone:{
+        type:String,
+        require:true
+    },
+    add1:{
+        type:String,
+        require:true
+    },
+    add2:{
+        type:String
+    },
+    landmark:{
+        type:String
+    },
+    city:{
+        type:String
+    },
+    pincode:{
+        type:String,
+        require:true
     }
 });
 

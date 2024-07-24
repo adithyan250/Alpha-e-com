@@ -35,6 +35,11 @@
             </div>
         </div> -->
         <!-- Loader End -->
+         <style>
+            ::-webkit-scrollbar {
+                display: none;
+            }
+         </style>
         
         <!-- Start Navbar -->
         <nav id="topnav" class="defaultscroll is-sticky">
@@ -158,17 +163,17 @@
                         <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-48 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
                             <ul class="py-2 text-start">
                                 <li>
-                                    <p class="text-slate-400 pt-2 px-4">Welcome Jesus!</p>
+                                    <p class="text-slate-400 pt-2 px-4">Welcome <%=user.name%>!</p>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <p class="flex items-center font-medium py-2 px-4"><i data-feather="dollar-sign" class="h-4 w-4 me-2"></i> Balance: <span class="text-orange-500 ms-2">$ 245.10</span></p>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="user-account.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="user" class="h-4 w-4 me-2"></i>Account</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="helpcenter.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="help-circle" class="h-4 w-4 me-2"></i>Helpcenter</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="user-setting.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
                                 </li>
@@ -181,222 +186,6 @@
                     </li><!--end dropdown-->
                 </ul>
                 <!--Login button End-->
-
-                <!-- <div id="navigation">
-                    Navigation Menu
-                    <ul class="navigation-menu">
-                        <li class="has-submenu parent-menu-item">
-                            <a href="javascript:void(0)">Hero</a><span class="menu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="index.html" class="sub-menu-item">Fashion One</a></li>
-                                <li><a href="index-fashion-two.html" class="sub-menu-item">Fashion Two</a></li>
-                                <li><a href="index-fashion-three.html" class="sub-menu-item">Fashion Three</a></li>
-                                <li><a href="index-fashion-four.html" class="sub-menu-item">Fashion Four</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="has-submenu parent-parent-menu-item">
-                            <a href="javascript:void(0)">Products</a><span class="menu-arrow"></span>
-
-                            <ul class="submenu megamenu">
-                                <li>
-                                    <ul>
-                                        <li class="megamenu-head">Product Features</li>
-                                        <li><a href="#!" class="sub-menu-item">Bundle - Upsell</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Hot Stock</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Sticky Add To Cart</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Notify Me (Out Of Stock)</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Ask An Expert</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Variant Image Grouped</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Wishlist</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Trust Badge</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Delivery Information</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <ul>
-                                        <li class="megamenu-head">Product Features</li>
-                                        <li><a href="#!" class="sub-menu-item">Sold In Last</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Color Comparison</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Product Swatches</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Product Select Options</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Pre-Order</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Product 3D, AR Models</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Terms And Conditions Checkbox</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Variant Metafield Description</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Variant Metafield Property</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <ul>
-                                        <li class="megamenu-head">Product Features</li>
-                                        <li><a href="#!" class="sub-menu-item">Product Video</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Size Chart</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Dynamic Checkout</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Product Countdown</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Custom Content</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Custom Options</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Product Combo</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Product Complementary</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Auto Discount</a></li>
-                                    </ul>
-                                </li>
-                        
-                                <li>
-                                    <ul>
-                                        <li class="megamenu-head">Product Features</li>
-                                        <li><a href="#!" class="sub-menu-item">Custom Product Tabs</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Vertical Product Tab</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Horizontal Product Tab</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Social Share</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Related Products</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Recently Viewed Products</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Custom Label</a></li>
-                                        <li><a href="#!" class="sub-menu-item">Local Pick Up</a></li>
-                                    </ul>
-                                </li>
-                        
-                                <li>
-                                    <ul>
-                                        <li class="megamenu-head"><img src="assets/images/cta.png" alt=""></li>
-
-                                        <li class="text-center"><a href="#!" class="py-2 px-5 inline-block font-medium tracking-wide align-middle duration-500 text-base text-center bg-orange-500/10 text-orange-500 rounded-md me-2 mt-2"><i class="mdi mdi-cart-outline"></i> Shop Now</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="has-submenu parent-parent-menu-item"><a href="javascript:void(0)"> Shop </a><span class="menu-arrow"></span>
-                            <ul class="submenu">
-                                <li class="has-submenu parent-menu-item">
-                                    <a href="javascript:void(0)"> Shop Grid </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="shop-grid.html" class="sub-menu-item">Shop Grid</a></li>
-                                        <li><a href="shop-grid-left-sidebar.html" class="sub-menu-item">Grid Left Sidebar</a></li>
-                                        <li><a href="shop-grid-right-sidebar.html" class="sub-menu-item">Grid Right Sidebar</a></li>
-                                    </ul>  
-                                </li>
-
-                                <li class="has-submenu parent-menu-item">
-                                    <a href="javascript:void(0)"> Shop List </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="shop-list.html" class="sub-menu-item">Shop List</a></li>
-                                        <li><a href="shop-list-left-sidebar.html" class="sub-menu-item">List Left Sidebar</a></li>
-                                        <li><a href="shop-list-right-sidebar.html" class="sub-menu-item">List Right Sidebar</a></li>
-                                    </ul>  
-                                </li>
-
-                                <li class="has-submenu parent-menu-item">
-                                    <a href="javascript:void(0)"> Shop Detail </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="product-detail-one.html" class="sub-menu-item">Product Detail One</a></li>
-                                        <li><a href="product-detail-two.html" class="sub-menu-item">Product Detail Two</a></li>
-                                        <li><a href="product-detail-three.html" class="sub-menu-item">Product Detail Three</a></li>
-                                    </ul>  
-                                </li>
-                                <li><a href="shop-cart.html" class="sub-menu-item">Shop Cart</a></li>
-                                <li><a href="shop-checkout.html" class="sub-menu-item">Checkout</a></li>
-                                <li><a href="our-store.html" class="sub-menu-item">Our Store</a></li>
-                                <li><a href="brands.html" class="sub-menu-item">Brands</a></li>
-                                <li><a href="compare-product.html" class="sub-menu-item">Compare Product</a></li>
-                                <li><a href="recently-viewed-product.html" class="sub-menu-item">Recently Viewed Products</a></li>
-                            </ul>
-                        </li>
-                
-                        <li class="has-submenu parent-parent-menu-item">
-                            <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="aboutus.html" class="sub-menu-item">About Us</a></li>
-
-                                <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> My Account</a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="user-account.html" class="sub-menu-item">User Account</a></li>
-                                        <li><a href="user-billing.html" class="sub-menu-item">Billing</a></li>
-                                        <li><a href="user-payment.html" class="sub-menu-item">Payment</a></li>
-                                        <li><a href="user-invoice.html" class="sub-menu-item">Invoice</a></li>
-                                        <li><a href="user-social.html" class="sub-menu-item">Social</a></li>
-                                        <li><a href="user-notification.html" class="sub-menu-item">Notification</a></li>
-                                        <li><a href="user-setting.html" class="sub-menu-item">Setting</a></li>
-                                    </ul> 
-                                </li>
-
-                                <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Email Template </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="email-confirmation.html" class="sub-menu-item"> Confirmation</a></li>
-                                        <li><a href="email-cart.html" class="sub-menu-item"> Cart</a></li>
-                                        <li><a href="email-offers.html" class="sub-menu-item"> Offers</a></li>
-                                        <li><a href="email-order-success.html" class="sub-menu-item"> Order Success</a></li>
-                                        <li><a href="email-gift-voucher.html" class="sub-menu-item"> Gift Voucher</a></li>
-                                        <li><a href="email-reset-password.html" class="sub-menu-item"> Reset Password</a></li>
-                                        <li><a href="email-item-review.html" class="sub-menu-item"> Item Review</a></li>
-                                    </ul> 
-                                </li>
-                        
-                                <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Blog </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="blogs.html" class="sub-menu-item"> Blogs</a></li>
-                                        <li><a href="blog-detail.html" class="sub-menu-item"> Blog Detail</a></li>
-                                    </ul> 
-                                </li>
-
-                                <li><a href="career.html" class="sub-menu-item">Career </a></li>
-                        
-                                <li class="has-submenu parent-menu-item">
-                                    <a href="javascript:void(0)"> Helpcenter </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="helpcenter.html" class="sub-menu-item">Overview</a></li>
-                                        <li><a href="helpcenter-faqs.html" class="sub-menu-item">FAQs</a></li>
-                                        <li><a href="helpcenter-guides.html" class="sub-menu-item">Guides</a></li>
-                                        <li><a href="helpcenter-support.html" class="sub-menu-item">Support</a></li>
-                                    </ul>  
-                                </li>
-
-                                <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Auth Pages </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="login.html" class="sub-menu-item"> Login</a></li>
-                                        <li><a href="signup.html" class="sub-menu-item"> Signup</a></li>
-                                        <li><a href="forgot-password.html" class="sub-menu-item"> Forgot Password</a></li>
-                                        <li><a href="lock-screen.html" class="sub-menu-item"> Lock Screen</a></li>
-                                    </ul> 
-                                </li>
-
-                                <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Utility </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="terms.html" class="sub-menu-item">Terms of Services</a></li>
-                                        <li><a href="privacy.html" class="sub-menu-item">Privacy Policy</a></li>
-                                    </ul>  
-                                </li>
-
-                                <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Special </a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="comingsoon.html" class="sub-menu-item"> Coming Soon</a></li>
-                                        <li><a href="maintenance.html" class="sub-menu-item"> Maintenance</a></li>
-                                        <li><a href="error.html" class="sub-menu-item"> 404!</a></li>
-                                    </ul> 
-                                </li>
-
-                                <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Multi Level Menu</a><span class="submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="javascript:void(0)" class="sub-menu-item">Level 1.0</a></li>
-                                        <li class="has-submenu child-menu-item"><a href="javascript:void(0)"> Level 2.0 </a><span class="submenu-arrow"></span>
-                                            <ul class="submenu">
-                                                <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.1</a></li>
-                                                <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.2</a></li>
-                                            </ul>  
-                                        </li>
-                                    </ul>  
-                                </li>
-                            </ul>
-                        </li>
-                
-                        <li><a href="sale.html" class="sub-menu-item">Sale</a></li>
-
-                        <li><a href="contact.html" class="sub-menu-item">Contact</a></li>
-                    </ul>end navigation menu
-                </div> -->
-                <!--end navigation-->
             </div><!--end container-->
         </nav><!--end header-->
         <!-- End Navbar -->
@@ -416,13 +205,13 @@
                                     <input id="pro-img" name="profile-image" type="file" class="hidden" onchange="loadFile(event)" />
                                     <div>
                                         <div class="relative h-28 w-28 mx-auto">
-                                            <img src="assets/images/client/16.jpg" class="rounded-full shadow dark:shadow-gray-800 ring-4 ring-slate-50 dark:ring-slate-800" id="profile-image" alt="">
+                                            <img src="images/userDP/dp.png" class="rounded-full shadow dark:shadow-gray-800 ring-4 ring-slate-50 dark:ring-slate-800" id="profile-image" alt="">
                                             <label class="absolute inset-0 cursor-pointer" for="pro-img"></label>
                                         </div>
 
                                         <div class="mt-4">
-                                            <h5 class="text-lg font-semibold">Jesus Zamora</h5>
-                                            <p class="text-slate-400">jesus@hotmail.com</p>
+                                            <h5 class="text-lg font-semibold"><%=user.name%></h5>
+                                            <p class="text-slate-400"><%=user.email%></p>
                                         </div>
                                     </div>
                                 </div>
@@ -431,14 +220,14 @@
                                     <ul class="list-none sidebar-nav mb-0 pb-0" id="navmenu-nav">
                                         <li class="navbar-item account-menu">
                                             <a href="/account" class="navbar-link text-slate-400 flex items-center py-2 rounded">
-                                                <span class="me-2 mb-0"><i data-feather="airplay" class="size-4"></i></span>
+                                                <span class="me-2 mb-0"><i data-feather="user" class="size-4"></i></span>
                                                 <h6 class="mb-0 font-medium">Account</h6>
                                             </a>
                                         </li>
     
                                         <li class="navbar-item account-menu">
                                             <a href="#" class="navbar-link text-slate-400 flex items-center py-2 rounded">
-                                                <span class="me-2 mb-0 text-orange-500"><i data-feather="edit" class="size-4"></i></span>
+                                                <span class="me-2 mb-0 text-orange-500"><i data-feather="map-pin" class="size-4"></i></span>
                                                 <h6 class="mb-0 font-medium text-orange-500">Address</h6>
                                             </a>
                                         </li>
@@ -463,9 +252,9 @@
                     </div>
 
                     <div class="lg:w-3/4 md:w-2/3 md:px-3 mt-6 md:mt-0">
-                        <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+                        <!-- <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900 mb-5">
                             <h6 class="text-slate-400 mb-0">The following addresses will be used on the checkout page by default.</h6>
-                            <div class="grid lg:grid-cols-2 grid-cols-1 gap-6 mt-6">
+                            <div class="grid lg:grid-cols-1 grid-cols-1 gap-6 mt-6">
                                 <div class="">
                                     <div class="flex items-center mb-4 justify-between">
                                         <h5 class="text-xl font-medium">Billing Address:</h5>
@@ -477,7 +266,7 @@
                                         <ul class="list-none">
                                             <li class="flex">
                                                 <i data-feather="map-pin" class="size-4 me-2 mt-1"></i>
-                                                <p class="text-slate-400">C/54 Northwest Freeway, Suite 558, <br> Houston, USA 485</p>
+                                                <p class="text-slate-400">C/54 Northwest Freeway, Suite 558,  Houston, USA 485</p>
                                             </li>
 
                                             <li class="flex mt-1">
@@ -487,8 +276,35 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+                            </div>
+                        </div> -->
+                        <%for(let i = 0 ;i < address.length; i++){%>
+                        <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900 mt-5">
+                            <!-- <h6 class="text-slate-400 mb-0">The following addresses will be used on the checkout page by default.</h6> -->
+                            <div class="grid lg:grid-cols-1 grid-cols-1 gap-6 mt-6">
                                 <div class="">
+                                    <div class="flex items-center mb-4 justify-between">
+                                        <h5 class="text-xl font-medium">Shiping Address:</h5>
+                                        <a href="/edit_address?id=<%=address[i]._id%>" class="text-orange-500 text-lg"><i data-feather="edit" class="size-4"></i></a>
+                                    </div>
+                                    <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
+                                        <p class="text-lg font-medium mb-2"><%=address[i].name%></p>
+
+                                        <ul class="list-none">
+                                            <li class="flex">
+                                                <i data-feather="map-pin" class="size-4 me-2 mt-1"></i>
+                                                <p class="text-slate-400"><%=address[i].add1%>, <%=address[i].add2%> <br> <%=address[i].landmark%>, <%=address[i].city%> <br> <%=address[i].pincode%> </p>
+                                            </li>
+
+                                            <li class="flex mt-1">
+                                                <i data-feather="phone" class="size-4 me-2 mt-1"></i>
+                                                <p class="text-slate-400">+91 <%=address[i].phone%></p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <!-- <div class="">
                                     <div class="flex items-center mb-4 justify-between">
                                         <h5 class="text-xl font-medium">Shipping Address:</h5>
                                         <a href="#" class="text-orange-500 text-lg"><i data-feather="edit" class="size-4"></i></a>
@@ -508,9 +324,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
+                        <%}%>
                     </div>
                 </div><!--end grid-->
             </div><!--end container-->
@@ -645,7 +462,7 @@
         <!-- Back to top -->
 
         <!-- Switcher -->
-        <div class="fixed top-1/4 -left-2 z-50">
+        <!-- <div class="fixed top-1/4 -left-2 z-50">
             <span class="relative inline-block rotate-90">
                 <input type="checkbox" class="checkbox opacity-0 absolute" id="chk">
                 <label class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8" for="chk">
@@ -654,7 +471,7 @@
                     <span class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] w-7 h-7"></span>
                 </label>
             </span>
-        </div>
+        </div> -->
 
         <!-- <div class="fixed top-1/2 -right-11 z-50 hidden sm:block">
             <a href="https://1.envato.market/cartzio" target="_blank" class="py-1 px-3 relative inline-block rounded-t-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-semibold"><i class="mdi mdi-cart-outline me-1"></i> Download</a>
@@ -662,12 +479,12 @@
         <!-- Switcher -->
 
         <!-- LTR & RTL Mode Code -->
-        <div class="fixed top-[40%] -left-3 z-50">
+        <!-- <div class="fixed top-[40%] -left-3 z-50">
             <a href="#" id="switchRtl">
                 <span class="py-1 px-3 relative inline-block rounded-b-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-semibold rtl:block ltr:hidden" >LTR</span>
                 <span class="py-1 px-3 relative inline-block rounded-b-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-semibold ltr:block rtl:hidden">RTL</span>
             </a>
-        </div>
+        </div> -->
         <!-- LTR & RTL Mode Code -->
 
         <!-- JAVASCRIPTS -->
