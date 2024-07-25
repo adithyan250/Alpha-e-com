@@ -5,10 +5,12 @@ const Category = require('../models/categoryModel');
 const Address = require('../models/addressModel');
 const User = require('../models/userModel');
 
+const bcrypt = require('bcrypt');
+
 
 const accountView = async (req, res) => {
     try{
-        const id = req.query.id;
+        const id = req.session.user_id;
         const user = await User.findOne({_id:id});
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         res.render('account',{user: user, category: footer});
@@ -31,7 +33,8 @@ const addressView = async (req, res) => {
 const addAddressview = async (req, res) => {
     try{
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        res.render('addAddress', {category: footer});   
+        const user = User.findOne({_id: req.session.user_id});
+        res.render('addAddress', {category: footer, user: user});   
     }catch(error){
         console.log(error.message);
     }
@@ -137,6 +140,38 @@ const updatePersonalDetails = async (req, res) =>{
     }
 }
 
+const changePasswordView = async (req, res) => {
+    try{
+        const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
+        const user = await User.findOne({_id:req.session.user_id});
+        res.render('changePassword', {category: footer, user: user});
+    }catch(error){
+        console.log(error.message);
+    }
+}
+const updatePassword = async (req, res) => {
+    try {
+        const {opass, pass, conpass} = req.body;
+        const user = await User.findOne({_id:req.session.user_id});
+        console.log(user)
+        const passwordMatch = await bcrypt.compare(opass, user.password);
+        if(passwordMatch || pass === conpass){
+            const passwordHash = await bcrypt.hash(pass, 10)
+            const updated = await User.findByIdAndUpdate({_id:req.session.user_id},{
+                $set:{
+                    password:passwordHash
+                }
+            })
+            res.redirect('/password')
+        }else{
+            console.log("Incorrect Password...");
+            alert("Incorrect Password...");
+        }
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     accountView,
     addressView,
@@ -145,5 +180,7 @@ module.exports = {
     editAddressView,
     updateAddress,
     personalDeatilsView,
-    updatePersonalDetails
+    updatePersonalDetails,
+    changePasswordView,
+    updatePassword
 }

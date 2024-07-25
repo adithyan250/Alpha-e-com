@@ -100,7 +100,13 @@ user_route.post('/edit_address', accountController.updateAddress);
 
 user_route.get('/personal_details', auth.isLogin, accountController.personalDeatilsView);
 
-user_route.post('/personal_details', accountController.updatePersonalDetails)
+user_route.post('/personal_details', accountController.updatePersonalDetails);
+
+user_route.get('/password', auth.isLogin, accountController.changePasswordView);
+
+user_route.post('/password', accountController.updatePassword)
+
+
 
 // user_route.get
 // middleware removed

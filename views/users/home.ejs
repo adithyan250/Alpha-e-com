@@ -23,6 +23,11 @@
     </head>
     
     <body class="dark:bg-slate-900">
+        <style>
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
         <!-- Start Navbar -->
         <nav id="topnav" class="defaultscroll is-sticky tagline-height">
             <div class="container relative">
@@ -92,11 +97,11 @@
                                     <!-- <p class="flex items-center font-medium py-2 px-4"><i data-feather="dollar-sign" class="h-4 w-4 me-2"></i> Balance: <span class="text-orange-500 ms-2">$ 245.10</span></p> -->
                                 </li>
                                 <li>
-                                    <a href="/account?id=<%=user._id%>" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="user" class="h-4 w-4 me-2"></i>Account</a>
+                                    <a href="/account" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="user" class="h-4 w-4 me-2"></i>Account</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="user-setting.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
-                                </li>
+                                </li> -->
                                 <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
                                 <li>
                                     <a href="/user_logout" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="log-out" class="h-4 w-4 me-2"></i>Logout</a>
