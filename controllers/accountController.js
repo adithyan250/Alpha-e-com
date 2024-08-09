@@ -66,7 +66,8 @@ const editAddressView = async (req, res) => {
         const id = req.query.id;
         const address = await Address.findOne({_id: id});
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        res.render('editAddress', {category: footer, address: address});
+        const user = await User.findOne({_id: req.session.user_id})
+        res.render('editAddress', {category: footer, address: address, user:user});
         // console.log(id)
     }catch(error){
         console.log(error.message);
@@ -149,6 +150,7 @@ const changePasswordView = async (req, res) => {
         console.log(error.message);
     }
 }
+
 const updatePassword = async (req, res) => {
     try {
         const {opass, pass, conpass} = req.body;

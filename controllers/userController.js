@@ -166,6 +166,7 @@ const  verifyLogin = async(req, res)=>{
             if(passwordMatch){
                 if(userData.is_verified === 1){
                     req.session.user_id = userData._id;
+                    
                     res.redirect('/home');
                 }else{
                     res.render('login',{message:"Please verify your Email!!..", email:email, password:password})

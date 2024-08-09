@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const Cart = require("../models/cartModel");
+const User = require('../models/userModel');
 const Category = require("../models/categoryModel");
 const Product = require("../models/productModel");
 
@@ -86,7 +87,8 @@ const cartView = async(req, res)=>{
         const Price = parseInt(products[1].price) * parseInt(cartItems[1].quantity)
         footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         // console.log(Price);
-        res.render('cartPage',{category: footer, cartItems: cartItems, products: products});
+        const user = await User.findOne({_id: req.session.user_id})
+        res.render('cartPage',{category: footer, cartItems: cartItems, user: user, products: products});
     } catch (error) {
         console.log(error.message);
     }
