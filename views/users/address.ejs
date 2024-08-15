@@ -87,7 +87,7 @@
                             Add Address
                         </button>
                     </a>
-
+                    
 
                     <%for(let i=0 ;i < address.length; i++){%>
                         <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900 mt-5">
@@ -98,7 +98,8 @@
                                         <h5 class="text-xl font-medium">Shiping Address:</h5>
                                         <a href="/edit_address?id=<%=address[i]._id%>"
                                             class="text-orange-500 text-lg"><i data-feather="edit"
-                                                class="size-4"></i></a>
+                                                class="size-4"></i>
+                                        </a>
                                     </div>
                                     <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
                                         <p class="text-lg font-medium mb-2">
@@ -123,28 +124,6 @@
                                         </ul>
                                     </div>
                                 </div>
-
-                                <!-- <div class="">
-                                    <div class="flex items-center mb-4 justify-between">
-                                        <h5 class="text-xl font-medium">Shipping Address:</h5>
-                                        <a href="#" class="text-orange-500 text-lg"><i data-feather="edit" class="size-4"></i></a>
-                                    </div>
-                                    <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
-                                        <p class="text-lg font-medium mb-2">Jesus Zamora</p>
-
-                                        <ul class="list-none">
-                                            <li class="flex">
-                                                <i data-feather="map-pin" class="size-4 me-2 mt-1"></i>
-                                                <p class="text-slate-400">C/54 Northwest Freeway, Suite 558, <br> Houston, USA 485</p>
-                                            </li>
-
-                                            <li class="flex mt-1">
-                                                <i data-feather="phone" class="size-4 me-2 mt-1"></i>
-                                                <p class="text-slate-400">+123 897 5468</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                         <%}%>

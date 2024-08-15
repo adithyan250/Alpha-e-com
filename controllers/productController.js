@@ -1,4 +1,4 @@
-const userModel = require('../models/userModel');
+const User = require('../models/userModel');
 const Product = require('../models/productModel');
 const Category = require("../models/categoryModel");
 const Subcategory = require('../models/subCategoryModel.js')
@@ -407,10 +407,11 @@ const productDetails = async(req, res) => {
     try {
         let footer;
         const id = req.query.id
+        const user = await User.findOne({_id: req.session.user_id});
         const product = await Product.findOne({_id: id});
         footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         console.log(product)
-        res.render('productDetails',{category: footer,product: product});
+        res.render('productDetails',{category: footer,product: product,user: user});
     } catch (error) {
         console.log(error.message);
     }

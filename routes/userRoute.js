@@ -9,6 +9,7 @@ const product = require('../controllers/productController')
 const cartController = require("../controllers/cartController");
 const categoryController = require('../controllers/categoryController');
 const accountController = require("../controllers/accountController");
+const checkoutController = require("../controllers/checkoutController");
 
 const config = require("../config/config");
 const auth = require('../middlewares/auth');
@@ -104,7 +105,11 @@ user_route.post('/personal_details', accountController.updatePersonalDetails);
 
 user_route.get('/password', auth.isLogin, accountController.changePasswordView);
 
-user_route.post('/password', accountController.updatePassword)
+user_route.post('/password', accountController.updatePassword);
+
+user_route.get('/buy_now', auth.isLogin, checkoutController.buyNowCartView)
+
+user_route.get('/checkout', auth.isLogin, checkoutController.checkoutview);
 
 
 
@@ -117,7 +122,6 @@ user_route.post('/password', accountController.updatePassword)
 
 user_route.get('*',(req, res)=>{
     res.render('404');
-})
-
+});
 
 module.exports = user_route;
