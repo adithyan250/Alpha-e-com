@@ -13,6 +13,7 @@ const checkoutController = require("../controllers/checkoutController");
 
 const config = require("../config/config");
 const auth = require('../middlewares/auth');
+const orderauth = require("../middlewares/checkoutAuth");
 
 user_route.use(session({secret: process.env.sessionSecret}));
 
@@ -107,9 +108,24 @@ user_route.get('/password', auth.isLogin, accountController.changePasswordView);
 
 user_route.post('/password', accountController.updatePassword);
 
-user_route.get('/buy_now', auth.isLogin, checkoutController.buyNowCartView)
+user_route.get('/buy_now', auth.isLogin, checkoutController.buyNowCartView);
 
-user_route.get('/checkout', auth.isLogin, checkoutController.checkoutview);
+user_route.post('/buy_now', checkoutController.buynow)
+
+user_route.get('/checkout', auth.isLogin, orderauth.isLogin, checkoutController.checkoutview);
+
+user_route.post('/checkout', auth.isLogin, checkoutController.checkout)
+
+user_route.get('/checkout_add_address', orderauth.isLogin, auth.isLogin, checkoutController.addAddressview);
+
+user_route.post('/checkout_add_address', checkoutController.addAddress);
+
+user_route.get("/checkout_edit_address", orderauth.isLogin, auth.isLogin, checkoutController.editAddressView);
+
+user_route.post("/checkout_edit_address", checkoutController.editAddress);
+
+
+
 
 
 

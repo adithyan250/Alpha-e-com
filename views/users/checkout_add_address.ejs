@@ -1,0 +1,157 @@
+<%- include('./layouts/header.ejs')%>
+    <%- include('./layouts/navbar.ejs')%>
+
+        <!-- Start Hero -->
+        <section class="relative table w-full py-20 lg:py-24 bg-gray-50 dark:bg-slate-800">
+            <div class="container relative">
+                <div class="grid grid-cols-1 mt-14">
+                    <h3 class="text-3xl leading-normal font-semibold">Checkout</h3>
+                </div><!--end grid-->
+
+                <!-- <div class="relative mt-3">
+                    <ul class="tracking-[0.5px] mb-0 inline-block">
+                        <li class="inline-block uppercase text-[13px] font-bold duration-500 ease-in-out hover:text-orange-500"><a href="index.html">Cartzio</a></li>
+                        <li class="inline-block text-base text-slate-950 dark:text-white mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
+                        <li class="inline-block uppercase text-[13px] font-bold text-orange-500" aria-current="page">Checkout</li>
+                    </ul>
+                </div> -->
+            </div><!--end container-->
+        </section><!--end section-->
+        <!-- End Hero -->
+
+        <!-- Start -->
+        <section class="relative md:py-24 py-16">
+            <div class="container relative">
+                <div class="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 gap-6">
+                    <div class="lg:col-span-8">
+                        <div class="p-6 rounded-md shadow dark:shadow-gray-800">
+                            <h3 class="text-xl leading-normal font-semibold">Add Address</h3>
+                            <form method="post" action="/checkout_add_address" name="address" onsubmit="return formValidator()">
+                                <div class="grid lg:grid-cols-2 grid-cols-1 gap-5 mt-3">
+                                    <div>
+                                        <label class="form-label font-medium">Full Name<span
+                                                class="text-red-600">*</span></label>
+                                        <div class="form-icon relative mt-2">
+                                            <i data-feather="user" class="w-4 h-4 absolute top-3 start-4"></i>
+                                            <input type="text"
+                                                class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
+                                                placeholder="First Name:" id="firstname" name="name" required="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="form-label font-medium">Mobile Number<span
+                                                class="text-red-600">*</span></label>
+                                        <div class="form-icon relative mt-2">
+                                            <i data-feather="phone" class="w-4 h-4 absolute top-3 start-4"></i>
+                                            <input type="number"
+                                                class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
+                                                placeholder="Mobile:" id="lastname" name="mobile" required="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="form-label font-medium">Flat, House no., Building,
+                                            Company,
+                                            Apartment<span class="text-red-600">*</span></label>
+                                        <div class="form-icon relative mt-2">
+                                            <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
+                                            <input type="text"
+                                                class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
+                                                placeholder="Flat, House no., Building, Company, Apartment" name="add1"
+                                                required="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="form-label font-medium">Area, Street, Sector, Village<span
+                                                class="text-red-600">*</span></label>
+                                        <div class="form-icon relative mt-2">
+                                            <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
+                                            <input type="text"
+                                                class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
+                                                placeholder="Area, Street, Sector, Village :" name="add2" required="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="form-label font-medium">Landmark<span
+                                                class="text-red-600">*</span></label>
+                                        <div class="form-icon relative mt-2">
+                                            <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
+                                            <input type="text"
+                                                class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
+                                                placeholder="E.g. near apollo hospital" name="landmark" required="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="form-label font-medium">Town/City<span
+                                                class="text-red-600">*</span></label>
+                                        <div class="form-icon relative mt-2">
+                                            <i data-feather="map-pin" class="w-4 h-4 absolute top-3 start-4"></i>
+                                            <input type="text"
+                                                class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
+                                                placeholder="Town/City :" name="city" required="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="form-label font-medium">Pincode<span
+                                                class="text-red-600">*</span></label>
+                                        <div class="form-icon relative mt-2">
+                                            <i data-feather="map-piny" class="w-4 h-4 absolute top-3 start-4"></i>
+                                            <input type="number"
+                                                class="ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0"
+                                                placeholder="6 digits [0-9] PIN code" name="pincode" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end grid -->
+                           
+   
+                            <div class="mt-4">
+                                <input type="submit"
+                                    class="py-2 px-5 inline-block tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md w-full"
+                                    value="Add Address">
+                            </div>
+                        </form>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end grid-->
+            </div><!--end container-->
+        </section><!--end section-->
+        <!-- End -->
+        <script>
+            function formValidator() {
+                let name = document.address.name.value;
+                let mobile = document.address.mobile.value;
+                let add1 = document.address.add1.value;
+                let add2 = document.address.add2.value;
+                let landmark = document.address.landmark.value;
+                let city = document.address.city.value;
+                let pincode = document.address.pincode.value;
+                if (name === null || name === "") {
+                    alert("Please enter a name...");
+                    return false;
+                } else if (name.length < 3) {
+                    alert("Enter a vaild name...");
+                    return false;
+                } else if (mobile.length !== 10) {
+                    alert("Please enter a phone number so we can call if there are any issues with delivery...");
+                    return false;
+                } else if (add1 === null || add1 === "" || add1.length < 3) {
+                    alert("Please enter a Flat, House no., Building, Company, Apartment...");
+                    return false;
+                } else if (add2 === null || add2 === "" || add2.length < 8) {
+                    alert("Please enter a Area, Street, Sector, Village...");
+                    return false;
+                } else if (landmark === null || landmark === "") {
+                    alert("Please enter a Landmark...");
+                    return false;
+                } else if (pincode.length < 6) {
+                    alert("Please enter a ZIP or postal code...");
+                    return false;
+                } else if (city === null || city === "") {
+                    alert("Please enter a city name...");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        </script>
+        <%- include('./layouts/footer.ejs')%>
