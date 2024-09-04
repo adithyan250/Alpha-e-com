@@ -160,7 +160,7 @@ const  verifyLogin = async(req, res)=>{
     try {
         const {email, password} = req.body;
         const userData = await User.findOne({email:email});
-        console.log(userData)
+        // console.log(userData)
         if(userData){
             const passwordMatch = await bcrypt.compare(password, userData.password);
             if(passwordMatch){
@@ -396,7 +396,7 @@ const getEmail = async (req, res) => {
         const userData = await User.findOne({email:email});
         if(userData){
             forgotPasswordOtp(userData.name, userData.email);
-            console.log(OTP)
+            // console.log(OTP)
             res.redirect(`/forgot_password_otp?email=${email}`);
         }else{
             res.render("emailEntryForgotPassword",{email:email, message:"The Email is not existed...."})
@@ -415,7 +415,7 @@ const resendotp = async (req, res) => {
         const userData = await User.findOne({email:email});
         if(userData){
             forgotPasswordOtp(userData.name, userData.email);
-            console.log(OTP)
+            // console.log(OTP)
             res.redirect(`/forgot_password_otp?email=${email}`);
         }else{
             res.render("emailEntryForgotPassword",{email:email, message:"The Email is not existed...."})
@@ -440,8 +440,8 @@ const forgetPasswordOtp = async (req, res) => {
 const forgetPasswordOtpVerify = async (req, res) => {
     try {
         const {otp,email} = req.body;
-        console.log(email)
-        console.log(otp)
+        // console.log(email)
+        // console.log(otp)
         if(OTP===otp){
             res.render("enterpassword",{email:email});
         }
@@ -455,7 +455,7 @@ const forgetPasswordOtpVerify = async (req, res) => {
 const newPassword = async (req, res) => {
     try {
         const {password,confirmPassword,email} = req.body
-        console.log(password,confirmPassword,email)
+        // console.log(password,confirmPassword,email)
 
         if(password === confirmPassword){
             const spassword = await securePassword(password);
@@ -468,7 +468,7 @@ const newPassword = async (req, res) => {
                  },
                 {new:true}
             )
-            console.log(passwordData)
+            // console.log(passwordData)
             if(passwordData){
                 res.redirect('/user_signin');
             }else{

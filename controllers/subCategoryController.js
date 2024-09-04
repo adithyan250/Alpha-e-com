@@ -42,7 +42,7 @@ const subcategoryload = async (req, res) => {
                         ]
                     }).sort({ subCategory_name: -1 })
                     Sort = "name:Z-A";
-                    console.log("2");
+                    // console.log("2");
                     break;
 
                 case "3":
@@ -77,7 +77,7 @@ const subcategoryload = async (req, res) => {
                         ]
                     }).sort({ subCategory_name: 1 })
                     Sort = "sort by";
-                    console.log(typeof sort)
+                    // console.log(typeof sort)
                     break;
             }
         }
@@ -95,7 +95,7 @@ const addSubCategory = async (req, res) => {
     try {
         let catid = req.query.cat_id;
         res.render('addSubCategory', { catid: catid })
-        console.log(catid);
+        // console.log(catid);
     } catch (error) {
         console.log(error.message);
     }
@@ -109,7 +109,7 @@ const insertSubCategory = async (req, res) => {
             res.render('addSubCategory', { message: "subcatergory already Exists...", subcategoryName: subcategoryName, description: description, catid: catid, categoryData: categoryData })
         } else {
             let count = await Subcategory.find({ category_id: catid }).countDocuments();
-            console.log(catid);
+            // console.log(catid);
             count = count + 1
             subcategory = new Subcategory({
                 subCategory_id: count,

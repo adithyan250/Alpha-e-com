@@ -18,7 +18,7 @@ const addCart = async (req, res) => {
         if (cartData) {
             const qty = parseInt(cartData.quantity);
             cartData.quantity = qty + quantity;
-            console.log("hdjks")
+            // console.log("hdjks")
             cartSave = await cartData.save();
 
         } else {
@@ -27,12 +27,12 @@ const addCart = async (req, res) => {
                 quantity: quantity,
                 customer_id: customer_id
             });
-            console.log("skljs")
+            // console.log("skljs")
             cartSave = await cart.save();
         }
         
         if (cartSave) {
-            console.log("Cart data saved successfully");
+            // console.log("Cart data saved successfully");
             res.redirect(`/cart?customer_id=${customer_id}`);
         }
         // console.log(req.query)
@@ -62,9 +62,9 @@ const addCartsingle = async (req, res) => {
             });
             cartSave = await cart.save();
         }
-        console.log(cartSave)
+        // console.log(cartSave)
         if (cartSave) {
-            console.log("Cart data saved successfully");
+            // console.log("Cart data saved successfully");
             res.redirect(`/cart?customer_id=${customer_id}`);
         }
     } catch (error) {

@@ -19,59 +19,146 @@
                         <div class="p-6 rounded-md shadow dark:shadow-gray-800 mb-34">
                             <h3 class="text-xl leading-normal font-semibold">Select Address</h3>
                             <a href="/checkout_add_address">
-                                <button class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md mt-5">
+                                <button
+                                    class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md mt-5">
                                     Add Address
                                 </button></a>
-                                <form action="/checkout" method="post">
-                            <%for(let i=0 ;i < address.length; i++){%>
-                            <label
-                                class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
-                                
-                                <input class="focus:ring-orange-200" type="radio" name="address" value="<%=address[i]._id%>" style="accent-color:#f97316;">
-                                <!-- <p class="text-lg font-medium mb-2">
-                                    Adithyan PB
-                                </p><br> -->
-                                <a href="/checkout_edit_address?id=<%=address[i]._id%>" class="text-orange-500 text-lg">
-                                    <i data-feather="edit" class="size-4"></i>
-                                </a>
-                                <ul class="list-none mx-3">
-                                    <li class="flex">
-                                        <p class="text-lg font-medium mb-2">
-                                            <%=address[i].name%>
-                                        </p><br>
-                                    </li>
-                                    
-                                    <li class="flex">
-                                        
-                                        <p class="text-slate-400">
-                                            <%=address[i].add1%>, <%=address[i].add2%> <br>
-                                            <%=address[i].landmark%>, <%=address[i].city%> <br>
-                                            <%=address[i].pincode%>
-                                        </p>
-                                    </li>
+                            <form onsubmit="return formValidate()" name="address" id="address">
+                                <%for(let i=0 ;i < address.length; i++){%>
+                                    <label
+                                        class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
 
-                                    <li class="flex mt-1">
-                                        
-                                        <p class="text-slate-400">+91 <%=address[i].phone%>
-                                        </p>
-                                    </li>
-                                </ul>
-                                
-                            </label>
-                            <%}%>
+                                        <input class="focus:ring-orange-200" type="radio" name="address"
+                                            value="<%=address[i]._id%>" style="accent-color:#f97316;">
+                                        <a href="/checkout_edit_address?id=<%=address[i]._id%>"
+                                            class="text-orange-500 text-lg">
+                                            <i data-feather="edit" class="size-4"></i>
+                                        </a>
+                                        <ul class="list-none mx-3">
+                                            <li class="flex">
+                                                <p class="text-lg font-medium mb-2">
+                                                    <%=address[i].name%>
+                                                </p><br>
+                                            </li>
 
-                            <input type="hidden" name="orderId" value="<%= orderId %>">
-                           
-                            <div class="mt-4">
-                                <input type="submit"
-                                    class="py-2 px-5 inline-block tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md w-full"
-                                    value="Continue to checkout">
-                            </div>
-                        </form>
+                                            <li class="flex">
+
+                                                <p class="text-slate-400">
+                                                    <%=address[i].add1%>, <%=address[i].add2%> <br>
+                                                            <%=address[i].landmark%>, <%=address[i].city%> <br>
+                                                                    <%=address[i].pincode%>
+                                                </p>
+                                            </li>
+
+                                            <li class="flex mt-1">
+
+                                                <p class="text-slate-400">+91 <%=address[i].phone%>
+                                                </p>
+                                            </li>
+                                        </ul>
+
+                                    </label>
+                                    <%}%>
+
+                                        <input type="hidden" name="orderId" value="<%= orderId %>">
+
+                                        <div class="mt-4">
+                                            <input type="submit"
+                                                class="py-2 px-5 inline-block tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md w-full"
+                                                value="Continue to checkout">
+                                        </div>
+                            </form>
                         </div>
-                    </div><!--end col-->                   
+                    </div><!--end col-->
                 </div><!--end grid-->
             </div><!--end container-->
-        <!-- End -->
+            <!-- End -->
 
-        <%- include('./layouts/footer.ejs')%>
+            <script>
+                function formValidate() {
+                    var radios = document.getElementsByName("address");
+                    var formValid = false;
+
+                    var i = 0;
+                    while (!formValid && i < radios.length) {
+                        if (radios[i].checked) formValid = true;
+                        i++;
+                    }
+
+                    if (!formValid) alert("Select an address!...");
+                    return formValid;
+                }
+            </script>
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#address').submit(function (e) {
+                        e.preventDefault();
+                        if (!formValidate()) {
+                            return false; // Stop submission if form is not valid
+                        }
+                        var formData = $(this).serialize();
+
+                        $.ajax({
+                            url: "/checkout",
+                            type: "POST",
+                            data: formData,
+                            success: function (res) {
+                                let order = res.order;
+                                console.log("id:", order);
+                                if (res.success) {
+                                    var options = {
+                                        "key": "" + res.key_id + "",
+                                        "amount": "" + res.amount + "",
+                                        "currency": "INR",
+                                        "name": "Alpha E-com",
+                                        "order_id": order.id,
+                                        "handler": function (response) {
+                                            alert("payment succeeded");
+                                            console.log("response:", response);
+                                            console.log("order:", order)
+                                            verifyPayment(response, order)
+                                            // window.open("","_self")
+                                        },
+                                        "prefill": {
+                                            "contact": "" + res.contact + "",
+                                            "name": "" + res.name + "",
+                                            "email": "" + res.email + ""
+                                        },
+                                        "notes": {
+                                            "description": "" + res.description + ""
+                                        },
+                                        "theme": {
+                                            "color": "#f97316"
+                                        }
+                                    };
+                                    var razorpayObject = new Razorpay(options);
+                                    razorpayObject.on('payment.failed', function (response) {
+                                        alert("Payment Failed");
+                                    })
+                                    razorpayObject.open();
+                                } else {
+                                    alert(res.msg);
+                                }
+                            }
+                        })
+                    })
+                });
+
+                function verifyPayment(payment, order) {
+                    $.ajax({
+                        url: "/verify_payment",
+                        data: {
+                            payment,
+                            order
+                        },
+                        method: "post",
+                        success:(response) => {
+                            if(response.paymentStatus){
+                                location.href = '/order_success';
+                            }
+                        }
+                    })
+                }
+            </script>
+            <%- include('./layouts/footer.ejs')%>

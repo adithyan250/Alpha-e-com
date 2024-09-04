@@ -12,13 +12,13 @@ const addProduct = async (req, res) => {
         let arrImg = [];
         const productCount = await Product.count()
         const id = productCount + 1;
-        console.log(productCount)
+        // console.log(productCount)
         const { title,subCategory, category, brand, model, price, description } = req.body
         for (let i = 0; i < req.files.length; i++) {
             arrImg[i] = req.files[i].filename;
-            console.log(req.files[i].filename)
+            // console.log(req.files[i].filename)
         }
-        console.log(category)
+        // console.log(category)
         
         const product = new Product({
             id: id,
@@ -68,7 +68,7 @@ const browseProducts = async (req, res) => {
     try {
         var search = '';
         // var category = req.body.category
-        console.log(req.body.search)
+        // console.log(req.body.search)
         if (req.body.search) {
             search = req.body.search
             // console.log(search)
@@ -98,10 +98,10 @@ const browseProducts = async (req, res) => {
             });
             if(req.query.sort){
                 sort= parseInt(req.query.sort, 10);
-                console.log(sort)
+                // console.log(sort)
                 switch(sort){
                     case 1: 
-                        console.log("eeojdja");
+                        // console.log("eeojdja");
                         productData.sort((a, b) => {
                             let fa = a.title.toLowerCase(),
                                 fb = b.title.toLowerCase();
@@ -154,10 +154,10 @@ const browseProducts = async (req, res) => {
             });
             if(req.query.sort){
                 sort= parseInt(req.query.sort, 10);
-                console.log(sort)
+                // console.log(sort)
                 switch(sort){
                     case 1: 
-                        console.log("eeojdja");
+                        // console.log("eeojdja");
                         productData.sort((a, b) => {
                             let fa = a.title.toLowerCase(),
                                 fb = b.title.toLowerCase();
@@ -231,7 +231,7 @@ const productLoad = async (req, res) => {
             search = req.query.text;
         }
 
-        console.log(search);
+        // console.log(search);
         let productsData;
         let Sort;
 
@@ -318,7 +318,7 @@ const productLoad = async (req, res) => {
                     break;
 
                 default:
-                    console.log(search);
+                    // console.log(search);
                     productsData = await Product.find({
                         $or: [
                             { id: { $regex: '.*' + search + '.*', $options: 'i' } },
@@ -347,7 +347,7 @@ const editProductLoad = async (req, res) => {
         const id = req.query.id
         const productData = await Product.findOne({ _id: id });
         const category = await Category.find();
-        console.log(category);
+        // console.log(category);
         res.render('editProducts', { product: productData, category: category });
     } catch (error) {
         console.log(error.message);
@@ -362,7 +362,7 @@ const updateProduct = async (req, res) => {
         // for(let i=0; i<req.files.length; i++){
         //     arrImg[i] = req.files[i].filename;
         // }
-        console.log(req.body)
+        // console.log(req.body)
         const ProductUpdate = await Product.findByIdAndUpdate(
             { _id: id },
             {
@@ -381,7 +381,7 @@ const updateProduct = async (req, res) => {
             }
         );
         if (ProductUpdate) {
-            console.log("updated successfully")
+            // console.log("updated successfully")
             res.redirect('/admin/admin_panel/products')
         } else {
             res.redirect('/admin_panel/products/edit_product');
@@ -410,7 +410,7 @@ const productDetails = async(req, res) => {
         const user = await User.findOne({_id: req.session.user_id});
         const product = await Product.findOne({_id: id});
         footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        console.log(product)
+        // console.log(product)
         res.render('productDetails',{category: footer,product: product,user: user});
     } catch (error) {
         console.log(error.message);

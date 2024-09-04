@@ -34,7 +34,7 @@ const addAddressview = async (req, res) => {
     try{
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         const user = await User.findOne({_id: req.session.user_id});
-        console.log(user);
+        // console.log(user);
         
         res.render('addAddress', {category: footer, user: user});   
     }catch(error){
@@ -97,7 +97,7 @@ const updateAddress = async (req, res) =>{
             }
         )
         if(update){
-            console.log("updated successfully!!!");
+            // console.log("updated successfully!!!");
             res.redirect('/address');
         }else{
             alert('update failed');
@@ -112,7 +112,7 @@ const personalDeatilsView = async (req, res) => {
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         const id = req.session.user_id;
         const user = await User.findOne({_id:id})
-        console.log(user);
+        // console.log(user);
         res.render('personalDetails', {category:footer, user: user});
     }catch(error){
         console.log(error.message);
@@ -123,7 +123,7 @@ const updatePersonalDetails = async (req, res) =>{
     try{
         const {name, phone} = req.body;
         const id = req.session.user_id;
-        console.log(id)
+        // console.log(id)
         const update = await User.findByIdAndUpdate({_id: id},
             {
                 $set:{
@@ -133,7 +133,7 @@ const updatePersonalDetails = async (req, res) =>{
             }
         );
         if(update){
-            console.log("updated successfully!!!");
+            // console.log("updated successfully!!!");
             res.redirect('/personal_details');
         }else{
             alert('update failed');
@@ -157,7 +157,7 @@ const updatePassword = async (req, res) => {
     try {
         const {opass, pass, conpass} = req.body;
         const user = await User.findOne({_id:req.session.user_id});
-        console.log(user)
+        // console.log(user)
         const passwordMatch = await bcrypt.compare(opass, user.password);
         if(passwordMatch || pass === conpass){
             const passwordHash = await bcrypt.hash(pass, 10)
@@ -168,7 +168,7 @@ const updatePassword = async (req, res) => {
             })
             res.redirect('/password')
         }else{
-            console.log("Incorrect Password...");
+            // console.log("Incorrect Password...");
             alert("Incorrect Password...");
         }
     }catch(error){

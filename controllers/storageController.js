@@ -7,7 +7,7 @@ productStorge = multer.diskStorage({
     },
     filename:function(req,file,cb){
         const name = Date.now()+'-'+file.originalname;
-        console.log(file.originalname);
+        // console.log(file.originalname);
         cb(null,name);
     }
 })

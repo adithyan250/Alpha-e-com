@@ -12,7 +12,7 @@ const categoryLoad = async (req, res) => {
         if (req.query.text) {
             search = req.query.text;
         }
-        console.log(search);
+        // console.log(search);
         let categoryData;
         let Sort;
 
@@ -60,7 +60,7 @@ const categoryLoad = async (req, res) => {
                     Sort = "oldest"
                     break;
                 default:
-                    console.log(search);
+                    // console.log(search);
                     categoryData = await Category.find({
                         $or: [
                             { category_name: { $regex: '.*' + search + '.*', $options: 'i' } },
@@ -122,7 +122,7 @@ const editCategory = async (req, res) => {
     try {
         const id = req.query.id
         const categoryData = await Category.findOne({ _id: id })
-        console.log(categoryData);
+        // console.log(categoryData);
 
         res.render('editCategory', { category: categoryData });
     } catch (error) {
@@ -143,7 +143,7 @@ const updateCategory = async (req, res) => {
                 }
             });
         if (CategoryData) {
-            console.log("updated successfully")
+            // console.log("updated successfully")
         }
         res.redirect('/admin/admin_panel/category')
     } catch (error) {
@@ -155,7 +155,7 @@ const browseCategory = async (req, res) => {
     try {
         var search = '';
         // var category = req.body.category
-        console.log(req.query.category)
+        // console.log(req.query.category)
         if (req.query.category) {
             search = req.query.category
             // console.log(search)
@@ -181,65 +181,7 @@ const browseCategory = async (req, res) => {
             });
             if (req.query.sort) {
                 sort = parseInt(req.query.sort, 10);
-                console.log(sort)
-                switch (sort) {
-                    case 1:
-                        console.log("eeojdja");
-                        productData.sort((a, b) => {
-                            let fa = a.title.toLowerCase(),
-                                fb = b.title.toLowerCase();
-
-                            if (fa < fb) {
-                                return -1;
-                            }
-                            if (fa > fb) {
-                                return 1;
-                            }
-                            return 0;
-                        });
-                        sort = "Name: A-Z";
-                        break;
-                    case 2:
-                        productData.sort((a, b) => {
-                            let fa = a.title.toLowerCase(),
-                                fb = b.title.toLowerCase();
-
-                            if (fa < fb) {
-                                return 1;
-                            }
-                            if (fa > fb) {
-                                return -1;
-                            }
-                            return 0;
-                        });
-                        sort = "Name: Z-A";
-                        break;
-                    case 3:
-                        productData.sort((a, b) => a.price - b.price);
-                        sort = "Price: Low-High";
-                        break;
-                    case 4:
-                        productData.sort((a, b) => b.price - a.price);
-                        sort = "Price: High-Low";
-                        break;
-                    default:
-                        productData.sort((a, b) => a.title - b.title);
-
-                }
-            }
-            console.log(productData[0].category);
-            footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
-            res.render('productBrowse', { Products: productData, search: search, category: footer, maxPrice: maxPrice, minPrice: minPrice });
-        } else {
-            // console.log("second");
-            productData = await Product.find({
-                $or: [
-                    { category: { $regex: '.*' + search + '.*', $options: 'i' } }
-                ]
-            });
-            if (req.query.sort) {
-                sort = parseInt(req.query.sort, 10);
-                console.log(sort)
+                // console.log(sort)
                 switch (sort) {
                     case 1:
                         // console.log("eeojdja");
@@ -285,7 +227,65 @@ const browseCategory = async (req, res) => {
 
                 }
             }
-            console.log(productData[0].category);
+            // console.log(productData[0].category);
+            footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
+            res.render('productBrowse', { Products: productData, search: search, category: footer, maxPrice: maxPrice, minPrice: minPrice });
+        } else {
+            // console.log("second");
+            productData = await Product.find({
+                $or: [
+                    { category: { $regex: '.*' + search + '.*', $options: 'i' } }
+                ]
+            });
+            if (req.query.sort) {
+                sort = parseInt(req.query.sort, 10);
+                // console.log(sort)
+                switch (sort) {
+                    case 1:
+                        // console.log("eeojdja");
+                        productData.sort((a, b) => {
+                            let fa = a.title.toLowerCase(),
+                                fb = b.title.toLowerCase();
+
+                            if (fa < fb) {
+                                return -1;
+                            }
+                            if (fa > fb) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        sort = "Name: A-Z";
+                        break;
+                    case 2:
+                        productData.sort((a, b) => {
+                            let fa = a.title.toLowerCase(),
+                                fb = b.title.toLowerCase();
+
+                            if (fa < fb) {
+                                return 1;
+                            }
+                            if (fa > fb) {
+                                return -1;
+                            }
+                            return 0;
+                        });
+                        sort = "Name: Z-A";
+                        break;
+                    case 3:
+                        productData.sort((a, b) => a.price - b.price);
+                        sort = "Price: Low-High";
+                        break;
+                    case 4:
+                        productData.sort((a, b) => b.price - a.price);
+                        sort = "Price: High-Low";
+                        break;
+                    default:
+                        productData.sort((a, b) => a.title - b.title);
+
+                }
+            }
+            // console.log(productData[0].category);
             footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
             res.render('productBrowse', { Products: productData, Sort: sort, search: search, category: footer });
         }

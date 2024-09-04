@@ -175,7 +175,7 @@ const customersLoad = async (req, res) => {
     }
 }
 
-const customerdetails = async (req, res) => {
+const customerDetails = async (req, res) => {
     try{
         const id = req.query.id;
         const details = await User.findOne({_id:id});
@@ -202,6 +202,6 @@ module.exports = {
     loadDashboard,
     logout,
     customersLoad,
-    customerdetails,
+    customerDetails,
     sample
 }

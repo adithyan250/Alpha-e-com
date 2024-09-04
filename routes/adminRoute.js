@@ -14,7 +14,7 @@ const adminController = require('../controllers/adminController');
 const productController = require('../controllers/productController');
 const categoryController = require('../controllers/categoryController');
 const subcategoryController = require('../controllers/subCategoryController');
-const bannerController = require('../controllers/bannerController');
+// const bannerController = require('../controllers/bannerController');
 const storgeController = require('../controllers/storageController');
 
 
@@ -87,7 +87,7 @@ admin_route.post('/admin_panel/products/edit_product', auth.isLogin, productCont
 
 admin_route.get('/admin_panel/customers', auth.isLogin, adminController.customersLoad);
 
-admin_route.get('/admin_panel/customers/details', auth.isLogin, adminController.customerdetails);
+admin_route.get('/admin_panel/customers/details', auth.isLogin, adminController.customerDetails);
 
 // admin_route.get('/admin_panel/banner_manage', auth.isLogin, bannerController.bannerManage);
 

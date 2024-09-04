@@ -25,9 +25,11 @@ const OrderSchema = new mongoose.Schema({
         type:String,
         require:true
     },
-    next:{
-        type:String
+    date:{
+        type:Date,
+        require:true
     }
+    
 });
 
 module.exports = mongoose.model('order', OrderSchema);

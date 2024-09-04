@@ -124,6 +124,10 @@ user_route.get("/checkout_edit_address", orderauth.isLogin, auth.isLogin, checko
 
 user_route.post("/checkout_edit_address", checkoutController.editAddress);
 
+user_route.post('/verify_payment', checkoutController.verifypayment);
+
+user_route.get('/order_success', auth.isLogin, checkoutController.orderSuccess);
+
 
 
 
