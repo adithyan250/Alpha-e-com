@@ -209,8 +209,7 @@ const buynow = async (req, res) => {
 
 const verifypayment = async (req, res) => {
     try {
-        console.log(key_secret)
-        console.log("req:", req.body);
+        
         const crypto = require("crypto");
         let hmac = crypto.createHmac('sha256', key_secret);
         const razorpay_order_id = req.body.payment.razorpay_order_id;
@@ -234,7 +233,6 @@ const verifypayment = async (req, res) => {
             if(uploaded){
                 req.session.order_id = uploaded._id;
                 const order = await Order.findOne({_id: req.session.order_id});
-                console.log(order);
                 res.json({paymentStatus: true});
             }
         }
@@ -245,11 +243,14 @@ const verifypayment = async (req, res) => {
 
 const orderSuccess = async (req, res) => {
     try{
-        // console.log("order_success");
+        const order = await Order.find({_id : req.session.order_id}).populate("productId");
+        const product = [];
+        for(let i =0; i< order.length;i++){
+            product.push(order[i].productId);
+        }
         const user = await User.findOne({ _id: req.session.user_id })
         const footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
-        res.render('orderSuccess',{category: footer, user: user});
-        // console.log("order_success 1")
+        res.render('orderSuccess',{category: footer, user: user, order: order, product: product});
     }catch(error){
         console.log(error.message);
     }

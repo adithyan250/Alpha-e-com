@@ -23,30 +23,34 @@
 
 
 // FIBANACCI SEQUENCE
-// const arr = [-5, 2, 4, 6, 10];
+// const arr = [8, 20, -2, 4, -6];
 
-// function search(arr, t) {
-//   let left = 0;
-//   let right = arr.length - 1;
-//   while (left <= right) {
-//     let middle = Math.floor((left + right) / 2);
-//     if (t === arr[middle]) return middle
-//     if (t < arr[middle]) {
-//       right = middle - 1
-//     }
-//     else {
-//       left = middle + 1;
-//      }
+// function insertionSort(arr) {
+//   for(let i =1; i< arr.length;i++){
+//     let numbertoInsert = arr[i];
+//     let j =i-1
+//     while(j>=0 && arr[j]>numbertoInsert){
+//       arr[j+1] = arr[j];
+//       j = j -1;
+//     } 
+//     arr[j+1] = numbertoInsert
 //   }
-//   return -1
 // }
-// console.log(search(arr, 10))
-// console.log(search(arr, 6))
-// console.log(search(arr, 20))
-const obj = {
 
-  _id: new ObjectId("66d7e6fd3453f01b97c172a2")
-}
-const id = obj._id
-const string = id.str;
-console.log(string);
+// insertionSort(arr)
+// console.log(arr)
+
+// console.log(recursiveSearch(arr, 10))
+// console.log(recursiveSearch(arr, 6))
+// console.log(recursiveSearch(arr, 20))
+// const obj = {
+
+//   _id: new ObjectId("66d7e6fd3453f01b97c172a2")
+// }
+// const id = obj._id
+// const string = id.str;
+// console.log(string);
+
+var d = new Date(Date.now());
+d = d.toString().split(" ")
+console.log(d)

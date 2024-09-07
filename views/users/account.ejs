@@ -79,22 +79,26 @@
                                 <thead class="text-sm uppercase bg-slate-50 dark:bg-slate-800">
                                     <tr class="text-start">
                                         <th scope="col" class="px-2 py-3 text-start">Order no.</th>
+                                        <th scope="col" class="px-2 py-3 text-start">Item</th>
                                         <th scope="col" class="px-2 py-3 text-start">Date</th>
                                         <th scope="col" class="px-2 py-3 text-start">Status</th>
-                                        <th scope="col" class="px-2 py-3 text-start">Total</th>
-                                        <th scope="col" class="px-2 py-3 text-start">Action</th>
+                                        <th scope="col" class="px-2 py-3 text-start">Quantity</th> 
+                                        <!-- <th scope="col" class="px-2 py-3 text-start">Action</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%for(let i =0 ; i<orders.length; i++){%>
                                     <tr class="bg-white dark:bg-slate-900 text-start">
-                                        <th class="px-2 py-3 text-start" scope="row">7107</th>
-                                        <td class="px-2 py-3 text-start">1st November 2021</td>
-                                        <td class="px-2 py-3 text-start text-green-600">Delivered</td>
-                                        <td class="px-2 py-3 text-start">$ 320 <span class="text-slate-400">for 2items</span></td>
-                                        <td class="px-2 py-3 text-start"><a href="javascript:void(0)" class="text-orange-500">View <i class="mdi mdi-chevron-right"></i></a></td>
+                                        <th class="px-2 py-3 text-start" scope="row"><%=orders[i].orderId%></th>
+                                        <td class="px-2 py-3 text-start"><%= orders[i].productId.title%></td>
+                                        <td class="px-2 py-3 text-start"><%=date[i][1]%> <%=date[i][2]%> <%=date[i][3]%></td>
+                                        <td class="px-2 py-3 text-start text-green-600"><%= orders[i].status%></td>
+                                        <td class="px-2 py-3 text-center"> <span class="text-slate-400"><%=orders[i].quantity%></span></td>
+                                        <td class="px-2 py-3 text-start"><a href="" class="text-orange-500">view <i class="mdi mdi-chevron-right"></i></a></td>
                                     </tr>
+                                    <%}%>
 
-                                    <tr class="bg-white dark:bg-slate-900 text-start border-t border-gray-100 dark:border-gray-700">
+                                    <!-- <tr class="bg-white dark:bg-slate-900 text-start border-t border-gray-100 dark:border-gray-700">
                                         <th class="px-2 py-3 text-start" scope="row">8007</th>
                                         <td class="px-2 py-3 text-start">4th November 2021</td>
                                         <td class="px-2 py-3 text-start text-slate-400">Processing</td>
@@ -108,7 +112,7 @@
                                         <td class="px-2 py-3 text-start text-red-600">Canceled</td>
                                         <td class="px-2 py-3 text-start">$ 800 <span class="text-slate-400">for 1item</span></td>
                                         <td class="px-2 py-3 text-start"><a href="javascript:void(0)" class="text-orange-500">View <i class="mdi mdi-chevron-right"></i></a></td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
