@@ -41,7 +41,7 @@ const addCart = async (req, res) => {
     }
 }
 
-const addCartsingle = async (req, res) => {
+const addCartSingle = async (req, res) => {
     try {
         const product_id = req.query.product_id;
         const quantity = 1;
@@ -95,7 +95,7 @@ const cartView = async(req, res)=>{
 
 module.exports = {
     addCart,
-    addCartsingle,
+    addCartSingle,
     cartView
 }
 

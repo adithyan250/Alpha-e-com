@@ -25,6 +25,10 @@ const OrderSchema = new mongoose.Schema({
         type:String,
         require:true
     },
+    paymentId:{
+        type:Object,
+        require:true
+    },
     date:{
         type:Date,
         require:true

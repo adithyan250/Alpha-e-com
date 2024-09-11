@@ -108,7 +108,7 @@ const insertCategory = async (req, res) => {
                 category_id: count,
                 created_on: new Date()
             });
-            const categoryData = await category.save()
+            const categoryData = await category.save();
             if (categoryData) {
                 res.redirect('/admin/admin_panel/category');
             }

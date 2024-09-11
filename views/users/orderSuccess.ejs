@@ -19,8 +19,8 @@
                     <td style="padding: 16px 16px 0; color: #161c2d;">
                         <p style="margin: 0; font-size: 18px; font-weight: 500;">Hello, <%=user.name%>!</p>
                         <p style="margin-bottom: 0; color: #94a3b8;">Thank you for your order success. Payment is
-                            proceed successfull and your order is on the way. Please check your order via <span
-                                style="font-weight: 500; color: #161c2d;">Transaction ID: <%= order.orderId%></span>
+                            proceed successfull and your order (Order Id: <%=order[0].orderId%>) is on the way. Please check your order via <span
+                            style="font-weight: 500; color: #161c2d;">Transaction ID: <%=order[0].paymentId.razorpay_payment_id%></span>
                         </p>
                     </td>
                 </tr>

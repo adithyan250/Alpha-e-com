@@ -44,13 +44,16 @@
 // console.log(recursiveSearch(arr, 6))
 // console.log(recursiveSearch(arr, 20))
 // const obj = {
-
 //   _id: new ObjectId("66d7e6fd3453f01b97c172a2")
 // }
 // const id = obj._id
 // const string = id.str;
 // console.log(string);
+// var d = Date.now();
+// var date = new Date();
+// d = d.toString().split(" ")
+// console.log(d, date)
 
-var d = new Date(Date.now());
-d = d.toString().split(" ")
-console.log(d)
+// for(let i = 0 ; i < 1000; i++){
+//     console.log(i);
+// }

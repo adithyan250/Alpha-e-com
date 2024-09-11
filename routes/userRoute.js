@@ -13,7 +13,7 @@ const checkoutController = require("../controllers/checkoutController");
 
 const config = require("../config/config");
 const auth = require('../middlewares/auth');
-const orderauth = require("../middlewares/checkoutAuth");
+const orderAuth = require("../middlewares/checkoutAuth");
 
 user_route.use(session({secret: process.env.sessionSecret}));
 
@@ -78,7 +78,7 @@ user_route.post('/enter_email', userController.verifyEmail);
 
 user_route.post('/addcart', cartController.addCart);
 
-user_route.get('/addcart', auth.isLogin, cartController.addCartsingle);
+user_route.get('/addcart', auth.isLogin, cartController.addCartSingle);
 
 user_route.get('/cart', auth.isLogin, cartController.cartView);
 
@@ -92,7 +92,7 @@ user_route.get('/category', auth.isLogin, categoryController.browseCategory);
 
 user_route.get('/address', auth.isLogin,accountController.addressView);
 
-user_route.get('/add_address', auth.isLogin, accountController.addAddressview);
+user_route.get('/add_address', auth.isLogin, accountController.addAddressView);
 
 user_route.post('/add_address', accountController.addAddress);
 
@@ -100,7 +100,7 @@ user_route.get('/edit_address', auth.isLogin, accountController.editAddressView)
 
 user_route.post('/edit_address', accountController.updateAddress);
 
-user_route.get('/personal_details', auth.isLogin, accountController.personalDeatilsView);
+user_route.get('/personal_details', auth.isLogin, accountController.personalDetailsView);
 
 user_route.post('/personal_details', accountController.updatePersonalDetails);
 
@@ -110,21 +110,21 @@ user_route.post('/password', accountController.updatePassword);
 
 user_route.get('/buy_now', auth.isLogin, checkoutController.buyNowCartView);
 
-user_route.post('/buy_now', checkoutController.buynow)
+user_route.post('/buy_now', checkoutController.buyNow)
 
-user_route.get('/checkout', auth.isLogin, orderauth.isLogin, checkoutController.checkoutview);
+user_route.get('/checkout', auth.isLogin, orderAuth.isLogin, checkoutController.checkoutView);
 
 user_route.post('/checkout', auth.isLogin, checkoutController.checkout)
 
-user_route.get('/checkout_add_address', orderauth.isLogin, auth.isLogin, checkoutController.addAddressview);
+user_route.get('/checkout_add_address', orderAuth.isLogin, auth.isLogin, checkoutController.addAddressView);
 
 user_route.post('/checkout_add_address', checkoutController.addAddress);
 
-user_route.get("/checkout_edit_address", orderauth.isLogin, auth.isLogin, checkoutController.editAddressView);
+user_route.get("/checkout_edit_address", orderAuth.isLogin, auth.isLogin, checkoutController.editAddressView);
 
 user_route.post("/checkout_edit_address", checkoutController.editAddress);
 
-user_route.post('/verify_payment', checkoutController.verifypayment);
+user_route.post('/verify_payment', checkoutController.verifyPayment);
 
 user_route.get('/order_success', auth.isLogin, checkoutController.orderSuccess);
 

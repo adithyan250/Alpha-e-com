@@ -7,7 +7,6 @@ const isLogin = async(req, res, next) => {
             const item = await Temporary.findOne({_id: req.session.order_id})
             console.log(item)
             if(item){
-
             }else{
                 res.redirect('/');
             }

@@ -38,7 +38,7 @@ const addressView = async (req, res) => {
     }
 }
 
-const addAddressview = async (req, res) => {
+const addAddressView = async (req, res) => {
     try{
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         const user = await User.findOne({_id: req.session.user_id});
@@ -115,7 +115,7 @@ const updateAddress = async (req, res) =>{
     }
 }
 
-const personalDeatilsView = async (req, res) => {
+const personalDetailsView = async (req, res) => {
     try{
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         const id = req.session.user_id;
@@ -187,11 +187,11 @@ const updatePassword = async (req, res) => {
 module.exports = {
     accountView,
     addressView,
-    addAddressview,
+    addAddressView,
     addAddress,
     editAddressView,
     updateAddress,
-    personalDeatilsView,
+    personalDetailsView,
     updatePersonalDetails,
     changePasswordView,
     updatePassword

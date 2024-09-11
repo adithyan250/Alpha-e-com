@@ -21,7 +21,7 @@ const Temporary = require("../models/temporaryModel");
 
 
 
-const checkoutview = async (req, res) => {
+const checkoutView = async (req, res) => {
     try {
         const orderId = req.query.OrderId;
         const addresses = await Address.find({ customer_id: req.session.user_id });
@@ -46,7 +46,7 @@ const buyNowCartView = async (req, res) => {
     }
 }
 
-const addAddressview = async (req, res) => {
+const addAddressView = async (req, res) => {
     try {
         const footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
         const user = await User.findOne({ _id: req.session.user_id });
@@ -180,7 +180,7 @@ const checkout = async (req, res) => {
     }
 }
 
-const buynow = async (req, res) => {
+const buyNow = async (req, res) => {
     try {
         const { quantity, price, productId } = req.body;
         const user = req.session.user_id;
@@ -207,7 +207,7 @@ const buynow = async (req, res) => {
     }
 }
 
-const verifypayment = async (req, res) => {
+const verifyPayment = async (req, res) => {
     try {
         
         const crypto = require("crypto");
@@ -226,7 +226,7 @@ const verifypayment = async (req, res) => {
                 productId: temp.productId,
                 quantity: temp.quantity,
                 status: "order completed",
-                payment: req.body.payment,
+                paymentId: req.body.payment,
                 date: new Date()
             })
             const uploaded = await orderUpdate.save();
@@ -248,6 +248,7 @@ const orderSuccess = async (req, res) => {
         for(let i =0; i< order.length;i++){
             product.push(order[i].productId);
         }
+        console.log("orders:", order);
         const user = await User.findOne({ _id: req.session.user_id })
         const footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
         res.render('orderSuccess',{category: footer, user: user, order: order, product: product});
@@ -257,14 +258,14 @@ const orderSuccess = async (req, res) => {
 }
 
 module.exports = {
-    checkoutview,
+    checkoutView,
     buyNowCartView,
-    addAddressview,
+    addAddressView,
     addAddress,
     editAddressView,
     editAddress,
     checkout,
-    buynow,
-    verifypayment,
+    buyNow,
+    verifyPayment,
     orderSuccess
 }
