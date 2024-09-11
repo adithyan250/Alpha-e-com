@@ -1,5 +1,5 @@
-/public/images/products
-/public/userImages/
-/node_modules
-/sample.js
-/.env
+public/images/products
+public/userImages/
+node_modules
+sample.js
+.env
