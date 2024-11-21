@@ -82,7 +82,7 @@ user_route.get('/addcart', auth.isLogin, cartController.addCartSingle);
 
 user_route.get('/cart', auth.isLogin, cartController.cartView);
 
-user_route.get('/sample', auth.isLogout, userController.sample);
+user_route.get('/sample', auth.isLogin, userController.sample);
 
 user_route.get('/product_details', auth.isLogin, product.productDetails);
 
@@ -127,6 +127,8 @@ user_route.post("/checkout_edit_address", checkoutController.editAddress);
 user_route.post('/verify_payment', checkoutController.verifyPayment);
 
 user_route.get('/order_success', auth.isLogin, checkoutController.orderSuccess);
+
+user_route.get('/order_status', auth.isLogin, checkoutController.orderStatus)
 
 
 

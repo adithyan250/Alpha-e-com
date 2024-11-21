@@ -186,6 +186,9 @@ const  verifyLogin = async(req, res)=>{
 
 const loadHome = async(req, res) => {    
     try {   
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires','-1');
+        res.header('Pragma', 'no-cache');
         const userData = await User.findById({_id:req.session.user_id});
         const productData  = await Product.find().sort({created_on:1}).limit(8)
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
@@ -490,7 +493,7 @@ const sample = async (req, res) => {
         }
         const productData  = await Product.find().sort({created_on:1}).limit(8)
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
-        res.render("smaple",{products:productData, category: footer, brand});
+        res.render("smaple",{products:productData, category: footer});
     } catch (error) {
         console.log(error.message)
     }

@@ -95,7 +95,7 @@ const editAddress = async (req, res) => {
         const id = req.query.id;
         // console.log(id)
         const user = req.session.user_id;
-        const { name, mobile, add1, add2, landmark, city, pincode } = req.body;
+        const { name, mobile, add1, add2, landmark, city, pincode} = req.body;
         const update = await Address.findByIdAndUpdate({ _id: id },
             {
                 $set: {
@@ -138,6 +138,9 @@ const checkout = async (req, res) => {
             const user = await User.findOne({ _id: req.session.user_id })
             const order = await Temporary.findOne({ _id: req.session.order_id }).populate("productId");
             const product = order.productId;
+            const stock = parseInt(product.stocks,10);
+            const quantity = parseInt(order.quantity,10);
+            console.log("quantity: " , quantity,"stock: " , stock)
             let order_id = await Order.count();
             order_id = order_id + 10002
             order_id = "" + order_id;
@@ -149,30 +152,36 @@ const checkout = async (req, res) => {
                 receipt: order_id
             }
 
-            razorpayInstance.orders.create(options,
-                (err, orders) => {
-                    if (!err) {
-                        console.log(amount);
-                        res.status(200).send({
-                            success: true,
-                            msg: 'order Created successfully',
-                            order: orders,
-                            order_id: order_id,
-                            amount: amount,
-                            key_id: key_id,
-                            product_name: product.title,
-                            description: product.description,
-                            contact: user.mobile,
-                            name: user.name,
-                            email: user.email
-                        })
-
-                    } else {
-                        console.log(err)
-                        res.status(400).send({ success: false, msg: 'Something went wrong!' });
+            if(stock>quantity){
+                razorpayInstance.orders.create(options,
+                    (err, orders) => {
+                        if (!err) {
+                            console.log(amount);
+                            res.status(200).send({
+                                success: true,
+                                msg: 'order Created successfully',
+                                order: orders,
+                                order_id: order_id,
+                                amount: amount,
+                                key_id: key_id,
+                                product_name: product.title,
+                                description: product.description,
+                                contact: user.mobile,
+                                name: user.name,
+                                email: user.email
+                            })
+    
+                        } else {
+                            console.log(err)
+                            res.status(400).send({ success: false, msg: 'Something went wrong!' });
+                        }
                     }
-                }
-            )
+                )
+            }else{
+                res.status(200).send({
+                    msg:"Item Out of stock"
+                })
+            }
         }
 
     } catch (error) {
@@ -209,7 +218,6 @@ const buyNow = async (req, res) => {
 
 const verifyPayment = async (req, res) => {
     try {
-        
         const crypto = require("crypto");
         let hmac = crypto.createHmac('sha256', key_secret);
         const razorpay_order_id = req.body.payment.razorpay_order_id;
@@ -247,11 +255,28 @@ const orderSuccess = async (req, res) => {
         const product = [];
         for(let i =0; i< order.length;i++){
             product.push(order[i].productId);
+            let stock = order[i].productId.stocks
+            let quantity = parseInt(order[i].quantity,10);
+            stock =  parseInt(stock, 10)
+            await Product.updateOne({_id: order[i].productId._id},{stocks: stock - quantity})
         }
         console.log("orders:", order);
         const user = await User.findOne({ _id: req.session.user_id })
         const footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
         res.render('orderSuccess',{category: footer, user: user, order: order, product: product});
+        req.session.order_id = null;
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
+const orderStatus = async (req, res) => {
+    try{
+        const orderId = req.query.id;
+        const product = await Order.findOne({_id: orderId});
+        const user = await User.findOne({ _id: req.session.user_id })
+        const footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
+        res.render('orderStatus', {product: product,category: footer, user: user});
     }catch(error){
         console.log(error.message);
     }
@@ -267,5 +292,6 @@ module.exports = {
     checkout,
     buyNow,
     verifyPayment,
-    orderSuccess
+    orderSuccess,
+    orderStatus
 }

@@ -28,35 +28,43 @@
                                     <label
                                         class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
 
-                                        <input class="focus:ring-orange-200" type="radio" name="address"
-                                            value="<%=address[i]._id%>" style="accent-color:#f97316;">
-                                        <a href="/checkout_edit_address?id=<%=address[i]._id%>"
-                                            class="text-orange-500 text-lg">
-                                            <i data-feather="edit" class="size-4"></i>
-                                        </a>
-                                        <ul class="list-none mx-3">
-                                            <li class="flex">
-                                                <p class="text-lg font-medium mb-2">
-                                                    <%=address[i].name%>
-                                                </p><br>
-                                            </li>
-
-                                            <li class="flex">
-
-                                                <p class="text-slate-400">
-                                                    <%=address[i].add1%>, <%=address[i].add2%> <br>
-                                                            <%=address[i].landmark%>, <%=address[i].city%> <br>
-                                                                    <%=address[i].pincode%>
-                                                </p>
-                                            </li>
-
-                                            <li class="flex mt-1">
-
-                                                <p class="text-slate-400">+91 <%=address[i].phone%>
-                                                </p>
-                                            </li>
-                                        </ul>
-
+                                        <div class="flex">
+                                            <div>
+                                                <input class="focus:ring-orange-200" type="radio" name="address"
+                                                value="<%=address[i]._id%>" style="accent-color:#f97316;">
+                                            </div>
+    
+                                            <div>
+                                                <ul class="list-none mx-3">
+                                                    <li class="flex">
+                                                        <p class="text-lg font-medium mb-2">
+                                                            <%=address[i].name%>
+                                                        </p><br>
+                                                    </li>
+    
+                                                    <li class="flex">
+    
+                                                        <p class="text-slate-400">
+                                                            <%=address[i].add1%>, <%=address[i].add2%> <br>
+                                                                    <%=address[i].landmark%>, <%=address[i].city%> <br>
+                                                                            <%=address[i].pincode%>
+                                                        </p>
+                                                    </li>
+    
+                                                    <li class="flex mt-1">
+    
+                                                        <p class="text-slate-400">+91 <%=address[i].phone%>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <a href="/checkout_edit_address?id=<%=address[i]._id%>"
+                                                class="text-orange-500 text-lg">
+                                                <i data-feather="edit" class="size-4"></i>
+                                            </a>
+                                        </div>
                                     </label>
                                     <%}%>
 
@@ -153,8 +161,8 @@
                             order
                         },
                         method: "post",
-                        success:(response) => {
-                            if(response.paymentStatus){
+                        success: (response) => {
+                            if (response.paymentStatus) {
                                 location.href = '/order_success';
                             }
                         }

@@ -12,15 +12,15 @@ app.use((req, res, next)=>{
     next();
 })
 
-//for user routes
-const userRoute = require('./routes/userRoute');
-app.use('/',userRoute);
-
 //for admin routes
 const adminRoute = require('./routes/adminRoute');
 app.use('/admin',adminRoute);
 
+//for user routes
+const userRoute = require('./routes/userRoute');
+app.use('/',userRoute);
+
 app.listen(3000, function(){
-    console.log('Server is running on http://localhost:3000/checkout');
+    console.log('Server is running on http://localhost:3000/admin/admin_login');
 });
 // account?id=6583e53ad74a9534dbc0e91f

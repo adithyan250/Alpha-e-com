@@ -54,6 +54,7 @@ const verifyLogin = async (req, res) => {
                     res.render('login', { message: 'Email and Password is incorrect.' });
                 } else {
                     req.session.user_id = userData._id;
+                    console.log(userData._id)
                     res.redirect('/admin/admin_panel');
                 }
             } else {

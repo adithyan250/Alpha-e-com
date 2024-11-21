@@ -94,7 +94,7 @@
                                         <td class="px-2 py-3 text-start"><%=date[i][1]%> <%=date[i][2]%> <%=date[i][3]%></td>
                                         <td class="px-2 py-3 text-start text-green-600"><%= orders[i].status%></td>
                                         <td class="px-2 py-3 text-center"> <span class="text-slate-400"><%=orders[i].quantity%></span></td>
-                                        <td class="px-2 py-3 text-start"><a href="" class="text-orange-500">view <i class="mdi mdi-chevron-right"></i></a></td>
+                                        <td class="px-2 py-3 text-start"><a href="/order_Status?id=<%=orders[i].productId._id%>" class="text-orange-500">view <i class="mdi mdi-chevron-right"></i></a></td>
                                     </tr>
                                     <%}%>
 

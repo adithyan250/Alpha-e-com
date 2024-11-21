@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const Category = require('../models/categoryModel');
 const Product = require('../models/productModel');
+const User = require('../models/userModel');
 
 // category page view
 
@@ -154,12 +155,12 @@ const updateCategory = async (req, res) => {
 const browseCategory = async (req, res) => {
     try {
         var search = '';
-        // var category = req.body.category
-        // console.log(req.query.category)
+
         if (req.query.category) {
             search = req.query.category
             // console.log(search)
         }
+        
         let productData;
         let footer;
         let sort;
@@ -228,8 +229,9 @@ const browseCategory = async (req, res) => {
                 }
             }
             // console.log(productData[0].category);
+            const user = await User.findOne({_id: req.session.user_id})
             footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
-            res.render('productBrowse', { Products: productData, search: search, category: footer, maxPrice: maxPrice, minPrice: minPrice });
+            res.render('productBrowse', { Products: productData, search: search, category: footer, maxPrice: maxPrice, minPrice: minPrice , user: user});
         } else {
             // console.log("second");
             productData = await Product.find({
@@ -286,8 +288,9 @@ const browseCategory = async (req, res) => {
                 }
             }
             // console.log(productData[0].category);
+            const user = await User.findOne({_id: req.session.user_id});
             footer = await Category.aggregate([{ $lookup: { from: "subcategories", localField: "category_id", foreignField: "category_id", as: "sub_cat" } }, { $limit: 2 }]);
-            res.render('productBrowse', { Products: productData, Sort: sort, search: search, category: footer });
+            res.render('productBrowse', { Products: productData, Sort: sort, search: search, category: footer, user: user});
         }
     } catch (error) {
         console.log(error.messsage);
