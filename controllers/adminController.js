@@ -29,6 +29,7 @@ const securePassword = async (password) => {
 
 const loadLogin = async (req, res) => {
     try {
+        console.log(req.session);
         res.render('login');
     } catch (error) {
         console.log(error.message);
@@ -53,9 +54,14 @@ const verifyLogin = async (req, res) => {
                 if (userData.is_admin === 0) {
                     res.render('login', { message: 'Email and Password is incorrect.' });
                 } else {
-                    req.session.user_id = userData._id;
-                    console.log(userData._id)
-                    res.redirect('/admin/admin_panel');
+                    const id = userData._id;
+                    const admin_id = id.toHexString();
+
+                    req.session.admin = admin_id;
+                    console.log("auth: ",req.session);
+                    const user = await User.findOne({_id:id})
+                    console.log(user)
+                    res.redirect('/admin/admin_panel/products');
                 }
             } else {
                 res.render('login', { message: 'Email and Password is incorrect.' });
@@ -73,11 +79,17 @@ const verifyLogin = async (req, res) => {
 // admin panel view
 const loadDashboard = async (req, res) => {
     try {
-        const userData = await User.findById({ _id: req.session.user_id });
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
         res.header('Expires', '-1');
         res.header('Pragma', 'no-cache');
+        console.log("panel:", req.session);
+        const userData = await User.findById({ _id: req.session.admin });
+        // req.session.user_id = req.session.user_id;
+        req.session.admin = userData._id;
+        req.session.save();
+        console.log("after changing : ", req.session)
         res.render('home', { admin: userData });
+        // console.log("dashboard: ", res);
     } catch (error) {
         console.log(error.message);
     }

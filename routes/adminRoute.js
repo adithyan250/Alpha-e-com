@@ -5,27 +5,38 @@ if(process.env.NODE_ENV !== 'production'){
 const express = require('express')
 const admin_route = express();
 const session = require('express-session');
-const config = require('../config/config');
-admin_route.use(session({secret: process.env.sessionSecret}))
-const bodyParser = require('body-parser');
-
 
 const adminController = require('../controllers/adminController');
 const productController = require('../controllers/productController');
 const categoryController = require('../controllers/categoryController');
 const subcategoryController = require('../controllers/subCategoryController');
 // const bannerController = require('../controllers/bannerController');
-const storgeController = require('../controllers/storageController');
+const storgeController = require('../controllers/storageController')
 
-
-admin_route.use(bodyParser.json());
-admin_route.use(bodyParser.urlencoded({extended:true}));
+const auth = require('../middlewares/adminAuth');
+const config = require('../config/config');
+const MongoStore = require('connect-mongo');
+// admin_route.use(session({secret: process.env.sessionSecret}))
+admin_route.use(
+    session({
+      secret: process.env.sessionSecret,
+      resave: false,
+      saveUninitialized: true,
+      cookie: { secure: false } // Set `true` if using HTTPS
+    },
+    )
+  );
+const bodyParser = require('body-parser');
 
 admin_route.set('view engine','ejs')
 admin_route.set('views','./views/admin');
 
+admin_route.use(bodyParser.json());
+admin_route.use(bodyParser.urlencoded({extended:true}));
+
 const multer = require('multer');
-const path = require('path')
+const path = require('path');
+const { request } = require('http');
 
 admin_route.use(express.static('public'));
 
@@ -42,8 +53,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage});
 
-const auth = require('../middlewares/adminAuth');
 
+console.log("admin route:", request.session)
 
 admin_route.get('/admin_login', auth.isLogout,adminController.loadLogin);
 
@@ -101,10 +112,8 @@ admin_route.get('/admin_panel/customers/details', auth.isLogin, adminController.
 
 admin_route.get('/sample', auth.isLogout, adminController.sample);
 
-
 // admin_route.get('*',(req, res)=>{
 //     res.redirect('/admin/admin_login');
 // })
-
 
 module.exports = admin_route;

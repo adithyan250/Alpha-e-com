@@ -224,7 +224,7 @@ const productView = async (req, res) => {
 
 const productLoad = async (req, res) => {
     try {
-
+        console.log("products: ",req.session);
         let search;
         search = ''
         if (req.query.text) {
@@ -332,11 +332,13 @@ const productLoad = async (req, res) => {
                     break;
             }
         }
-
+        
         // console.log(categoryData)
         // res.render('productBrowse',{Products:productData});
         // res.render('categoryPage', { Category: categoryData, Sort: Sort });
+        
         res.render('productPage', { Product: productsData, Sort: Sort ,search: search});
+        
     } catch (error) {
         console.log(error.message);
     }

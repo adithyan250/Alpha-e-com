@@ -12,14 +12,15 @@ const bcrypt = require('bcrypt');
 const accountView = async (req, res) => {
     try{
         const id = req.session.user_id;
+        console.log(req.session)
         const user = await User.findOne({_id:id});
         const orders = await Order.find({customer_id: req.session.user_id}).populate("productId");
         let date = [];
         for(let i =0; i < orders.length; i++){
             date.push(orders[i].date.toString().split(" "));
         } ;
-        console.log("dates:", date);
-        console.log("orders:", orders);
+        // console.log("dates:", date);
+        // console.log("orders:", orders);
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);
         res.render('account',{user: user, category: footer, orders: orders, date: date});
     }catch(error){

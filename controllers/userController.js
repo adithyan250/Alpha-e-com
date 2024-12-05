@@ -166,7 +166,7 @@ const  verifyLogin = async(req, res)=>{
             if(passwordMatch){
                 if(userData.is_verified === 1){
                     req.session.user_id = userData._id;
-                    
+                    console.log(req.session.user_id);
                     res.redirect('/home');
                 }else{
                     res.render('login',{message:"Please verify your Email!!..", email:email, password:password})
@@ -189,6 +189,7 @@ const loadHome = async(req, res) => {
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
         res.header('Expires','-1');
         res.header('Pragma', 'no-cache');
+        console.log(req.session);
         const userData = await User.findById({_id:req.session.user_id});
         const productData  = await Product.find().sort({created_on:1}).limit(8)
         const footer = await Category.aggregate([{$lookup:{from:"subcategories",localField:"category_id",foreignField:"category_id",as:"sub_cat"}},{$limit:2}]);

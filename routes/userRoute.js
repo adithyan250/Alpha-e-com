@@ -142,8 +142,8 @@ user_route.get('/order_status', auth.isLogin, checkoutController.orderStatus)
 
 // user_route.get("*", auth.isLogout, userController.loginload)
 
-user_route.get('*',(req, res)=>{
-    res.render('404');
-});
+// user_route.get('*',(req, res)=>{
+//     res.render('404');
+// });
 
 module.exports = user_route;
