@@ -224,9 +224,12 @@ const productView = async (req, res) => {
 
 const productLoad = async (req, res) => {
     try {
-        console.log("products: ",req.session);
+        // console.log("products: ",req.cookies.user);
         let search;
         search = ''
+        const admin = await User.findOne({is_admin:1})
+        req.session.admin = admin._id;
+
         if (req.query.text) {
             search = req.query.text;
         }

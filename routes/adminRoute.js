@@ -5,6 +5,9 @@ if(process.env.NODE_ENV !== 'production'){
 const express = require('express')
 const admin_route = express();
 const session = require('express-session');
+const passport = require('passport')
+const flash = require('express-flash')
+
 
 const adminController = require('../controllers/adminController');
 const productController = require('../controllers/productController');
@@ -12,6 +15,15 @@ const categoryController = require('../controllers/categoryController');
 const subcategoryController = require('../controllers/subCategoryController');
 // const bannerController = require('../controllers/bannerController');
 const storgeController = require('../controllers/storageController')
+const User = require('../models/userModel');
+
+
+const initializePassport = require('../config/passport-config')
+  initializePassport(
+  passport,
+   email =>  User.findOne({email: email}),
+   id => User.findOne({_id:id})
+)
 
 const auth = require('../middlewares/adminAuth');
 const config = require('../config/config');
@@ -19,24 +31,33 @@ const MongoStore = require('connect-mongo');
 // admin_route.use(session({secret: process.env.sessionSecret}))
 admin_route.use(
     session({
-      secret: process.env.sessionSecret,
+      secret: process.env.adminSession,
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: false } // Set `true` if using HTTPS
+      store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/alpha_e-com' }),
+      cookie: { 
+        maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds
+        httpOnly: true,
+        secure: false // Set to true if using HTTPS
+    } // Set `true` if using HTTPS
     },
     )
   );
 const bodyParser = require('body-parser');
+
 
 admin_route.set('view engine','ejs')
 admin_route.set('views','./views/admin');
 
 admin_route.use(bodyParser.json());
 admin_route.use(bodyParser.urlencoded({extended:true}));
+admin_route.use(flash())
+
+admin_route.use(passport.initialize())
+admin_route.use(passport.session())
 
 const multer = require('multer');
-const path = require('path');
-const { request } = require('http');
+const path = require('path'); 
 
 admin_route.use(express.static('public'));
 
@@ -54,51 +75,55 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage});
 
 
-console.log("admin route:", request.session)
+// console.log("admin route:", request.session)
 
 admin_route.get('/admin_login', auth.isLogout,adminController.loadLogin);
 
-admin_route.post('/admin_login', adminController.verifyLogin);
+admin_route.post('/admin_login', passport.authenticate('local', {
+    successRedirect: '/admin/admin_panel',
+    failureRedirect: '/admin/admin_login',
+    failureFlash: true
+  }));
 
-admin_route.get('/admin_panel', auth.isLogin, adminController.loadDashboard);
+admin_route.get('/admin_panel', auth.checkAuthenticated, adminController.loadDashboard);
 
-admin_route.get('/admin_logout', auth.isLogin, adminController.logout)
+admin_route.get('/admin_logout', auth.checkAuthenticated, adminController.logout)
 
-admin_route.get('/admin_panel/category', auth.isLogin, categoryController.categoryLoad);
+admin_route.get('/admin_panel/category', auth.authenticated, categoryController.categoryLoad);
 
-admin_route.get('/admin_panel/category/add_category', auth.isLogin, categoryController.addCategory);
+admin_route.get('/admin_panel/category/add_category', auth.authenticated, categoryController.addCategory);
 
 admin_route.post('/admin_panel/category/add_category', categoryController.insertCategory);
 
-admin_route.get('/admin_panel/category/edit_category', auth.isLogin, categoryController.editCategory);
+admin_route.get('/admin_panel/category/edit_category', auth.authenticated, categoryController.editCategory);
 
 admin_route.post('/admin_panel/category/edit_category', categoryController.updateCategory);
 
-admin_route.get('/admin_panel/category/subcategory', auth.isLogin, subcategoryController.subcategoryload);
+admin_route.get('/admin_panel/category/subcategory', auth.authenticated, subcategoryController.subcategoryload);
 
-admin_route.get('/admin_panel/category/subcategory/add_subcategory', auth.isLogin, subcategoryController.addSubCategory);
+admin_route.get('/admin_panel/category/subcategory/add_subcategory', auth.authenticated, subcategoryController.addSubCategory);
 
-admin_route.post('/admin_panel/category/subcategory/add_subcategory', auth.isLogin, subcategoryController.insertSubCategory);
+admin_route.post('/admin_panel/category/subcategory/add_subcategory', auth.authenticated, subcategoryController.insertSubCategory);
 
-admin_route.get('/admin_panel/category/edit_subcategory', auth.isLogin, subcategoryController.editSubCategory);
+admin_route.get('/admin_panel/category/edit_subcategory', auth.authenticated, subcategoryController.editSubCategory);
 
-admin_route.post('/admin_panel/category/subcategory/edit_subcategory', auth.isLogin, subcategoryController.updateSubcategory);
+admin_route.post('/admin_panel/category/subcategory/edit_subcategory', auth.authenticated, subcategoryController.updateSubcategory);
 
-admin_route.get('/admin_panel/products', auth.isLogin, productController.productLoad);
+admin_route.get('/admin_panel/products', auth.authenticated, productController.productLoad);
 
-admin_route.get('/admin_panel/products/add_product',auth.isLogin, productController.addProductLoad);
+admin_route.get('/admin_panel/products/add_product',auth.authenticated, productController.addProductLoad);
 
-admin_route.get('/admin_panel/products/add_product_get_data',auth.isLogin, productController.subcategoryDataLoad);
+admin_route.get('/admin_panel/products/add_product_get_data',auth.authenticated, productController.subcategoryDataLoad);
 
 admin_route.post('/admin_panel/products/add_product',storgeController.productUpload.array('images',5), productController.addProduct);
 
-admin_route.get('/admin_panel/products/edit_product',auth.isLogin, productController.editProductLoad);
+admin_route.get('/admin_panel/products/edit_product',auth.authenticated, productController.editProductLoad);
 
-admin_route.post('/admin_panel/products/edit_product', auth.isLogin, productController.updateProduct);
+admin_route.post('/admin_panel/products/edit_product', auth.authenticated, productController.updateProduct);
 
-admin_route.get('/admin_panel/customers', auth.isLogin, adminController.customersLoad);
+admin_route.get('/admin_panel/customers', auth.authenticated, adminController.customersLoad);
 
-admin_route.get('/admin_panel/customers/details', auth.isLogin, adminController.customerDetails);
+admin_route.get('/admin_panel/customers/details', auth.authenticated, adminController.customerDetails);
 
 // admin_route.get('/admin_panel/banner_manage', auth.isLogin, bannerController.bannerManage);
 

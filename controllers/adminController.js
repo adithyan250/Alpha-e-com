@@ -61,7 +61,7 @@ const verifyLogin = async (req, res) => {
                     console.log("auth: ",req.session);
                     const user = await User.findOne({_id:id})
                     console.log(user)
-                    res.redirect('/admin/admin_panel/products');
+                    res.redirect('/admin/admin_panel');
                 }
             } else {
                 res.render('login', { message: 'Email and Password is incorrect.' });
@@ -83,9 +83,10 @@ const loadDashboard = async (req, res) => {
         res.header('Expires', '-1');
         res.header('Pragma', 'no-cache');
         console.log("panel:", req.session);
-        const userData = await User.findById({ _id: req.session.admin });
+        const userData = await User.findById({ _id: req.session.passport.user });
+        res.cookie('user', '47984719749874179', { maxAge: 900000, httpOnly: true });
         // req.session.user_id = req.session.user_id;
-        req.session.admin = userData._id;
+        // req.session.admin = userData._id;
         req.session.save();
         console.log("after changing : ", req.session)
         res.render('home', { admin: userData });
@@ -102,6 +103,7 @@ const logout = async (req, res) => {
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
         res.header('Expires', '-1');
         res.header('Pragma', 'no-cache');
+        req.logOut()
         req.session.destroy();
         res.redirect('/admin/admin_login');
     } catch (error) {
