@@ -31,7 +31,7 @@ const MongoStore = require('connect-mongo');
 // admin_route.use(session({secret: process.env.sessionSecret}))
 admin_route.use(
     session({
-      secret: process.env.adminSession,
+      secret: process.env.sessionSecret,
       resave: false,
       saveUninitialized: true,
       store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/alpha_e-com' }),
@@ -134,6 +134,8 @@ admin_route.get('/admin_panel/customers/details', auth.authenticated, adminContr
 // admin_route.get('/admin_panel/bannermanage/edit_banner', auth.isLogin, bannerController.editBanner);
 
 // admin_route.post('/admin_panel/bannermanage/edit_banner', upload.single('images'), bannerController.updateBanner)
+
+admin_route.get('/admin_panel/orders', auth.authenticated, adminController.ordersLoad);
 
 admin_route.get('/sample', auth.isLogout, adminController.sample);
 

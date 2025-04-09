@@ -164,12 +164,16 @@ const  verifyLogin = async(req, res)=>{
         if(userData){
             const passwordMatch = await bcrypt.compare(password, userData.password);
             if(passwordMatch){
-                if(userData.is_verified === 1){
+                if(userData.is_verified === 1 && userData.status === "true"){
                     req.session.user_id = userData._id;
                     console.log(req.session.user_id);
                     res.redirect('/home');
                 }else{
-                    res.render('login',{message:"Please verify your Email!!..", email:email, password:password})
+                    if(userData.status === "false"){
+                        res.render('login',{message:"You are blocked by the admin...", email:email, password:password})
+                    }else{
+                        res.render('login',{message:"Please verify your Email!!..", email:email, password:password})
+                    }
                 }
             }else{
                 res.render('login',{message:"Email and password is Inncorrect", email:email, password:password})

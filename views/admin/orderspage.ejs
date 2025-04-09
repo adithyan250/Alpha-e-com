@@ -252,50 +252,60 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Category Name</th>
-                                    <th scope="col">Description</th>
+                                    <th scope="col">Order Id</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Customer</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Date</th>
                                     <th scope="col">actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <%for(let i=0;i< Category.length ;i++){%>
+                                <%for(let i=0;i< orderData.length ;i++){%>
 
                                     <tr>
 
-                                        <th scope="row">
-                                            <a style="text-decoration: none;"
-                                                href="/admin/admin_panel/category/subcategory?cat_id=<%=Category[i].category_id %>">
-                                                <%=Category[i].category_id%>
-                                            </a>
+                                        <th scope="row"> 
+                                                <%=orderData[i].orderId%>
                                         </th>
                                         <td>
-                                            <a style="text-decoration: none;"
-                                                href="/admin/admin_panel/category/subcategory?cat_id=<%=Category[i].category_id %>">
-                                                <%=Category[i].category_name%>
-                                            </a>
+                                            
+                                                <%=orderData[i].productId.title%>
+                                         
                                         </td>
                                         <td>
-                                            <a style="text-decoration: none;"
-                                                href="/admin/admin_panel/category/subcategory?cat_id=<%=Category[i].category_id %>">
-                                                <%=Category[i].description%>
-                                            </a>
+                                            
+                                                <%=orderData[i].customer_id.name%>
+                                            
                                         </td>
                                         <td>
-                                            <a style="text-decoration: none;"
-                                                href="/admin/admin_panel/category/subcategory?cat_id=<%=Category[i].category_id %>">
-                                                <%=Category[i].status%>
-                                            </a>
+                                            
+                                                <%=orderData[i].status%>
+                                       
                                         </td>
                                         <td>
-                                            <a href="/admin/admin_panel/category/edit_category?id=<%=Category[i]._id%>"
+                                            
+                                                <%= orderData[i].date.toLocaleDateString()%>
+                                       
+                                        </td>
+                                        <td>
+                                            <!-- <a href=""
                                                 style="text-decoration: none;">
                                                 <button class="button">
-                                                    <p class="text">Edit</p>
+                                                    <p class="text">shipping</p>
                                                 </button>
-                                            </a>
-                                            <a href="/admin/admin_panel/category/subcategory/add_subcategory?catid=<%Category[i].category_id%>"
+                                            </a> -->
+                                            <%switch(orderData[i].status){%>
+                                                <%case 'order completed': %>
+                                                    <a href=""
+                                                        style="text-decoration: none;">
+                                                        <button class="button">
+                                                            <p class="text">shipping</p>
+                                                        </button>
+                                                    </a>
+                                                    <%break;%>
+                                                <%case "Shipping"%>
+                                            <a href=""
                                                 style="text-decoration: none;">
                                                 <button class="button">
                                                     <p class="text">Subcategory</p>

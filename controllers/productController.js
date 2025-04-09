@@ -56,6 +56,7 @@ const subcategoryDataLoad = async (req, res) => {
     try {
         const cat = req.query.cat
         const subcat = await Subcategory.find({ category_id: cat });
+        console.log(subcat);
         res.json(subcat);
     } catch (error) {
         console.log(error.message);

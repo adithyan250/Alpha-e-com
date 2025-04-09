@@ -94,6 +94,7 @@ const subcategoryload = async (req, res) => {
 const addSubCategory = async (req, res) => {
     try {
         let catid = req.query.cat_id;
+        console.log(catid);
         res.render('addSubCategory', { catid: catid })
         // console.log(catid);
     } catch (error) {

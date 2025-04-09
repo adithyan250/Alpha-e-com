@@ -4,7 +4,7 @@ const config = require('../config/config');
 const bcrypt = require('bcrypt')
 const express = require("express");
 const app = express();
-
+const Order = require('../models/orderModel');
 
 app.use((req, res, next) => {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
@@ -206,10 +206,66 @@ const sample = async (req, res) => {
     try {
         res.render("sample");
     } catch (error) {
-        console, log(error.message)
+        console.log(error.message)
     }
 }
 
+const ordersLoad = async (req, res) => {
+    try{
+        let search;
+        search = ''
+        if (req.query.text) {
+            search = req.query.text;
+        }
+
+        console.log(search);
+        let orderData;
+        let Sort;
+        
+        // const orders = await Order.find().populate("productId").populate("customer_id")
+        // console.log(orders);
+        
+
+
+        if (req.query) {
+
+            const sort = req.query.sort
+            switch (sort) {
+                
+                case "1":
+                    orderData = await Order.find({
+                        $or: [
+                            { orderId: { $regex: '.*' + search + '.*', $options: 'i' } }
+                        ]
+                    }).populate("productId").populate("customer_id").sort({ orderId: 1 })
+                    Sort = "id:1-9"
+                    break;
+                case "2":
+                    orderData = await Order.find({
+                        $or: [
+                            { orderId: { $regex: '.*' + search + '.*', $options: 'i' } }
+                        ]
+                    }).populate("productId").populate("customer_id").sort({ orderId: -1 })
+                    Sort = "id:9-1"
+                    break;
+                default:
+                    console.log(search);
+                    orderData = await Order.find({
+                        $or: [
+                            { orderId: { $regex: '.*' + search + '.*', $options: 'i' } }
+                        ]
+                    }).populate("productId").populate("customer_id").sort({ orderId: 1 })
+                    Sort = "sort by"
+                    break;
+            }
+        }
+        console.log("OrderData: ", orderData);
+        
+        res.render('ordersPage', { orderData: orderData, Sort: Sort });
+    }catch(error){
+        console.log(error.message);
+    }
+}
 
 module.exports = {
     loadLogin,
@@ -218,5 +274,6 @@ module.exports = {
     logout,
     customersLoad,
     customerDetails,
+    ordersLoad,
     sample
 }
