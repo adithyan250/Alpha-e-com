@@ -223,7 +223,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="newbtn" style="margin: 1rem;">
+                    <!-- <div class="newbtn" style="margin: 1rem;">
                         <a href="/admin/admin_panel/category/add_category">
                             <div tabindex="0" class="plusButton" style="--plus_sideLength: 2.5rem;
                             --plus_topRightTriangleSideLength: 0.9rem;
@@ -245,7 +245,7 @@
                                 </svg>
                             </div>
                             <a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="categorycenter">
                     <div class="categoryList">
@@ -289,28 +289,35 @@
                                        
                                         </td>
                                         <td>
-                                            <!-- <a href=""
-                                                style="text-decoration: none;">
-                                                <button class="button">
-                                                    <p class="text">shipping</p>
-                                                </button>
-                                            </a> -->
-                                            <%switch(orderData[i].status){%>
-                                                <%case 'order completed': %>
-                                                    <a href=""
+                                                <%if(orderData[i].status == 'order completed'){%>
+                                                    <a href="/admin/admin_panel/orders/change_status?status=shipping&id=<%=orderData[i].orderId%>"
                                                         style="text-decoration: none;">
                                                         <button class="button">
                                                             <p class="text">shipping</p>
                                                         </button>
                                                     </a>
-                                                    <%break;%>
-                                                <%case "Shipping"%>
-                                            <a href=""
-                                                style="text-decoration: none;">
-                                                <button class="button">
-                                                    <p class="text">Subcategory</p>
-                                                </button>
-                                            </a>
+                                                <%}else if(orderData[i].status == "shipping"){%>
+                                                    <a href="/admin/admin_panel/orders/change_status?status=out of delivery&id=<%=orderData[i].orderId%>"
+                                                        style="text-decoration: none;">
+                                                        <button class="button">
+                                                            <p class="text">Out of Delivery</p>
+                                                        </button>
+                                                    </a>
+                                                    <%}else if(orderData[i].status == "out of delivery"){%>
+                                                        <a href="/admin/admin_panel/orders/change_status?status=delivered&id=<%=orderData[i].orderId%>"
+                                                            style="text-decoration: none;">
+                                                            <button class="button">
+                                                                <p class="text">Delivered</p>
+                                                            </button>
+                                                        </a>
+                                                    <%}else if(orderData[i].status == "delivered"){%>
+                                                        <a href=""
+                                                            style="text-decoration: none;">
+                                                            <button class="button" style="background-color: #d10024;">
+                                                                <p class="text">Order Delivered</p>
+                                                            </button>
+                                                        </a>
+                                                    <%}%>
                                         </td>
                                         
                                     </tr>
@@ -334,7 +341,7 @@
                 display: flex;
                 justify-content: center;
                 width: 8vw;
-                height: 2rem;
+                height: 3rem;
                 margin: 0.5rem;
                 align-items: center;
                 padding: 10px 15px;

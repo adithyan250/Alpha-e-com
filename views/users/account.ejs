@@ -83,7 +83,7 @@
                                         <th scope="col" class="px-2 py-3 text-start">Date</th>
                                         <th scope="col" class="px-2 py-3 text-start">Status</th>
                                         <th scope="col" class="px-2 py-3 text-start">Quantity</th> 
-                                        <!-- <th scope="col" class="px-2 py-3 text-start">Action</th> -->
+                                        <th scope="col" class="px-2 py-3 text-start">Address</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,7 +94,13 @@
                                         <td class="px-2 py-3 text-start"><%=date[i][1]%> <%=date[i][2]%> <%=date[i][3]%></td>
                                         <td class="px-2 py-3 text-start text-green-600"><%= orders[i].status%></td>
                                         <td class="px-2 py-3 text-center"> <span class="text-slate-400"><%=orders[i].quantity%></span></td>
-                                        <td class="px-2 py-3 text-start"><a href="/order_Status?id=<%=orders[i].productId._id%>" class="text-orange-500">view <i class="mdi mdi-chevron-right"></i></a></td>
+                                        <td class="px-2 py-3 text-start"><p class="text-slate-400">
+                                            <%=orders[i].address.add1%>, <%=orders[i].address.add2%> <br>
+                                                    <%=orders[i].address.landmark%>, <%=orders[i].address.city%> <br>
+                                                            <%=orders[i].address.pincode%>
+                                        </p></td>
+                                        
+                                        <!-- <td class="px-2 py-3 text-start"><a href="/order_Status?id=<%=orders[i].productId._id%>" class="text-orange-500">view <i class="mdi mdi-chevron-right"></i></a></td> -->
                                     </tr>
                                     <%}%>
 

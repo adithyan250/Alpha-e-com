@@ -124,6 +124,7 @@ const editAddress = async (req, res) => {
 const checkout = async (req, res) => {
     try {
         const address = req.body.address;
+        console.log("address",address);
         const update = await Temporary.findByIdAndUpdate(req.session.order_id, {
             $set: {
                 address: address,
@@ -233,6 +234,7 @@ const verifyPayment = async (req, res) => {
                 orderId: count,
                 productId: temp.productId,
                 quantity: temp.quantity,
+                address: temp.address,
                 status: "order completed",
                 paymentId: req.body.payment,
                 date: new Date()

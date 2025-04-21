@@ -14,7 +14,7 @@ const accountView = async (req, res) => {
         const id = req.session.user_id;
         console.log(req.session)
         const user = await User.findOne({_id:id});
-        const orders = await Order.find({customer_id: req.session.user_id}).populate("productId");
+        const orders = await Order.find({customer_id: req.session.user_id}).populate("productId").populate("orderId").populate("address").sort({ orderId: 1 });
         let date = [];
         for(let i =0; i < orders.length; i++){
             date.push(orders[i].date.toString().split(" "));

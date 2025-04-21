@@ -139,6 +139,8 @@ admin_route.get('/admin_panel/orders', auth.authenticated, adminController.order
 
 admin_route.get('/sample', auth.isLogout, adminController.sample);
 
+admin_route.get('/admin_panel/orders/change_status', auth.isLogout, adminController.changeStatus);
+
 // admin_route.get('*',(req, res)=>{
 //     res.redirect('/admin/admin_login');
 // })

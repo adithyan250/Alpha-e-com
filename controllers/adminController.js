@@ -201,7 +201,6 @@ const customerDetails = async (req, res) => {
     }
 }
 
-
 const sample = async (req, res) => {
     try {
         res.render("sample");
@@ -267,6 +266,19 @@ const ordersLoad = async (req, res) => {
     }
 }
 
+const changeStatus = async (req, res) => {
+    try{
+        const status = req.query.status;
+        const id = req.query.id;
+        // console.log(status, id);
+        const changed = await Order.updateOne({orderId:id},{$set:{status:status}})
+        // console.log(changed);
+        res.redirect("/admin/admin_panel/orders");
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     loadLogin,
     verifyLogin,
@@ -275,5 +287,6 @@ module.exports = {
     customersLoad,
     customerDetails,
     ordersLoad,
+    changeStatus,
     sample
 }
